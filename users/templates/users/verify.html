@@ -1,0 +1,19 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content%}
+<div class="hero-wrap js-fullheight">
+    <div class="overlay"></div>
+    <div id="particles-js"></div>
+    <div class="container">
+      <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
+        <div class="col-md-6 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+          <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
+            Your account has been verified! You're able to login now</h1>
+            <p class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
+                <hr>
+                <a href="/login" style="color: rgb(0, 0, 0); font-size: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Log in</a> </p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content%}

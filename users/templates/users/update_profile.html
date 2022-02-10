@@ -1,0 +1,69 @@
+{% extends 'base/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content%}
+<div class="profile-body" style="color: white">
+    <header>
+        <div class="container">
+          <div class="col mt-5">
+            <form method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+
+              <div class="form-group col-md-4 mb-0" >
+                {{ profile_form.image|as_crispy_field}}
+              </div> 
+                    <div class="form-group col-md-2 mb-0" >
+                      {{ user_form.username|as_crispy_field}}
+                      
+                    </div> 
+                    <div class="form-row">  
+                      <div class="form-group col-md-2 mb-0" >
+                        {{ user_form.first_name|as_crispy_field}}
+                        
+                      </div> 
+                        <div class="form-group col-md-2 mb-0" >
+                          {{ user_form.last_name|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-4 mb-0">
+                          {{ user_form.email|as_crispy_field }}
+                        </div> 
+                        </div> 
+                    <div class="form-row">
+
+
+                        <div class="form-group col-md-2 mb-0">
+                          {{ profile_form.position|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-2 mb-0">
+                          {{ profile_form.committee|as_crispy_field }}
+                        </div>
+                      </div> 
+
+                    <div class="form-row ">
+
+                      <div class="form-group col-md-5 mb-0">
+                        {{ profile_form.bio|as_crispy_field }}
+                      </div>
+                      <div class="form-group col-md-5 mb-0">
+                        {{ profile_form.awards|as_crispy_field }}
+                      </div>
+                    </div>
+                    <div class="form-row ">
+
+                      <div class="form-group col-md-5 mb-0">
+                        {{ profile_form.achievement|as_crispy_field }}
+                      </div>
+                      <div class="form-group col-md-5 mb-0">
+                        {{ profile_form.experience|as_crispy_field }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                    <button type="submit" class="btn btn-danger ">Update</button>
+                </form>
+              </div>
+        </div>
+    </header>
+</div>
+
+{% endblock content%}

@@ -1,0 +1,42 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content%}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+<div class="container" style="padding: 2.5%;">
+    <a  class="btn btn-outline-dark" href="{% url 'Inbox' %}" style="font-family: inherit;">&#x2190; Back</a>
+<hr>
+<div class="container">
+    <div class="row container" style="
+    display: flex;
+    justify-content: space-between;
+">
+        <h5>Name : {{object.name}} </h5>
+        <h5>Email: {{object.email}}</h5>
+        <h5>Subject: {{object.subject}}</h5>
+    </div>
+    <hr>
+    <h4>Message : <br>{{object.message}}</h4> 
+    <hr>
+    {% if object.reply %}
+    <div>
+        <h4 style="font-family: inherit;">Reply: <br>{{object.reply|safe}}</h4>
+
+    </div>
+    {%else%}
+    <hr>
+    <form method="POST" action="{% url 'Inbox_Detail' object.id %}">
+        {% csrf_token %}
+        {{form.media}}
+        {{form.as_p}}
+        <input type="submit" name="submit" id="submit" class="form-submit" value="Send"/>
+
+    </form>
+    {%endif%}
+</div>
+
+
+</div>
+
+{% endblock content%}

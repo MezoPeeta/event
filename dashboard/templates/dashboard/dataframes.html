@@ -1,0 +1,27 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content%}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% if request.user.profile.committee == "Logistics"%}
+
+<div class="container" style="padding-top: 10%;padding-bottom: 5%;">
+    <div class="row">
+    <a  class="btn btn-outline-dark" href="{% url 'Dashboard' %}" style="font-family: inherit;">&#x2190; Dashboard</a>
+    <a  class="btn btn-outline-dark" href="{% url 'datacharts' %}" style="font-family: inherit;">Charts</a>
+    </div>
+    <div style="display: flex;float: right;">
+        <form action="{% url 'dataCSV' %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Export</button>
+        </form>
+    </div>
+    <h1>Products table</h1>
+    {{ df|safe }}
+</div>
+{%else%}
+<div class="container" style="padding: 2.5%;">
+    <h1>Sorry you're not allowed </h1>
+</div>
+{% endif %}
+{% endblock content%}

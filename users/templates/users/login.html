@@ -1,0 +1,55 @@
+{% extends 'base/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content%}
+<div class="limiter">
+	<div class="container-login100" style="background: #e42929">
+		<div class="wrap-login100 p-t-85 p-b-20"  style="background: #e42929">
+			<form class="login100-form validate-form" method="POST" action="{% url 'Login' %}">
+                {% csrf_token %}
+				<span class="login100-form-avatar">
+					<img src="/static/base/img/logo.jpg" alt="logo">
+				</span>
+
+				<div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Enter username">
+                    {{ form|crispy }}
+					<!-- <span class="focus-input100" data-placeholder="Username"></span> -->
+                </div>
+                
+				<!-- <div class="wrap-input100 validate-input m-b-50" data-validate="Enter password">
+					<input class="input100" type="password" name="pass" style="color:white">
+					<span class="focus-input100" data-placeholder="Password"></span>
+				</div>--> 
+                <br>
+				<div class="container-login100-form-btn">
+					<input class="login100-form-btn" value="Login" type="submit" style="border: none;font-family: inherit">
+				</div> 
+                <br>
+				<ul class="login-more p-t-190">
+					<li class="m-b-8">
+						<span class="txt1" style="color: black;font-family: inherit;">
+							Forgot
+						</span>
+
+					<a href="/password-reset" class="txt2" style="color:white;font-family: inherit;">
+							Username / Password?
+						</a>
+					</li>
+					<li>
+						<span class="txt1" style="color: black;font-family: inherit">
+							Don’t have an account?
+						</span>
+
+						<a href="/register" class="txt2" style="color: white;font-family: inherit">
+							Sign up
+						</a>
+					</li>
+				</ul>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+<div id="dropDownSelect1"></div>
+{% endblock content%}

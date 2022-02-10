@@ -1,0 +1,90 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content%}
+{% load i18n %}
+<section class="ftco-section bg-light">
+
+
+    <div class="container">
+        <a  class="btn btn-outline-dark" href="{% url 'Dashboard' %}" style="font-family: inherit;">&#x2190; Back</a>
+                <a href="{% url 'Subscirbe_Email'%}" target="_blank" class="btn btn-danger">Preview</a>  
+                <a href="{% url 'TestingEmail'%}" class="btn btn-warning">Test</a>  
+
+        <center>
+        <hr width="50%">
+        </center>
+        <div class="email_button">
+
+    <a href="{% url 'Subscribed' %}"><button class="btn-hover color-4">Send</button></a>
+      
+
+        
+        
+     </div>                    
+     <center>
+
+                <div class="box-element" style="color: black;">
+                    <div class="cart-row">
+                        <div style="flex:2"><strong>Name</strong></div>
+                        <div style="flex:2"><strong>Email</strong></div>
+                        <div style="flex:2"><strong>Subscribed</strong></div>
+                        <div style="flex:2"><strong>Time</strong></div>
+
+    
+                    </div>
+                    {% for sub in subs %}
+
+                    <div class="cart-row">
+                                        
+
+                        <div style="flex:2"><p style="font-family: inherit;">{{sub.name}}</p></div>
+                        <div style="flex:2"><p style="font-family: inherit;">{{sub.email}}</p></div>
+                        <div style="flex:2;">{% if sub.subscribed == True %}<span class="subscribed open"></span> {% else %}<span class="subscribed dead"></span>{% endif %}</div>
+                        <div style="flex:2"><p style="font-family: inherit;">{{sub.date_subscribed|date:"F d, Y"  }}</p></div>
+          
+                                           
+                        </div>
+                    {%endfor%}
+                        </center>
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+                        </div>
+                        
+                    </div>
+                                            
+</div>
+
+
+                </div>
+                
+            </div>
+            
+        </div>
+        
+            <h1>
+
+    </h1>
+        {% comment %} <a href="{% url 'CreateVideo' %}" class="btn" style="background-color: black; color: white;font-family: inherit;position: relative;left:10%;margin-top:3%">Upload Youtube Video</a> {% endcomment %}
+     </div>
+
+    </div>
+
+        </div>
+        </section>
+        
+{% endblock content%}

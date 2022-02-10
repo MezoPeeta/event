@@ -1,0 +1,29 @@
+{% autoescape off %}
+<img src="https://scontent.fcai20-2.fna.fbcdn.net/v/t1.0-9/107000669_3304421072983798_9024303642923802856_o.jpg?_nc_cat=101&_nc_sid=730e14&_nc_oc=AQla8FwXhWw_Y06jDdeZ_WaOTaC3DlJ60SKWgyJh6pGw2zoAoQ2-DFRKeBsYYXKNAaY&_nc_ht=scontent.fcai20-2.fna&oh=8615c06262a7a19e15b59bda9c043fb8&oe=5F2828B3" alt="logo" width="50%">
+<hr>
+<h3> Thank you {{ username }} for joining TEDxManaratAlFaroukSchool !</h4>
+<h5> TEDx is a program of local, <br><br>
+    self-organized events that bring people together to share a TED-like experience. <br> <br>
+    Our event is called TEDxManaratAlFaroukSchool, where x = independently organized TED event. </h5>
+
+<h5>Click on the button below to verify your email</h5>
+<table width="100%" cellspacing="0" cellpadding="0">
+    <tr>
+        <td>
+            <table cellspacing="0" cellpadding="0">
+                <tr>
+                    <td style="border-radius: 2px;" bgcolor="#ED2939">
+                        <a href="http://{{ current_site }}{% url 'Verify' uidb64=uid token=token %}" target="_blank" style="padding: 8px 12px; border: 1px solid #ED2939;border-radius: 2px;font-family: Helvetica, Arial, sans-serif;font-size: 14px; color: #ffffff;text-decoration: none;font-weight:bold;display: inline-block;">
+                            Verify Email             
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+  </table>
+<h5> Have questions? We'd love to help! just hit reply 🙂</h5>
+<h5>Regards,</h5>
+<h4>TEDxManaratAlFaroukSchool</h4>
+{% endautoescape %}
+

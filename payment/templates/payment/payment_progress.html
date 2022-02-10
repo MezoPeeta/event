@@ -1,0 +1,32 @@
+{% extends 'base/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content%}
+<div class="hero-wrap js-fullheight">
+    <div class="overlay"></div>
+    <div id="particles-js"></div>
+    <div class="container">
+      <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
+
+        <div class="col-md-6 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+          <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
+          <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Keep Waiting For the coming Event</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<section class="ftco-section bg-light">
+    <div class="container">
+      <div class="row">
+        <form action="{% url 'CheckOut'%}" method="POST" style="color: black;">
+            {% csrf_token %}
+            {{ form|crispy}}
+            <h5 class="text-muted" style="font-size: smaller;">Next is the payment</h5> <br>
+            <a href="/"><input type="submit" value="Payment" class="btn btn-primary"></a>
+        </form>
+      </div>
+    </div>
+
+  </section> 
+{% endblock content %}

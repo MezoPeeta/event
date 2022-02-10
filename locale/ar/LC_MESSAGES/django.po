@@ -1,0 +1,404 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-07 18:27+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: .\base\templates\base\about.html:13
+msgid "About Us"
+msgstr "من نحن؟"
+
+#: .\base\templates\base\about.html:25
+msgid "TEDx, x = independently organized event"
+msgstr " TED تعني منظمة بشكل منظم من الشركة الاجنبية  xوال TEDx حدث"
+
+#: .\base\templates\base\about.html:28
+msgid "In the spirit of ideas worth spreading, TEDx is a program of local,"
+msgstr " برنامجا محليا TEDx بروح الأفكار التي تستحق النشر يعد"
+
+#: .\base\templates\base\about.html:29
+msgid "self-organized events that bring people together to share a"
+msgstr "الأحداث المنظمة ذاتيا التي تجمع الناس معا للمشاركة"
+
+#: .\base\templates\base\about.html:30
+msgid "TED-like experience. At a TEDx event, TED Talks video and live speakers"
+msgstr " للفيديو و مكبرات الصوت الحيةTEDمحاداثات   TEDx في حدث TED تجربة تشبه"
+
+#: .\base\templates\base\about.html:31
+msgid "combine to spark deep discussion and connection. These local,"
+msgstr "اجتمعت لإثارة النقاش والتواصل العميق. هذه المحلية"
+
+#: .\base\templates\base\about.html:32
+msgid ""
+"self-organized events are branded TEDx, where x = independently organized "
+"TED event."
+msgstr ""
+"TED حيث ان الاكس منظمة بشكل مستقل حدث TEDx الأحداث المنظمة ذاتيًا تحمل "
+"العلامة التجارية"
+
+#: .\base\templates\base\about.html:33
+msgid ""
+"The TED Conference provides general guidance for the TEDx program, but "
+"individual"
+msgstr "لكن فرد TEDx ارشادات عامة لبرنامجTEDيوفر مؤتمر "
+
+#: .\base\templates\base\about.html:34
+msgid ""
+"TEDx events are self-organized. (Subject to certain rules and regulations)."
+msgstr " .( منظمة ذاتية (مع مراعاة بعض القواعد و اللوائح TEDx احداث"
+
+#: .\base\templates\base\about.html:39
+msgid "TED is a"
+msgstr " هي TED"
+
+#: .\base\templates\base\about.html:40
+msgid "nonprofit organization devoted to Ideas Worth Spreading."
+msgstr "منظمة غير ربحية مكرسة لنشر الأفكار الجديرة بالاهتمام"
+
+#: .\base\templates\base\about.html:41
+msgid "Started as a four-day conference in California 30 years ago,"
+msgstr "بدأ كمؤتمر لمدة أربعة أيام في كاليفورنيا قبل 30 عاما"
+
+#: .\base\templates\base\about.html:42
+msgid "TED has grown to support its mission with multiple initiatives."
+msgstr " نمت لدعم مهمتها مع مبادرات متعددة TED "
+
+#: .\base\templates\base\about.html:43
+msgid "The two annual TED Conferences invite the world's leading thinkers"
+msgstr " تدعو المؤتمرات كبار المفكرين في العالم TED السنويين  "
+
+#: .\base\templates\base\about.html:44
+msgid "and doers to speak for 18 minutes or less. Many of these talks are"
+msgstr "والعاملين في التحدث لمدة 18 دقيقة أو أقل. العديد من هذه المحادثات"
+
+#: .\base\templates\base\about.html:45
+msgid ""
+"then made available, free, at TED.com. TED speakers have included Bill Gates,"
+msgstr " أدرجت بيل جيتس TED متحدثون. TED.com ثم جعلها متاحة مجانا في"
+
+#: .\base\templates\base\about.html:46
+msgid ""
+"Jane Goodall, Elizabeth Gilbert, Sir Richard Branson, Nandan Nilekani, "
+"Philippe Starck,"
+msgstr ""
+"جين جودال ، إليزابيث جيلبرت ، السير ريتشارد برانسون ، ناندان نيلكاني ، فيليب "
+"ستارك"
+
+#: .\base\templates\base\about.html:47
+msgid "Ngozi Okonjo-Iweala, Sal Khan and Daniel Kahneman."
+msgstr "نجوزي اوكونجو اويلا, صال خان و دانيال كاهنمان"
+
+#: .\base\templates\base\about.html:48
+msgid "The annual TED Conference takes place each spring in Vancouver,"
+msgstr "يعقد المؤتمر كل ربيع في فانكوفر ، TED السنوي  "
+
+#: .\base\templates\base\about.html:49
+msgid ""
+"British Columbia. TED's media initiatives include TED.com, where new TED"
+msgstr ""
+"حيث تيد الجديد TED.com تشمل المبادرات الإعلامية TED كولومبيا البريطانية.  "
+
+#: .\base\templates\base\about.html:50
+msgid ""
+"Talks are posted daily; TED Translators, which provides subtitles and "
+"interactive"
+msgstr " المترجمون الذين يوفرون الترجمة و التفاعل TED تُنشر المناقشات يوميًا ؛"
+
+#: .\base\templates\base\about.html:51
+msgid ""
+"transcripts as well as translations from volunteers worldwide; the "
+"educational"
+msgstr "النصوص وكذلك ترجمات من المتطوعين في جميع أنحاء العالم ؛ الالتعليمية"
+
+#: .\base\templates\base\about.html:52
+msgid ""
+"initiative TED-Ed. TED has established The Audacious Project that takes a "
+"collaborative"
+msgstr " المشروع الجريءالذي ياخذ التعاونية TED انشأت TED-ED مبادرة   "
+
+#: .\base\templates\base\about.html:53
+msgid ""
+"approach to funding ideas with the potential to create change at thrilling "
+"scale;"
+msgstr "نهج لتمويل الأفكار مع إمكانية إحداث تغيير في الإثارة مقياس؛"
+
+#: .\base\templates\base\about.html:54
+msgid ""
+"TEDx, which supports individuals or groups in hosting local, self- organized "
+"TED-style"
+msgstr ""
+"TED الذي يدعم الأفراد أو المجموعات في استضافة محلية ذاتية التنظيم على "
+"غرارTEDx "
+
+#: .\base\templates\base\about.html:55
+msgid ""
+"events around the world, and the TED Fellows program, helping world-changing "
+"innovators"
+msgstr ""
+" مما يساعد على تغيير العالم المبتكرين TED الأحداث في جميع أنحاء العالم ، "
+"وبرنامج"
+
+#: .\base\templates\base\about.html:56
+msgid ""
+"from around the globe to amplify the impact of their remarkable projects and "
+"activities."
+msgstr "من جميع أنحاء العالم لتضخيم تأثير مشاريعهم الرائعة وأنشطة."
+
+#: .\base\templates\base\about.html:73
+msgid "Team"
+msgstr "الفريق"
+
+#: .\base\templates\base\about.html:74
+msgid "Our Team"
+msgstr "فريقنا"
+
+#: .\base\templates\base\contact.html:13
+msgid "Contact"
+msgstr "تواصل معنا"
+
+#: .\base\templates\base\contact.html:24
+msgid "We recieved your email and will respond shortly.."
+msgstr "لقد استلمنا الرسالة و سنرد في وقت اقرب"
+
+#: .\base\templates\base\contact.html:29
+msgid "Contact Information"
+msgstr "معلومات للتواصل"
+
+#: .\base\templates\base\contact.html:33
+msgid "Address:"
+msgstr ":العنوان"
+
+#: .\base\templates\base\contact.html:36
+msgid "Phone:"
+msgstr ":الهاتف"
+
+#: .\base\templates\base\contact.html:39
+msgid "Email:"
+msgstr ":البريد الاكتروني"
+
+#: .\base\templates\base\contact.html:47
+msgid "Your Name"
+msgstr "اسمك"
+
+#: .\base\templates\base\contact.html:50
+msgid "Your Email"
+msgstr "البريد الاكتروني الخاص بك"
+
+#: .\base\templates\base\contact.html:60
+msgid "subject"
+msgstr "عنوان الرسالة"
+
+#: .\base\templates\base\contact.html:63
+msgid "Message"
+msgstr "الرسالة"
+
+#: .\base\templates\base\contact.html:66
+msgid "Send Message"
+msgstr "ارسل الرسالة"
+
+#: .\base\templates\base\events.html:15
+msgid "Keep Waiting For the coming Event"
+msgstr "انتظرونا"
+
+#: .\base\templates\base\home.html:14
+msgid "Welcome to Our Website"
+msgstr "مرحبا بكم الي موقعنا"
+
+#: .\base\templates\base\home.html:17
+msgid "Get in touch"
+msgstr "تواصل معنا "
+
+#: .\base\templates\base\home.html:82
+msgid "What is TEDxManaratAlFaroukSchool?"
+msgstr "؟TEDxManaratAlFaroukSchool ما معني "
+
+#: .\base\templates\base\home.html:84
+msgid ""
+"TEDxManaratAlFaroukSchool is a TEDx event , x = independently organized TED "
+"event,"
+msgstr ""
+" TED تعني منظمة بشكل منظم من الشركة الاجنبية  xوال TEDx هو حدث "
+"TEDxManaratAlFaroukSchool"
+
+#: .\base\templates\base\home.html:85
+msgid ""
+"TEDxManaratAlFaroukSchool brings the spirit and passion surrounding TED and "
+"TEDx to link the school’s generations."
+msgstr ""
+"   تجلب الروح و العاطفة المحيطة لربط اجيال المدرسة TEDxManaratAlFaroukSchool "
+
+#: .\base\templates\base\home.html:92
+msgid "What is TEDx?"
+msgstr " ؟TEDx ما معني "
+
+#: .\base\templates\base\home.html:94
+msgid "In the spirit of ideas worth spreading,"
+msgstr "بروح الأفكار التي تستحق النشر"
+
+#: .\base\templates\base\home.html:95
+msgid "TED has created a program called TEDx. TEDx is a program of local,"
+msgstr " هو برنامج محلي TEDx و TEDx بانشاء برنامج يسمي TED قامت شركة"
+
+#: .\base\templates\base\home.html:96
+msgid ""
+"self-organized events that bring people together to share a TED-like "
+"experience."
+msgstr "TED احداث منظمة ذاتيا تجمع الأشخاص معا لمشاركةالخبرة مثل"
+
+#: .\base\templates\base\home.html:97
+msgid ""
+"Our event is called TEDx ManaratAlFarouk School, where x = independently "
+"organized TED event."
+msgstr ""
+"حدث منظم بشكل مستقل TED  تعني حدث   x حيث ان الTEDxManaratAlFaroukSchool "
+"حدثنا اسمه"
+
+#: .\base\templates\base\home.html:98
+msgid ""
+"At our TEDx ManaratAlFarouk School event, TED Talks video and live speakers "
+"will combine to spark deep"
+msgstr ""
+"فيديوهات و متحدثون مباشرة ستندمج لتثير شرارة عميقة TED مناقشات ,"
+"TEDxManaratAlFaroukSchool في حدثنا"
+
+#: .\base\templates\base\home.html:99
+msgid ""
+"discussion and connection in a small group. The TED Conference provides "
+"general guidance"
+msgstr " التوجيع العام TED مناقشة و الاتصال في مجموعة صغيرة,يوفر مؤتمر "
+
+#: .\base\templates\base\home.html:100
+msgid "for the TEDx program,"
+msgstr "TEDx من اجل برنامج "
+
+#: .\base\templates\base\home.html:101
+msgid "but individual TEDx events, including ours, are self-organized"
+msgstr "الفردية بما في ذلك احداثنا منظمة ثاتياTEDx لكن احداث"
+
+#: .\base\templates\base\home.html:113
+msgid "Old Talks"
+msgstr "المناقشات القديمة"
+
+#: .\base\templates\base\home.html:114
+msgid "Talks"
+msgstr "المناقشات"
+
+#: .\base\templates\base\home.html:169
+msgid "Join our Newsletter"
+msgstr "اشترك في صحيفتنا الإخبارية"
+
+#: .\base\templates\base\home.html:176
+msgid "Sign me up"
+msgstr "اشترك معكم"
+
+#: .\base\templates\base\home.html:192
+msgid "Speakers & Performers Says"
+msgstr "قالوا عنا"
+
+#: .\base\templates\base\home.html:193
+msgid "Our satisfied speakers says"
+msgstr "قالوا عنا"
+
+#: .\base\templates\base\home.html:194
+msgid "Thank you for your feedback ❤"
+msgstr "❤ شكرا لكم "
+
+#: .\base\templates\base\home.html:278
+msgid "Our achievements"
+msgstr "انجزاتنا"
+
+#: .\base\templates\base\home.html:286
+msgid "Customers are satisfied with our professional support"
+msgstr "العملاء راضون عن دعمنا المهني"
+
+#: .\base\templates\base\home.html:294
+msgid "Amazing preset options to be mixed and combined"
+msgstr "خيارات مذهلة مسبقة الضبط لتكون مختلطة ومدمجة"
+
+#: .\base\templates\base\home.html:302
+msgid "Average response time on live chat support channel"
+msgstr "متوسط ​​وقت الاستجابة على قناة دعم الدردشة المباشرة "
+
+#: .\base\templates\base\speakers.html:14
+msgid "Speakers"
+msgstr "المتحدثون"
+
+#: .\base\templates\base\speakers.html:22
+msgid "— Previous Speakers — "
+msgstr "— المتحدثون السابقون —"
+
+#: .\base\templates\base\subscribed.html:12
+msgid "You've already subscribed , news will be sent from now on"
+msgstr "لقد تم اشتراكك, سوف تصل لك الاخبار من الان"
+
+#: .\base\templates\base\unsubscibe.html:12
+msgid "Contact Us , We are very sorry to kow thnat you have unsubscribed"
+msgstr ""
+"تواصل معنا حتي نسحبك من الاشتراك ونحن أسفون لمعرفة انك قد سحبت اشتراكك "
+"للاخبار"
+
+#: .\base\templates\base\unsubscibe.html:15
+msgid "Contact Us"
+msgstr "تواصل معنا"
+
+#: .\base\templates\base\watch-us.html:14
+msgid "Watch Us"
+msgstr "شاهدونا"
+
+#: .\payment\templates\payment\checkout.html:38
+#: .\products\templates\products\checkout.html:38
+msgid "Check out"
+msgstr "الدفع"
+
+#: .\payment\templates\payment\checkout.html:42
+#: .\products\templates\products\checkout.html:73
+msgid "Continue"
+msgstr "استمر"
+
+#: .\payment\templates\payment\checkout.html:49
+msgid "Buy Now"
+msgstr "اشتري الان"
+
+#: .\payment\templates\payment\checkout.html:100
+msgid ""
+"Thank you for your payment, the ticket will be sent in your email after "
+"several minutes , please dont forget to press on buy now"
+msgstr ""
+"لا تنس الضغط علي اشتري الان لتسجيل شرائك ,شكرا لك علي الدفع سوف تصل التذكرة "
+"للبريد الاكتروني بعد بضع دقائق "
+
+#: .\products\templates\products\checkout.html:80
+msgid "Finish"
+msgstr "انهاء"
+
+#: .\products\templates\products\store.html:14
+msgid "Store"
+msgstr "متجر"
+
+#: .\users\templates\users\need_verify.html:13
+msgid "An email has been sent for email confirmation"
+msgstr "لقد تم ارسال الي البريد الاكتروني الخاص بك"
+
+#~ msgid "Subscribe"
+#~ msgstr "اشترك"
+
+#~ msgid "Redeem"
+#~ msgstr "تاكد"
+
+#~ msgid "British Columbia. TED"
+#~ msgstr "كولومبيا البريطانية. TED"

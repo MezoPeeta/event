@@ -1,0 +1,16 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content%}
+{% load i18n %}
+<section class="ftco-section bg-light">
+    <div class="container">
+        <a  class="btn btn-outline-dark" href="{% url 'Profile' request.user.id %}" style="font-family: inherit;">&#x2190; Profile</a>
+
+        <center>
+        <h1>Dashboard PR</h1>
+        </center>
+        <a href="{% url 'CreateVideo' %}" class="btn" style="background-color: black; color: white;font-family: inherit;">Add Video</a>
+
+        </div>
+        </section>
+{% endblock content%}

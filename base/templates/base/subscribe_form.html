@@ -1,0 +1,56 @@
+{% extends 'base/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content%}
+<div style=" font-size: 14px;line-height: 1.8;
+font-weight: 400;
+font-family: 'Montserrat';
+background-repeat: no-repeat;
+background-size: cover;
+-moz-background-size: cover;
+-webkit-background-size: cover;
+-o-background-size: cover;
+-ms-background-size: cover;
+background-position: center center;
+padding: 115px 0;
+background: linear-gradient(to left, red, rgb(223, 53, 53));
+">
+<div class="main">
+    <div class="ftco-navbar-light"></div>
+
+      <!-- <img src="images/signup-bg.jpg" alt="">  -->
+      <div class="container" style="width: 660px;
+      position: relative;
+      margin: 0 auto;">
+              <a  class="btn btn-outline-dark" href="{% url 'Emails' %}" style="font-family: inherit;">&#x2190; Back</a>
+
+          <div class="signup-content">
+          
+              <form method="POST" id="signup-form" class="signup-form">
+                  <h2 class="form-title" style="color: white;  text-transform: uppercase;  line-height: 1.66;
+                  margin: 0;
+                  padding: 0;
+                  font-weight: 900;
+                  font-family: 'Helvetica';
+                  font-size: 24px;
+                  text-align: center;
+                  margin-bottom: 40px;
+                  ">
+                  {% if  request.path == '/en/email_test/' or request.path == '/ar/email_test/' %}
+                  Testing
+                  <h6 style="color:white;font-family:'Helvetica'">Please consider that this is only for testing purposes and It gonna send the newsletter to your email that you've registered with</h6> <br>
+                  {%else%}
+                  Send Newsletter
+                  {% endif %}
+                  
+                  </h2>
+                  {% csrf_token %}
+                  {{ form |crispy}}
+                  <div class="form-group">
+                      <input type="submit" name="submit" id="submit" class="form-submit" value="Send"/>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </section>
+{% endblock content%}

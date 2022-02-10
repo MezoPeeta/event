@@ -1,0 +1,73 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content%}
+{% load i18n %}
+
+<div class="hero-wrap js-fullheight">
+  <div class="overlay"></div>
+  <div id="particles-js"></div>
+  <div class="container">
+    <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
+      <div class="col-md-6 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+        <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
+        <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
+          {% trans 'Store' %}</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="ftco-section bg-light ftco-animate">
+  <div class="container">
+    <a href="{% url 'Cart' %}"><i class="fa fa-shopping-cart"
+        style="font-size: 30px;color: black; float: right;"></i></a>
+
+    <!-- <div class="input-group">
+      <input type="search" class="form-control" placeholder="Search" id="search_box" />
+    </div> -->
+    {%comment%}
+
+<!-- <script>
+{% for product in Products %}
+  var data = '{{Products}}';
+  data.trim()
+  console.log(data);
+  {%endfor%}
+  const input = document.getElementById('search_box')
+
+let filteredArr = [];
+
+input.addEventListener('keyup', (e)=> {
+	products_id.innerHTML = '';
+	filteredArr += e.target.value
+  if (filteredArr == data) {
+    filteredArr.map(item=>{
+      products_id.innerHTML += `<h1> ${item} </h1>`
+
+    })
+  }
+  }
+);
+
+</script> -->
+{%endcomment%}
+
+    <br><br><br>
+    <div class="products" style="display:flex;flex-wrap:wrap;justify-content:space-between;" id="products_id">
+      {% for product in Products %}
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{{ product.image.url}}" alt="Card image cap">
+        <div class="card-body">
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+          <hr>
+          <button class="btn btn-outline-dark" style="cursor: default;">$ {{ product.price }}</button>
+          <a class="btn btn-outline-danger" href="{% url 'Products' product.id %}">View Product</a>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+</section>
+
+{% endblock content%}

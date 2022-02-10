@@ -1,0 +1,35 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content%}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% if request.user.profile.committee == "Logistics"%}
+
+<div class="container" style="padding: 2.5%;">
+    <a  class="btn btn-outline-dark" href="{% url 'Dashboard' %}" style="font-family: inherit;">&#x2190; Dashboard</a>
+
+    <h1>Reports</h1>
+    <hr>
+    <br>
+    {% for obj in object_list %}
+    <div class="card mb-3">
+        {%if obj.image %}
+        <img src="{{obj.image.url}}" class="card-img-top" alt="{{obj.name}}">
+        {%endif%}
+        <div class="card-body">
+          <h5 class="card-title">{{obj.name}}</h5>
+          <p class="card-text">{{obj.remarks|truncatewords:2}}</p>
+          <a href="{% url 'Reports_Detail' obj.pk %}" class="btn btn-outline-primary">Details</a>
+          <a href="{% url 'Reports_PDF' obj.pk %}" class="btn btn-outline-danger">PDF</a>
+
+        </div>
+      </div>
+        <br>
+    {%endfor%}
+</div>
+{%else%}
+<div class="container" style="padding: 2.5%;">
+    <h1>Sorry you're not allowed </h1>
+</div>
+{% endif %}
+{% endblock content%}

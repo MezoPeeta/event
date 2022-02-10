@@ -1,0 +1,310 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content%}
+
+<div class="hero-wrap" style="height: 1050px !important;">
+  <div class="overlay"></div>
+  <div id="particles-js"></div>
+  <div class="container">
+    <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
+      <div class="col-md-6 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+        <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
+          {% trans 'Welcome to Our Website' %}
+        </h1>
+        <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
+          <a href="/contact" class="btn btn-primary btn-outline-white px-5 py-3" style="font-family: 'Helvetica';">{% trans 'Get in touch' %}</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bg-light">
+<section class="ftco-section-featured ftco-animate">
+  <div class="container-fluid" data-scrollax-parent="true">
+    <div class="row no-gutters d-flex align-items-center" data-scrollax=" properties: { translateY: '-30%'}">
+
+      <div class="col-md-3 mb-3">
+        <a href="#" class="featured-img">
+          <img src="/static/base/img/ted.png" class="img-fluid" alt="" loading="lazy">
+          
+        </a>
+      </div>
+      
+      <div class="col-md-6">
+        <div class="row no-gutters">
+          <div class="col-md-12">
+            <div class="row no-gutters d-flex align-items-end">
+
+              <div class="col-md-8">
+                <a href="#" class="featured-img">             
+                  <img src="/static/base/img//us.jpg" class="img-fluid" alt="" loading="lazy">       
+                </a>
+              </div>
+
+              <div class="col-md-4">
+                <a href="#" class="featured-img">   
+                  <img src="/static/base/img/logo.jpg" class="img-fluid" alt="" loading="lazy">                
+                </a>
+              </div>
+              
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="row no-gutters d-flex align-items-start">
+              <div class="col-md-8">
+                <a href="#" class="featured-img">
+                  <img src="/static/base/img/eunoia.jpg" class="img-fluid" alt="" loading="lazy">                        
+                </a>
+              </div>
+              <div class="col-md-4">
+                <a href="#" class="featured-img">
+  
+                  <img src="/static/base/img/mrs_maryam.jpg" class="img-fluid" alt="" loading="lazy"> 
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <a href="#" class="featured-img">
+          <img src=" /static/base/img/mrs_asmaa.jpeg" class="img-fluid" alt="" loading="lazy">
+        </a>
+      </div>
+
+    </div>
+    <div class="row mt-5 d-flex justify-content-center">
+      <div class="col-md-8 text-center heading-section ftco-animate">
+        <h2 class="h1" style="color: tomato;">{% trans 'What is TEDxManaratAlFaroukSchool?' %} </h2>
+        <p style="font-size: 20px;font-family: 'Helvetica';">
+          {% trans 'TEDxManaratAlFaroukSchool is a TEDx event , x = independently organized TED event,' %} <br>
+          {% trans 'TEDxManaratAlFaroukSchool brings the spirit and passion surrounding TED and TEDx to link the school’s generations.' %}</p>
+      </div>
+    </div>
+    
+  </div>
+  <div class="mt-5 d-flex justify-content-center">
+    <div class="col-md-8 text-center heading-section ftco-animate">
+      <h2 class="h1" style="color: tomato;">{% trans 'What is TEDx?' %}
+      <p style="font-size: 20px;font-family: 'Helvetica';">
+        {% trans 'In the spirit of ideas worth spreading,' %} 
+        {% trans 'TED has created a program called TEDx. TEDx is a program of local,' %} 
+        {% trans 'self-organized events that bring people together to share a TED-like experience.' %} 
+        {% trans 'Our event is called TEDx ManaratAlFarouk School, where x = independently organized TED event.' %} 
+        {% trans 'At our TEDx ManaratAlFarouk School event, TED Talks video and live speakers will combine to spark deep' %}
+        {% trans 'discussion and connection in a small group. The TED Conference provides general guidance' %}
+        {% trans 'for the TEDx program,' %} 
+        {% trans 'but individual TEDx events, including ours, are self-organized' %}
+      </div>
+  </div>
+</div>
+</section>
+</div>
+
+
+<section class="ftco-section bg-light">
+  <div class="container">
+    <div class="row justify-content-center mb-5 pb-5">
+      <div class="col-md-7 text-center heading-section ftco-animate">
+        <span class="subheading">{% trans 'Old Talks' %}</span>
+        <h2 style="color: black;">{% trans 'Talks' %}</h2>
+      </div>
+    </div>
+    <section class="ftco-section bg-light ftco-animate" style="position: relative;left: 5%;" >
+        <div class="video-container ">
+          <div class="responsive-video">
+            <iframe width="600" height="338" src="https://www.youtube.com/embed/OwhG2EqN32U" 
+            frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>        </div>
+          
+      </div>
+      <div class="video-container ftco-animate">
+        <div class="responsive-video">
+          <iframe width="600" height="338" src="https://www.youtube.com/embed/GQ-8clys6Og" 
+          frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>        </div>
+        
+    </div>
+    <div class="video-container ftco-animate">
+      <div class="responsive-video">
+        <iframe width="600" height="338" src="https://www.youtube.com/embed/vRpMk3OS_D0" 
+        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>        </div>
+      
+  </div>
+  <div class="video-container ftco-animate">
+    <div class="responsive-video">
+      <iframe width="600" height="338" src="https://www.youtube.com/embed/h8Y8Y-wMxpE" 
+      frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>        </div>
+    
+</div>
+<div class="video-container ftco-animate">
+  <div class="responsive-video">
+    <iframe width="600" height="338" src="https://www.youtube.com/embed/PyjzatQA1qs" 
+    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>        </div>
+  
+</div>
+<div class="video-container ftco-animate">
+  <div class="responsive-video">
+    <iframe width="600" height="338" src="https://www.youtube.com/embed/FX9Jj5Q0Om8" 
+    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>        </div>
+  
+</div>
+<div class="video-container ftco-animate">
+  <div class="responsive-video">
+    <iframe width="600" height="338" src="https://www.youtube.com/embed/GyJ_iJql1Fo" 
+    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>        </div>
+  
+</div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-section-parallax">
+  <div class="parallax-img d-flex align-items-center">
+    <div class="container">
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
+          <h2>{% trans 'Join our Newsletter' %}</h2>
+          <div class="row d-flex justify-content-center mt-5">
+            <div class="col-md-6">
+              <form action="{% url 'Home' %}" class="subscribe-form" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form|crispy}}
+                  <input type="submit" value="{% trans 'Sign me up' %}" class="btn btn-dark" style="font-family: 'Helvetica';">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="ftco-section testimony-section bg-light" >
+  <div class="container">
+    <div class="row justify-content-center mb-5 pb-5">
+      <div class="col-md-7 text-center heading-section ftco-animate" >
+        <span class="subheading">{% trans 'Speakers & Performers Says' %}</span>
+        <h2 class="mb-4" style="color: black;">{% trans 'Our satisfied speakers says' %}</h2>
+        <p style="font-family: 'Helvetica';">{% trans 'Thank you for your feedback ❤' %}</p>
+      </div>
+    </div>
+    <div class="row ftco-animate">
+      <div class="col-md-12">
+        <div class="carousel-testimony owl-carousel ftco-owl">
+          <div class="item text-center">
+            <div class="testimony-wrap p-4 pb-5">
+              <div class="user-img mb-4">
+                <span class="quote d-flex align-items-center justify-content-center">
+                  <i class="icon-quote-left"></i>
+                </span>
+              </div>
+              <div class="text">
+                <p class="mb-5" style="font-family: 'Helvetica';">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+
+                <p class="name" style="font-family: 'Helvetica';">Attendee</p>
+              </div>
+            </div>
+          </div>
+          <div class="item text-center">
+            <div class="testimony-wrap p-4 pb-5">
+              <div class="user-img mb-4">
+                <span class="quote d-flex align-items-center justify-content-center">
+                  <i class="icon-quote-left"></i>
+                </span>
+              </div>
+              <div class="text">
+                <p class="mb-5" style="font-family: 'Helvetica';">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+
+                <p class="name" style="font-family: 'Helvetica';">Attendee</p>
+              </div>
+            </div>
+          </div>
+          <div class="item text-center">
+            <div class="testimony-wrap p-4 pb-5">
+              <div class="user-img mb-4">
+                <span class="quote d-flex align-items-center justify-content-center">
+                  <i class="icon-quote-left"></i>
+                </span>
+              </div>
+              <div class="text">
+                <p class="mb-5" style="font-family: 'Helvetica';">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+
+                <p class="name" style="font-family: 'Helvetica';">Attendee</p>
+              </div>
+            </div>
+          </div>
+          <div class="item text-center">
+            <div class="testimony-wrap p-4 pb-5">
+              <div class="user-img mb-4">
+                <span class="quote d-flex align-items-center justify-content-center">
+                  <i class="icon-quote-left"></i>
+                </span>
+              </div>
+              <div class="text">
+                <p class="mb-5" style="font-family: 'Helvetica';">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                <p class="name" style="font-family: 'Helvetica';">Attendee</p>
+              </div>
+            </div>
+          </div>
+          <div class="item text-center">
+            <div class="testimony-wrap p-4 pb-5">
+              <div class="user-img mb-4">
+                <span class="quote d-flex align-items-center justify-content-center">
+                  <i class="icon-quote-left"></i>
+                </span>
+              </div>
+              <div class="text">
+                <p class="mb-5" style="font-family: 'Helvetica';">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                <p class="name" style="font-family: 'Helvetica';">Attendee</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ftco-section ftco-counter" id="section-counter">
+  <div class="container">
+    <div class="row justify-content-center mb-5 pb-5">
+      <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
+        <h2>{% trans 'Our achievements' %}</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-lg-4 d-flex justify-content-center counter-wrap ftco-animate">
+        <div class="block-18 text-center">
+          <div class="text">
+            <strong class="number" data-number="500">0</strong>
+            <span>{% trans 'Customers are satisfied with our professional support' %}</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 d-flex justify-content-center counter-wrap ftco-animate">
+        <div class="block-18 text-center">
+          <div class="text">
+            <strong class="number" data-number="1000">0</strong>
+            <span>{% trans 'Amazing preset options to be mixed and combined' %}</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 d-flex justify-content-center counter-wrap ftco-animate">
+        <div class="block-18 text-center">
+          <div class="text">
+            <strong class="number" data-number="8000">0</strong>
+            <span>{% trans 'Average response time on live chat support channel' %}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock content%}

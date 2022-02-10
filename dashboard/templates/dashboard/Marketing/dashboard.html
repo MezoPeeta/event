@@ -1,0 +1,38 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content%}
+{% load i18n %}
+<section class="ftco-section bg-light">
+
+
+    <div class="container">
+    <a  class="btn btn-outline-dark" href="{% url 'Profile' request.user.id %}" style="font-family: inherit;">&#x2190; Profile</a>
+
+        <center>
+        <h1>Welcome {{request.user.username}}! </h1>
+        </center>
+<hr>
+
+
+<div class="marketing_dash">
+        
+        <a href="{% url 'CreateVideo' %}" style="width:45%"><img src="/static/base/img/upload_video.svg" alt="uploading_Tedx_video"></a>
+        
+        <br>
+
+        <hr>
+        <a href="{% url 'Emails' %}" style="width:40%"><img src="/static/base/img/send_email.svg" alt="Sending Email"></a>
+
+        
+        
+     </div>
+
+        
+        {% comment %} <a href="{% url 'CreateVideo' %}" class="btn" style="background-color: black; color: white;font-family: inherit;position: relative;left:10%;margin-top:3%">Upload Youtube Video</a> {% endcomment %}
+     </div>
+
+        </div>
+        </div>
+        </section>
+        
+{% endblock content%}

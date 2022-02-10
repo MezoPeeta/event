@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "TEDX MFIS"
+version = "0.1.0"
+description = ""
+authors = ["MezoPeeta <wildlifemain1@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+Django = "^3.2.1"
+django-crispy-forms = "^1.11.2"
+django-admin-honeypot = "^1.1.0"
+django-maintenance-mode = "^0.16.0"
+Pillow = "^8.2.0"
+whitenoise = "^5.2.0"
+qrcode = "^6.1"
+six = "^1.15.0"
+python-gettext = "^4.0"
+pandas = "^1.2.4"
+Jinja2 = "^2.11.3"
+simplejson = "^3.17.2"
+xhtml2pdf = "^0.2.5"
+gunicorn = "^20.1.0"
+django-ckeditor = "^6.1.0"
+django-debug-toolbar = "^3.2.1"
+python-decouple = "^3.5"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

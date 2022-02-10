@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{obj.name}}| PDF</title>
+    <style>
+        html{
+            font-family: 'Helvetica';
+        }
+        .image{
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{obj.name}}</h1>
+    <hr>
+    <img src="{{obj.image.path}}" class="image">
+    <br>
+    <h3>Remarks</h3>
+    <p>{{obj.remarks}}</p>
+    <hr>
+    <p>Made by:</p> <b>{{obj.author}}</b>
+    <p style="float: right;">Created at:</p> <b>{{obj.created}}</b> 
+</body>
+</html>

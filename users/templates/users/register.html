@@ -1,0 +1,32 @@
+{% extends 'base/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content%}
+  
+  <div class="wrapper" style="color: white;">
+
+    <div class="inner">
+
+      <form action="{% url 'Register' %}" method="POST">
+        <h3 class="joinUs" style="font-family: inherit;">Join Us</h3>
+        <p style="color: white;text-align: center;
+        padding: 0 10px;
+        margin-bottom: 55px;
+        line-height: 1.8;font-family: inherit;">Hurry up and join Us , We can't wait to have you among us 
+        </p>
+        <label class="form-group">
+          {% csrf_token %}
+          {{ form|crispy }}
+          <span class="border"></span>
+        </label>
+        <input type="submit" value="submit" class="register_btn" style="position: relative;top: -55px;font-family: inherit;">
+        <h6 style="position: relative;top: -15px;left: -2%">Already have an account? <a href="{% url 'Login' %}" style="font-family: inherit;" class="register_signin">Sign in</a></h6>
+      </form>
+      
+    </div>
+    
+  </div>
+  
+</div>
+
+{% endblock content%}
