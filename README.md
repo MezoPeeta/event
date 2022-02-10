@@ -1,2 +1,2 @@
-# TEDxMFIS Website 
-TEDx's Website is built using the python backend framework " Django " 
+# Website
+This website is for selling created by Django
