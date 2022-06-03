@@ -1,2 +1,2 @@
 # Website
-This website is for selling created by Django
+This is an event website created by Django
