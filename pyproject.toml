@@ -6,7 +6,7 @@ authors = ["MezoPeeta <wildlifemain1@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-Django = "^3.2.1"
+Django = "^3.2.15"
 django-crispy-forms = "^1.11.2"
 django-admin-honeypot = "^1.1.0"
 django-maintenance-mode = "^0.16.0"
