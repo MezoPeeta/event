@@ -21,16 +21,13 @@ from django.contrib.auth.models import User
 from django.conf import settings
 from django.http import HttpResponse
 from django.template.loader import get_template, render_to_string
-from xhtml2pdf import pisa
 from django.views.generic.edit import FormMixin
 
 
 @login_required
 def dashboard(request):
 
-    context = {
-        'title': 'Dashboard',
-    }
+  
 
     template = ''
     committee = request.user.profile.committee
@@ -42,7 +39,10 @@ def dashboard(request):
         template = 'dashboard/HR/dashboard.html'
     elif committee == 'Logistics':
         template = 'dashboard/Logistics/dashboard.html'
-        
+    
+    context = {
+        'title': 'Dashboard',
+    }
     return render(request, template, context)
 
 
@@ -52,6 +52,7 @@ class SubscribersListView(LoginRequiredMixin, ListView):
     template_name = 'dashboard/Marketing/subscribers_list.html'
     ordering = ['-date_subscribed']
     paginate_by = 10
+
 
 @login_required
 def dataFrame(request):
@@ -122,22 +123,22 @@ class ReportDetailView(LoginRequiredMixin, DetailView):
     template_name = 'dashboard/Logistics/reports_detail.html'
 
 
-def render_pdf_view(request, pk):
-    template_path = 'dashboard/Logistics/report_pdf.html'
-    obj = get_object_or_404(Report, pk=pk)
-    context = {'obj': obj}
-    response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="report.pdf"'
-    template = get_template(template_path)
-    html = template.render(context)
+# def render_pdf_view(request, pk):
+#     template_path = 'dashboard/Logistics/report_pdf.html'
+#     obj = get_object_or_404(Report, pk=pk)
+#     context = {'obj': obj}
+#     response = HttpResponse(content_type='application/pdf')
+#     response['Content-Disposition'] = 'attachment; filename="report.pdf"'
+#     template = get_template(template_path)
+#     html = template.render(context)
 
-    # create a pdf
-    pisa_status = pisa.CreatePDF(
-       html, dest=response)
-    # if error then show some funy view
-    if pisa_status.err:
-       return HttpResponse('We had some errors <pre>' + html + '</pre>')
-    return response
+#     # create a pdf
+#     pisa_status = pisa.CreatePDF(
+#        html, dest=response)
+#     # if error then show some funy view
+#     if pisa_status.err:
+#        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+#     return response
 
 
 class VideoCreateView(LoginRequiredMixin, CreateView):

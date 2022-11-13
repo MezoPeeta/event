@@ -35,7 +35,6 @@ INSTALLED_APPS = [
     'maintenance_mode',
     'products',
     'crispy_forms',
-    'admin_honeypot',
     'base',
     'users',
     'payment',
@@ -60,7 +59,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'maintenance_mode.middleware.MaintenanceModeMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
 
 ]
 
@@ -171,9 +169,9 @@ EMAIL_PORT = 465
 
 EMAIL_USE_TLS = False
 
-EMAIL_HOST_USER = 'EMAIL'
+EMAIL_HOST_USER = 'wildlifemain1@gmail.com'
 
-EMAIL_HOST_PASSWORD = 'PASS'
+EMAIL_HOST_PASSWORD = 'ekvslubsdblgmnlo'
 
 EMAIL_USE_SSL = True
 
@@ -182,22 +180,10 @@ EMAIL_USE_SSL = True
 
 MAINTENANCE_MODE = False
 
-# MAINTENANCE_MODE_IGNORE_SUPERUSER = False
+# MAINTENANCE_MODE_IGNORE_SUPERUSER = True
 
 MAINTENANCE_MODE_STATE_FILE_PATH = os.path.join(BASE_DIR, 'maintenance/maintenance_mode_state.txt')
 
 MAINTENANCE_MODE_TEMPLATE = os.path.join(BASE_DIR, 'base/templates/base/503.html')
 
-if DEBUG:
-    MIDDLEWARE += [
-        'debug_toolbar.middleware.DebugToolbarMiddleware',
-    ]
-    INSTALLED_APPS += [
-        'debug_toolbar',
-    ]
-    INTERNAL_IPS = ['127.0.0.1', ]
 
-    DEBUG_TOOLBAR_CONFIG = {
-        'INTERCEPT_REDIRECTS': False,
-    }
-    

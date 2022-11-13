@@ -18,15 +18,11 @@ from django.urls import path , include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls.i18n import i18n_patterns
-import debug_toolbar
 
 urlpatterns = [
     path('maintenance-mode/', include('maintenance_mode.urls')),
     path('i18n/', include('django.conf.urls.i18n')),
-    path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     path('us/', admin.site.urls, name='Admin_Dashboard'),
-    path('__debug__/', include(debug_toolbar.urls)),
-
 
 ] 
 urlpatterns += i18n_patterns(

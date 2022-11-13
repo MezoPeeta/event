@@ -15,7 +15,7 @@ urlpatterns = [
     path('save/', views.create_report_view, name="Create_Report"),
     path('reports/', views.ReportListView.as_view(), name="Reports"),
     path('reports/<pk>', views.ReportDetailView.as_view(), name="Reports_Detail"),
-    path('pdf/<pk>', views.render_pdf_view, name="Reports_PDF"),
+    # path('pdf/<pk>', views.render_pdf_view, name="Reports_PDF"),
     ##HR
     path('inbox/', views.InboxListView.as_view(), name="Inbox"),
     path('inbox/<pk>', views.InboxDetailView.as_view(), name="Inbox_Detail"),
