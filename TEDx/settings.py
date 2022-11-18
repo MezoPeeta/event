@@ -24,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'z#j+0d9jx0yme*if+&7htan5@u-2o=ln+x^x%0uv=ypg@jb8jz'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -145,11 +145,15 @@ LOCALE_PATHS = ( os.path.join(SITE_ROOT, 'locale'), )
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-        ]
+os.path.join(BASE_DIR, "static"),
+    ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
+
+
 
 
 MEDIA_URL = '/media/'
@@ -171,9 +175,9 @@ EMAIL_PORT = 465
 
 EMAIL_USE_TLS = False
 
-EMAIL_HOST_USER = 'EMAIL'
+EMAIL_HOST_USER = 'fazlook.gdn45@gmail.com'
 
-EMAIL_HOST_PASSWORD = 'PASS'
+EMAIL_HOST_PASSWORD = 'xmiwfsfwqudvwtmq'
 
 EMAIL_USE_SSL = True
 
@@ -188,16 +192,5 @@ MAINTENANCE_MODE_STATE_FILE_PATH = os.path.join(BASE_DIR, 'maintenance/maintenan
 
 MAINTENANCE_MODE_TEMPLATE = os.path.join(BASE_DIR, 'base/templates/base/503.html')
 
-if DEBUG:
-    MIDDLEWARE += [
-        'debug_toolbar.middleware.DebugToolbarMiddleware',
-    ]
-    INSTALLED_APPS += [
-        'debug_toolbar',
-    ]
-    INTERNAL_IPS = ['127.0.0.1', ]
 
-    DEBUG_TOOLBAR_CONFIG = {
-        'INTERCEPT_REDIRECTS': False,
-    }
     

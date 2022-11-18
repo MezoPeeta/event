@@ -4,12 +4,75 @@
 {% load i18n %}
 <div id="notfound">
 	<div class="notfound">
-		<div class="notfound-404">
-			<h1 style="color: black;">Oops!</h1>
-		</div>
-		<h2>404 - Page not found</h2>
-		<p>The page you are looking for might have been removed had its name changed or is temporarily unavailable.</p>
-		<a href="#">Go To Homepage</a>
+		<h3>Don't Know Where <br>You Are?</h3>
+		<h2>we really have no idea either...</h2>
+		<!-- <div class="notfound-404">
+			<h1>404</h1>
+		</div> -->
+		<a href="{% url 'Home' %}">Get Back</a>
 	</div>
 </div>
+<style>
+	.notfound h3{
+  color:#FFF615;
+  font-size: 400px;
+  text-align: center;
+  font-weight: 400;
+  font: 130px 'Jura';
+  margin: 10px;
+}
+.notfound-404 h1{
+	font: 200px 'Jura';
+	color: white;
+}
+#notfound{
+	background-color: black;
+}
+.notfound{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.notfound h2{
+	text-align: center;
+	color: white;
+	font-size: 64px;
+	margin: 10px;
+}
+.notfound a{
+	margin: 30px;
+	height: 100px;
+	width: 350px;
+	background-color: #F6F05DD6;
+	border-radius: 95px;
+	box-shadow: 6px 6px 12px rgba(217, 217, 217, 0.6);
+	color: white;
+	font-size: 55px;
+	text-align: center;
+}
+.notfound a:hover{
+	opacity: 60%;
+}
+@media only screen and (max-width: 767px) {
+      .notfound .notfound-404 {
+        height: 142px;
+      }
+      .notfound .notfound-404 h1 {
+        font-size: 112px;
+      }
+	  .notfound a{
+		height: 50px;
+		width: 125px;
+		font-size: 25px;
+		margin: 15px;
+	  }
+	  .notfound h2{
+		font-size: 20px;
+	  }
+	  .notfound h3{
+		font-size: 70px;
+	  }
+  }
+  
+</style>
 {% endblock content%}

@@ -36,7 +36,10 @@
     <link rel="stylesheet" href="/static/base/css/register.css">
     <link rel="stylesheet" href="/static/base/css/speakers.css">
     <link rel="stylesheet" href="/static/base/css/404.css">
-
+    <!-- font link -->
+    <link href='https://fonts.googleapis.com/css?family=Montserrat Alternates' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Jura' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Anaheim' rel='stylesheet'>
     <!-- cropper -->
 
 
@@ -45,7 +48,9 @@
 
   <nav>
     <div class="logo">
-      <img src="/static/base/img/mfis-logo.png" alt="logo">
+      <a href="{% url 'Home' %}">
+        <img src="/static/base/img/mfis-logo.png" alt="logo">
+      </a>
     </div>
     <div class="hamburger">
       <div class="line"></div>
