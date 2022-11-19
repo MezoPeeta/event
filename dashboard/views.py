@@ -21,7 +21,7 @@ from django.contrib.auth.models import User
 from django.conf import settings
 from django.http import HttpResponse
 from django.template.loader import get_template, render_to_string
-from xhtml2pdf import pisa
+# from xhtml2pdf import pisa
 from django.views.generic.edit import FormMixin
 
 
@@ -122,22 +122,22 @@ class ReportDetailView(LoginRequiredMixin, DetailView):
     template_name = 'dashboard/Logistics/reports_detail.html'
 
 
-def render_pdf_view(request, pk):
-    template_path = 'dashboard/Logistics/report_pdf.html'
-    obj = get_object_or_404(Report, pk=pk)
-    context = {'obj': obj}
-    response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="report.pdf"'
-    template = get_template(template_path)
-    html = template.render(context)
+# def render_pdf_view(request, pk):
+#     template_path = 'dashboard/Logistics/report_pdf.html'
+#     obj = get_object_or_404(Report, pk=pk)
+#     context = {'obj': obj}
+#     response = HttpResponse(content_type='application/pdf')
+#     response['Content-Disposition'] = 'attachment; filename="report.pdf"'
+#     template = get_template(template_path)
+#     html = template.render(context)
 
-    # create a pdf
-    pisa_status = pisa.CreatePDF(
-       html, dest=response)
-    # if error then show some funy view
-    if pisa_status.err:
-       return HttpResponse('We had some errors <pre>' + html + '</pre>')
-    return response
+#     # create a pdf
+#     pisa_status = pisa.CreatePDF(
+#        html, dest=response)
+#     # if error then show some funy view
+#     if pisa_status.err:
+#        return HttpResponse('We had some errors <pre>' + html + '</pre>')
+#     return response
 
 
 class VideoCreateView(LoginRequiredMixin, CreateView):

@@ -12,7 +12,7 @@ from django.conf import settings
 from .token_generator import activation_token
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.utils.encoding import force_bytes, force_text
+from django.utils.encoding import force_bytes, force_str
 from django.contrib.auth import login, authenticate
 from django.views.generic import DetailView , UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin , UserPassesTestMixin

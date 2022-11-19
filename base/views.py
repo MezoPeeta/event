@@ -8,7 +8,7 @@ from .models import Videos , Subscribe , Contact
 from .forms import Subscribe_Form , Newsletter_Form
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
-from django.utils.encoding import force_bytes, force_text
+from django.utils.encoding import force_bytes, force_str
 from django.core.exceptions import ObjectDoesNotExist
 from django.views.generic import ListView
 from django.core.cache import cache

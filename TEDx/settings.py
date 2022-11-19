@@ -35,7 +35,6 @@ INSTALLED_APPS = [
     'maintenance_mode',
     'products',
     'crispy_forms',
-    'admin_honeypot',
     'base',
     'users',
     'payment',
@@ -180,7 +179,7 @@ EMAIL_USE_SSL = True
 
 #MAINTENANCEEE
 
-MAINTENANCE_MODE = False
+MAINTENANCE_MODE = True
 
 # MAINTENANCE_MODE_IGNORE_SUPERUSER = False
 

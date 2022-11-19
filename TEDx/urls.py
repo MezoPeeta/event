@@ -23,7 +23,6 @@ import debug_toolbar
 urlpatterns = [
     path('maintenance-mode/', include('maintenance_mode.urls')),
     path('i18n/', include('django.conf.urls.i18n')),
-    path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     path('us/', admin.site.urls, name='Admin_Dashboard'),
     path('__debug__/', include(debug_toolbar.urls)),
 
