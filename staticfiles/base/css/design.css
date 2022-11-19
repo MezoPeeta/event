@@ -381,9 +381,11 @@
 	position: relative !important;
 }
 nav{
-	height: 10vh;
-	background: #000000;
-	z-index: 2;
+    height: 10vh;
+    background: #000000;
+    z-index: 2;
+    position: fixed;
+    width: 100%;
 }
 .nav-links{
 	display: flex;
@@ -414,10 +416,12 @@ nav{
 		margin: 5px;
 	}
 	nav{
-		position: relative;
+		position: fixed;
 		z-index: 2;
+		width: 100%;
 
 	}
+
 
 	.hamburger{
 		position: absolute;
@@ -469,7 +473,7 @@ nav{
 	.logo img{
 		position: absolute;
 		width: 1200px;
-		top: 5px;
+		top: -5px;
 		left: 5%;
 		margin-top: 5px;
 	}
@@ -479,6 +483,6 @@ nav{
 	position: absolute;
 	width: 250px;
 	margin-bottom: 50px;
-	top: 2%;
+	top: 15%;
 	left: 5%;
 }
