@@ -10,4 +10,4 @@ class Newsletter_Form(forms.ModelForm):
     class Meta:
         model = Subscribe
         fields = ['id','name']
-
+#hello 
