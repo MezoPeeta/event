@@ -6,7 +6,7 @@
 
 
     <div class="container">
-    <a  class="btn btn-outline-dark" href="{% url 'Profile' request.user.id %}" style="font-family: inherit;">&#x2190; Profile</a>
+      <a  class="btn btn-outline-dark" href="{% url 'Profile' request.user.username %}" style="font-family: inherit;">&#x2190; Profile</a>
 
         <center>
         <h1>Welcome {{request.user.username}}! </h1>
