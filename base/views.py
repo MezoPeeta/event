@@ -3,13 +3,10 @@ from django.core.validators import validate_email , ValidationError
 from django.core.mail import send_mail , EmailMessage , get_connection , EmailMultiAlternatives
 from django.contrib import messages
 from django.conf import settings
-from django.http import HttpResponse
 from .models import Videos , Subscribe , Contact
 from .forms import Subscribe_Form , Newsletter_Form
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
-from django.utils.encoding import force_bytes, force_text
-from django.core.exceptions import ObjectDoesNotExist
 from django.views.generic import ListView
 from django.core.cache import cache
 from uuid import uuid4
@@ -163,3 +160,4 @@ def speakers(request):
 
 def error_404_view(request, exception):
     return render(request, 'base/404.html')
+

@@ -34,12 +34,9 @@
     <link rel="stylesheet" href="/static/base/css/register.css">
     <link rel="stylesheet" href="/static/base/css/icomoon.css">
     <link rel="stylesheet" href="/static/base/css/register.css">
-    <link rel="stylesheet" href="/static/base/css/speakers.css">
-    <link rel="stylesheet" href="/static/base/css/404.css">
-    <!-- font link -->
-    <link href='https://fonts.googleapis.com/css?family=Montserrat Alternates' rel='stylesheet'>
-    <link href='https://fonts.googleapis.com/css?family=Jura' rel='stylesheet'>
-    <link href='https://fonts.googleapis.com/css?family=Anaheim' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'base/css/speakers.css'%}">
+    <link rel="stylesheet" href="{% static 'base/css/404.css'%}">
+
     <!-- cropper -->
 
 
@@ -58,6 +55,7 @@
       <div class="line"></div>
     </div>
     <ul class="nav-links">
+      <!--- This is an issue and it's solution -->
       <li><a href="{% url 'Home' %}">Home</a></li>
       <li><a href="{% url 'About' %}">About</a></li>
       <li><a href="{% url 'Speakers' %}">Speakers</a></li>

@@ -35,7 +35,6 @@ INSTALLED_APPS = [
     'maintenance_mode',
     'products',
     'crispy_forms',
-    'admin_honeypot',
     'base',
     'users',
     'payment',
@@ -60,7 +59,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'maintenance_mode.middleware.MaintenanceModeMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
 
 ]
 
@@ -175,22 +173,24 @@ EMAIL_PORT = 465
 
 EMAIL_USE_TLS = False
 
-EMAIL_HOST_USER = 'fazlook.gdn45@gmail.com'
 
-EMAIL_HOST_PASSWORD = 'xmiwfsfwqudvwtmq'
+EMAIL_HOST_USER = 'wildlifemain1@gmail.com'
+
+EMAIL_HOST_PASSWORD = 'ekvslubsdblgmnlo'
+
 
 EMAIL_USE_SSL = True
 
 
 #MAINTENANCEEE
 
-MAINTENANCE_MODE = False
+MAINTENANCE_MODE = True
 
-# MAINTENANCE_MODE_IGNORE_SUPERUSER = False
+# MAINTENANCE_MODE_IGNORE_SUPERUSER = True
 
 MAINTENANCE_MODE_STATE_FILE_PATH = os.path.join(BASE_DIR, 'maintenance/maintenance_mode_state.txt')
 
 MAINTENANCE_MODE_TEMPLATE = os.path.join(BASE_DIR, 'base/templates/base/503.html')
 
-
     
+
