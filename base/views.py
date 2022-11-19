@@ -160,3 +160,4 @@ def speakers(request):
 
 def error_404_view(request, exception):
     return render(request, 'base/404.html')
+
