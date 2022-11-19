@@ -16,16 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path , include
 from django.conf import settings
+from django.conf.urls import url
 from django.conf.urls.static import static
 from django.conf.urls.i18n import i18n_patterns
-import debug_toolbar
 
 urlpatterns = [
     path('maintenance-mode/', include('maintenance_mode.urls')),
     path('i18n/', include('django.conf.urls.i18n')),
     path('us/', admin.site.urls, name='Admin_Dashboard'),
-    path('__debug__/', include(debug_toolbar.urls)),
-
 
 ] 
 urlpatterns += i18n_patterns(
@@ -37,5 +35,7 @@ urlpatterns += i18n_patterns(
 )
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += staticfiles_urlpatterns()
+   
     
 handler404 = 'base.views.error_404_view'

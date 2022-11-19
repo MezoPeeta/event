@@ -1,2 +1,2 @@
 # Website
-This is an event website created by Django
+This is the TEDx website created by Django

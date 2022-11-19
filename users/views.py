@@ -4,22 +4,19 @@ from .forms import UserRegisterForm , UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User 
-from django.urls import reverse
 from .models import Profile , RegistrationCode
-from django.core.mail import send_mail ,EmailMessage
+from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
-from django.conf import settings
 from .token_generator import activation_token
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.utils.encoding import force_bytes, force_str
-from django.contrib.auth import login, authenticate
+from django.utils.encoding import force_bytes
+from django.contrib.auth import login
 from django.views.generic import DetailView , UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin , UserPassesTestMixin
 import random
 import pandas as pd
 from django.http import HttpResponse
-from django.http import Http404
 
 def exportTOCSV(request):
     qs = RegistrationCode.objects.all().values()
@@ -36,7 +33,6 @@ def exportTOCSV(request):
     return response
 
 def register(request):
-    
     while RegistrationCode.objects.all().count() <= 24:
         generated_code = random.randint(1,9999999999999999)
         add_code = RegistrationCode.objects.create(code = generated_code)

@@ -24,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'z#j+0d9jx0yme*if+&7htan5@u-2o=ln+x^x%0uv=ypg@jb8jz'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -59,7 +59,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'maintenance_mode.middleware.MaintenanceModeMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
 
 ]
 
@@ -144,11 +143,15 @@ LOCALE_PATHS = ( os.path.join(SITE_ROOT, 'locale'), )
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-        ]
+os.path.join(BASE_DIR, "static"),
+    ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
+
+
 
 
 MEDIA_URL = '/media/'
@@ -170,9 +173,11 @@ EMAIL_PORT = 465
 
 EMAIL_USE_TLS = False
 
-EMAIL_HOST_USER = 'EMAIL'
 
-EMAIL_HOST_PASSWORD = 'PASS'
+EMAIL_HOST_USER = 'wildlifemain1@gmail.com'
+
+EMAIL_HOST_PASSWORD = 'ekvslubsdblgmnlo'
+
 
 EMAIL_USE_SSL = True
 
@@ -181,22 +186,11 @@ EMAIL_USE_SSL = True
 
 MAINTENANCE_MODE = True
 
-# MAINTENANCE_MODE_IGNORE_SUPERUSER = False
+# MAINTENANCE_MODE_IGNORE_SUPERUSER = True
 
 MAINTENANCE_MODE_STATE_FILE_PATH = os.path.join(BASE_DIR, 'maintenance/maintenance_mode_state.txt')
 
 MAINTENANCE_MODE_TEMPLATE = os.path.join(BASE_DIR, 'base/templates/base/503.html')
 
-if DEBUG:
-    MIDDLEWARE += [
-        'debug_toolbar.middleware.DebugToolbarMiddleware',
-    ]
-    INSTALLED_APPS += [
-        'debug_toolbar',
-    ]
-    INTERNAL_IPS = ['127.0.0.1', ]
-
-    DEBUG_TOOLBAR_CONFIG = {
-        'INTERCEPT_REDIRECTS': False,
-    }
     
+

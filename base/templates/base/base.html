@@ -34,8 +34,8 @@
     <link rel="stylesheet" href="/static/base/css/register.css">
     <link rel="stylesheet" href="/static/base/css/icomoon.css">
     <link rel="stylesheet" href="/static/base/css/register.css">
-    <link rel="stylesheet" href="/static/base/css/speakers.css">
-    <link rel="stylesheet" href="/static/base/css/404.css">
+    <link rel="stylesheet" href="{% static 'base/css/speakers.css'%}">
+    <link rel="stylesheet" href="{% static 'base/css/404.css'%}">
 
     <!-- cropper -->
 
@@ -45,7 +45,9 @@
 
   <nav>
     <div class="logo">
-      <img src="/static/base/img/mfis-logo.png" alt="logo">
+      <a href="{% url 'Home' %}">
+        <img src="/static/base/img/mfis-logo.png" alt="logo">
+      </a>
     </div>
     <div class="hamburger">
       <div class="line"></div>
@@ -53,6 +55,7 @@
       <div class="line"></div>
     </div>
     <ul class="nav-links">
+      <!--- This is an issue and it's solution -->
       <li><a href="{% url 'Home' %}">Home</a></li>
       <li><a href="{% url 'About' %}">About</a></li>
       <li><a href="{% url 'Speakers' %}">Speakers</a></li>

@@ -1,17 +1,14 @@
-from typing import List
-from django.core.mail import send_mail
 from django.core.mail.message import EmailMessage
 from django.urls.base import reverse
 from django.views.generic.detail import DetailView
-from users.models import Profile
 from dashboard.models import Report
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render , redirect
 from django.contrib.auth.decorators import login_required
 from django.views.generic import CreateView, UpdateView, DeleteView, TemplateView, ListView
 from base.models import Contact, Subscribe, Videos
 from django.contrib.auth.mixins import LoginRequiredMixin
 from products.models import Products
-from django.http import HttpResponse, request
+from django.http import HttpResponse
 import pandas as pd
 from django.http import Http404
 from .forms import ContactForm, ReportForm
@@ -20,29 +17,24 @@ from .utils import get_report_image
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.http import HttpResponse
-from django.template.loader import get_template, render_to_string
-# from xhtml2pdf import pisa
+
+from django.template.loader import render_to_string
+
 from django.views.generic.edit import FormMixin
 
 
 @login_required
 def dashboard(request):
-
-    context = {
-        'title': 'Dashboard',
-    }
-
-    template = ''
+  
     committee = request.user.profile.committee
-    if committee == 'Marketing':
-        template = 'dashboard/Marketing/dashboard.html'
-    elif committee == 'PR':
-        template = 'dashboard/PR/dashboard.html'
-    elif committee == 'HR':
-        template = 'dashboard/HR/dashboard.html'
-    elif committee == 'Logistics':
-        template = 'dashboard/Logistics/dashboard.html'
-        
+    if committee != "IT":
+        template = f"dashboard/{committee}/dashboard.html"
+    else:
+        return redirect('/us/')
+    
+    context = {
+        'title': f'{committee} | Dashboard',
+    }
     return render(request, template, context)
 
 
@@ -52,6 +44,7 @@ class SubscribersListView(LoginRequiredMixin, ListView):
     template_name = 'dashboard/Marketing/subscribers_list.html'
     ordering = ['-date_subscribed']
     paginate_by = 10
+
 
 @login_required
 def dataFrame(request):
