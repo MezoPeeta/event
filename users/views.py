@@ -61,9 +61,12 @@ def register(request):
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': activation_token.make_token(user)
                 })
-                email = EmailMessage(subject, message,to=[email])
-                email.content_subtype = 'html'
-                email.send()
+                email_ = EmailMessage(subject, message,to=[email])
+                email_.content_subtype = 'html'
+                email_.send()
+                print("done")
+                
+
                 
                 required_code.delete()
                 
@@ -154,4 +157,3 @@ def activate_account(request, uidb64, token):
 
 def needVerify(request):
     return render(request, 'users/need_verify.html')
-
