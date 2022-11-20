@@ -55,7 +55,7 @@ def register(request):
             if required_code and existedEmail == False:
                 user.is_active = False
                 user.save()
-                message = render_to_string('users/email_test.html', {
+                message = render_to_string('users/email.html', {
                 'username': username,
                 'current_site': current_site,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
