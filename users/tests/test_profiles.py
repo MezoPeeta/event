@@ -52,7 +52,7 @@ class ProfileTest(TestCase):
         self.assertFalse(form_p.is_valid())
         self.assertTrue(form_p.cleaned_data)
 
-        \
+        
         # If Form is Valid , Cleaned Data should return None else cleaned_Data
 
 
