@@ -158,6 +158,6 @@ def contact(request):
 def speakers(request):
     return render(request, 'base/speakers.html')
 
-def error_404_view(request, exception):
-    return render(request, 'base/404.html')
+def error_404_view(request, exception=None):
+    return render(request, 'base/404.html',status=404)
 
