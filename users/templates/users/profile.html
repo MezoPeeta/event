@@ -32,6 +32,9 @@
         <a href="{% url 'Update_Profile' %}" class="btn btn-danger" style="position: relative; top: -50px;margin-right: 1%;">Edit</a>
         {% if request.user.profile.committee == 'Design' or request.user.profile.committee == 'Media' or request.user.profile.committee == ''%}
         <a href="" style="display:none;"></a>
+        {% elif request.user.profile.committee == "HR"%}
+        <a href="{%url 'Inbox' %}"
+        class="btn btn-danger" style="position: relative; top: -50px;">Inbox</a>        
         {%else%}
         <a href="{%url 'Dashboard' %}"
         class="btn btn-danger" style="position: relative; top: -50px;">Dashboard</a>
