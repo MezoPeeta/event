@@ -132,6 +132,15 @@ class ReportDetailView(LoginRequiredMixin, DetailView):
 #        return HttpResponse('We had some errors <pre>' + html + '</pre>')
 #     return response
 
+class ProductsCreateView(LoginRequiredMixin, CreateView):
+    model = Products
+    template_name = 'dashboard/PR/new_products.html'
+    fields = ['name', 'image','price','created_at']
+
+    def form_valid(self, form):
+        form.instance.memberName = self.request.user
+        return super().form_valid(form)
+
 
 class VideoCreateView(LoginRequiredMixin, CreateView):
     model = Videos
