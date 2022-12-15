@@ -2,8 +2,8 @@ from django.contrib.auth.models import User
 from django.test import TestCase 
 from django.shortcuts import reverse 
 from users.models import Profile
-
 class TestingDashboard(TestCase):
+
     def setUp(self):
         self.user = User.objects.create(username="Test")
         self.user.set_password("123456789")
