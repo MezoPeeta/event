@@ -43,7 +43,7 @@ class TestingPrHr(LiveServerTestCase):
         #accessing the dashboard
         self.browser.get(dashboard)
         self.browser.get(self.live_server_url + contact_page)
-        #  creating a contact report
+        # creating a contact report
         name = self.browser.find_element(By.XPATH, '/html/body/section/div/div[2]/div[1]/form/div[1]/input')
         name.send_keys("Tester")
         email = self.browser.find_element(By.XPATH, '/html/body/section/div/div[2]/div[1]/form/div[2]/input')
@@ -56,5 +56,9 @@ class TestingPrHr(LiveServerTestCase):
         submit_btn.click()
         #checking the contact in the inbox page
         self.browser.get(dashboard)
-      
-        
+        #checking if report is saved
+        is_contacted = True if Contact.objects.get(name="Tester") else False
+        self.assertTrue(is_contacted)  
+        #checking the current url 
+        current_url = self.browser.current_url
+        self.assertEqual(current_url, dashboard)
