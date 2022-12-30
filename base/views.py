@@ -3,7 +3,7 @@ from django.core.validators import validate_email , ValidationError
 from django.core.mail import send_mail , EmailMessage , get_connection , EmailMultiAlternatives
 from django.contrib import messages
 from django.conf import settings
-from .models import Videos , Subscribe , Contact
+from .models import Videos , Subscribe , Contact, Speakers
 from .forms import Subscribe_Form , Newsletter_Form
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
@@ -154,9 +154,20 @@ def contact(request):
         return render(request, 'base/contact.html', {"name": name})
     return render(request, 'base/contact.html', {'title': 'Contact'})
 
+class SpeakersListView(ListView):
+    model = Speakers
+    template_name = 'base/speakers.html'
+    context_object_name = 'speakers'
+    ordering = ['-date_posted']
+    paginate_by = 6
 
-def speakers(request):
-    return render(request, 'base/speakers.html')
+class SpeakersListView(ListView):
+    model = Speakers
+    template_name = 'base/speakers.html'
+    context_object_name = 'speakers'
+    ordering = ['-date_posted']
+    paginate_by = 6
+
 
 def error_404_view(request, exception=None):
     return render(request, 'base/404.html',status=404)

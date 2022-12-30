@@ -5,6 +5,7 @@ urlpatterns = [
     path('/dashboard/', views.dashboard, name="Dashboard"),
     path('/new/video', views.VideoCreateView.as_view(), name="CreateVideo"),
     path('/new/product', views.ProductsCreateView.as_view(), name="CreateProducts"),
+    path('/new/bus', views.Bus, name="Bus"),
 
     path('/update/video/<str:pk>', views.VideoUpdateView.as_view(), name="UpdateVideo"),
     path('/delete/video/<str:pk>', views.VideoDeleteView.as_view(), name="DeleteVideo"),

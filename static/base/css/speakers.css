@@ -1,6 +1,5 @@
 
 .speakers{
-    margin-top: 200px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px ,1fr));
     gap: 20px;
@@ -9,4 +8,9 @@
 .products{
     display: flex;
     flex-wrap: wrap;
+}
+.pagination-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

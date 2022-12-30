@@ -223,3 +223,6 @@ def inbox_Delete(request,pk):
     form = Contact.objects.get(pk=pk)
     form.delete()
     return render(request, 'dashboard/HR/inbox.html')
+
+def Bus(request):
+    return render(request, 'dashboard/PR/bus.html')
