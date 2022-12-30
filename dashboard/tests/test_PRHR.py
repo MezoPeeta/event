@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from django.urls import reverse
+from base.models import Contact
 
 class TestingPrHr(LiveServerTestCase):
     def setUp(self):
