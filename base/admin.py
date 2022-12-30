@@ -28,6 +28,5 @@ admin.site.register(Contact,ContactModel)
 
 class SpeakersModel(admin.ModelAdmin):
     list_display = ('name', 'talk_name')
-
+    
 admin.site.register(Speakers,SpeakersModel)
-
