@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.urls import reverse
 
 
 class Products(models.Model):
@@ -9,6 +10,9 @@ class Products(models.Model):
         default='product_default.jpg', upload_to='products')
     price = models.DecimalField(max_digits=7, decimal_places=2)
     created_at = models.DateTimeField(default=timezone.now)
+    
+    def get_absolute_url(self):
+        return reverse('Store')
 
     def __str__(self):
         return f'{self.name}'

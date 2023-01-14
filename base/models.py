@@ -39,3 +39,9 @@ class Contact(models.Model):
     
     def __str__(self):
         return f'{self.name}'
+
+class Speakers(models.Model):
+    name = models.CharField(max_length=20)
+    talk_name = models.CharField(max_length=20)
+    image = models.ImageField(default='default.jpg', upload_to='speakers_pics')
+    date_posted= models.DateTimeField(default=timezone.now)    

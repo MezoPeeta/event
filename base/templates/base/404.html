@@ -1,16 +1,96 @@
-{% extends 'base/base.html' %}
-{% load static %}
-{% block content%}
-{% load i18n %}
-<div id="notfound">
-	<div class="notfound">
-		<h3>Don't Know Where <br>You Are?</h3>
-		<h2>we really have no idea either...</h2>
-		<!-- <div class="notfound-404">
-			<h1>404</h1>
-		</div> -->
-		<a href="{% url 'Home' %}">Get Back</a>
-	</div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    {% if title %}
+    <title> {{ title }} </title>
+    {% else %}  
+    <title>TEDxManaratAlFaroukSchool</title>
+    {% endif %}
 
-{% endblock content%}
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="/static/base/css/404.css">
+
+	<link href='https://fonts.googleapis.com/css?family=Jura' rel='stylesheet'>
+
+</head>
+<body>
+	<div id="notfound">
+		<div class="notfound">
+			<h3>Don't Know Where You Are?</h3>
+			<h2>we really have no idea either...</h2>
+			<div class="notfound-404">
+				<h1>404</h1>
+			</div>
+			<a href="{% url 'Home' %}">Get Back</a>
+		</div>
+	</div>
+	<style>
+		body{
+			background-color: black;
+		}
+	.notfound h3{
+	color:#FFF615;
+	text-align: center;
+	font: 400 90px 'Jura';
+	margin: 10px 10px  30px  ;
+	}
+	.notfound-404 h1{
+		font: 90px 'Jura';
+		color: white;
+		margin: 10px 0 0;
+	}
+	#notfound{
+		background-color: black;
+	}
+	.notfound{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.notfound h2{
+		text-align: center;
+		color: white;
+		font: 64px 'Jura';
+		margin: 10px;
+	}
+	.notfound a{
+		margin: 30px;
+		height: 80px;
+		width: 330px;
+		background-color: #F6F05DD6;
+		border-radius: 95px;
+		box-shadow: 6px 6px 12px rgba(217, 217, 217, 0.6);
+		color: white;
+		font-size: 55px;
+		text-align: center;
+		text-decoration: none;
+	}
+	.notfound a:hover{
+		opacity: 60%;
+	}
+	@media only screen and (max-width: 767px) {
+		.notfound .notfound-404 {
+			height: 142px;
+		}
+		.notfound .notfound-404 h1 {
+			font-size: 112px;
+		}
+		.notfound a{
+			height: 50px;
+			width: 125px;
+			font-size: 25px;
+			margin: 15px;
+		}
+		.notfound h2{
+			font-size: 20px;
+		}
+		.notfound h3{
+			font-size: 70px;
+		}
+	}
+	
+	</style>
+</body>
+</html>

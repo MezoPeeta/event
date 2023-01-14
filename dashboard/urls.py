@@ -7,6 +7,8 @@ urlpatterns = [
     path('update/video/<str:pk>', views.VideoUpdateView.as_view(), name="UpdateVideo"),
     path('delete/video/<str:pk>', views.VideoDeleteView.as_view(), name="DeleteVideo"),
     path('emails/', views.SubscribersListView.as_view(), name="Emails"),
+    path('new/product/', views.ProductsCreateView.as_view(), name="CreateProducts"),
+
 
     ## ER
 
