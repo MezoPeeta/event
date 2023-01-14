@@ -1,13 +1,13 @@
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse
-
+from django.contrib.auth.models import User
 
 class Products(models.Model):
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=100)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     image = models.ImageField(
-        default='product_default.jpg', upload_to='products')
+        default='product_default.jpg', upload_to='products',blank=True)
     price = models.DecimalField(max_digits=7, decimal_places=2)
     created_at = models.DateTimeField(default=timezone.now)
     

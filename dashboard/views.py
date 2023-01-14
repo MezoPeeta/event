@@ -132,14 +132,6 @@ def render_pdf_view(request, pk):
        return HttpResponse('We had some errors <pre>' + html + '</pre>')
     return response
 
-class ProductsCreateView(LoginRequiredMixin, CreateView):
-    model = Products
-    template_name = 'dashboard/PR/new_products.html'
-    fields = ['name', 'image','price']
-
-    def form_valid(self, form):
-        form.instance.memberName = self.request.user
-        return super().form_valid(form)
 
 
 class VideoCreateView(LoginRequiredMixin, CreateView):
@@ -148,7 +140,7 @@ class VideoCreateView(LoginRequiredMixin, CreateView):
     fields = ['name', 'urlID']
 
     def form_valid(self, form):
-        form.instance.memberName = self.request.user
+        form.instance.user = self.request.user
         return super().form_valid(form)
 
 
@@ -162,7 +154,7 @@ class VideoUpdateView(LoginRequiredMixin, UpdateView):
 
     def test_func(self):
         video = self.get_object()
-        if self.request.user == video.memberName:
+        if self.request.user == video.user:
             return True
         return False
 
@@ -174,7 +166,7 @@ class VideoDeleteView(LoginRequiredMixin, DeleteView):
 
     def test_func(self):
         video = self.get_object()
-        if self.request.user == video.memberName:
+        if self.request.user == video.user:
             return True
         return False
 
