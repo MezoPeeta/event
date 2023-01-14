@@ -25,7 +25,7 @@ jobs:
         pip install -r requirements.txt
     - name : Merging Migrations
       run: |
-        python manage.py makemigrations --merge
+        python manage.py makemigrations --merge --no-input
     - name: Run Tests
       run: |
         python manage.py test
