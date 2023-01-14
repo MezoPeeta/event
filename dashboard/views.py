@@ -226,4 +226,5 @@ def change_background_color(request):
         else:
             Design.objects.filter(id=1).update(color=color)
     return redirect('Dashboard')
-    
+
+#1
