@@ -486,3 +486,30 @@ nav{
 	top: 15%;
 	left: 5%;
 }
+
+.design{
+	display:flex;
+}
+.design-chart{
+	display: flex;
+}
+.chart-container{
+	height: 70%; 
+	max-width: 100%;
+	margin-top: 5%; 
+	margin-left: 100%
+}
+@media screen and (max-width: 945px){
+	
+	.chart-container{
+		margin-left: 0;
+	}
+	.design-chart{
+		flex-direction: column;
+	}
+	.design{
+		flex-direction: column;
+		margin-top: 0;
+	}
+
+}

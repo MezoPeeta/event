@@ -7,4 +7,7 @@
         "**/requirements{/**,*}.{txt,in}": "pip-requirements"
     },
     "emmet.includeLanguages": {"django-html": "html"},
+    //enable prettier for django templates
+   
+    
 }

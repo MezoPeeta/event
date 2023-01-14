@@ -9,3 +9,5 @@ def get_report_image(data):
 
     return data
 
+def is_ajax(request):
+    return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'

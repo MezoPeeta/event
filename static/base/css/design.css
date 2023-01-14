@@ -486,3 +486,44 @@ nav{
 	top: 15%;
 	left: 5%;
 }
+
+.design{
+	display:flex;
+}
+.design-chart{
+	display: flex;
+}
+.chart-container{
+	height: 70%; 
+	width: 100%;
+	margin-top: 5%; 
+	margin-left: 100%
+}
+.design_btns{
+	margin-left: 15%;
+	 margin-top: 30%
+}
+@media screen and (max-width: 955px){
+	
+	.chart-container{
+		margin-left: 0;
+		max-width: 100%;
+	}
+	.design-chart{
+		flex-direction: column;
+	}
+	.design, .design_btns{
+		margin-top: 15% !important;
+
+	}
+}
+@media screen and (max-width:450px) {
+
+.design{
+		flex-direction: column;
+	}
+	.wrap{
+		min-height: 0 !important;
+	}
+	
+}

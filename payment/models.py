@@ -6,6 +6,7 @@ from PIL import Image, ImageDraw
 
 
 class TicketForm(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200)
     email = models.EmailField()
 
@@ -13,6 +14,7 @@ class TicketForm(models.Model):
         return f'{self.id}'
 
 class QrCode(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100, default='')
     ticket = models.OneToOneField(TicketForm, on_delete=models.SET_NULL, null=True)
     qr_code = models.ImageField(upload_to='qrcodes', blank=True)
@@ -34,6 +36,7 @@ class QrCode(models.Model):
 
 
 class Ticket_Recieved(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200)
     email = models.EmailField()
     code = models.OneToOneField(QrCode , on_delete=models.SET_NULL, null=True)

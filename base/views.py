@@ -10,7 +10,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.views.generic import ListView
 from django.core.cache import cache
 from uuid import uuid4
-
+from dashboard.models import Design
 
 def home(request):
     cache.clear()
@@ -39,7 +39,12 @@ def home(request):
 
     else:
         form = Subscribe_Form()
-    return render(request, 'base/home.html' , {'form': form})
+    
+    context = {
+        'form' : form,
+
+    }
+    return render(request, 'base/home.html' , context)
 
 def subscribed(request):
 
