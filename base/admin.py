@@ -9,7 +9,7 @@ admin.site.site_title = "TEDx ManaratAlFarouk School"
 
 class VideosModel(admin.ModelAdmin):
     fields = ('urlID' , 'name')
-    list_display = ('name' , 'date_posted', 'memberName')
+    list_display = ('name' , 'date_posted', 'user')
 
 admin.site.register(Videos, VideosModel)
 

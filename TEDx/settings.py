@@ -185,7 +185,7 @@ MAINTENANCE_MODE_STATE_FILE_PATH = os.path.join(BASE_DIR, 'maintenance/maintenan
 
 MAINTENANCE_MODE_TEMPLATE = os.path.join(BASE_DIR, 'base/templates/base/503.html')
 
-if DEBUG == False:
+if not DEBUG:
     SECURE_SSL_REDIRECT = True
 
     SECURE_HSTS_SECONDS = 3600

@@ -8,8 +8,8 @@ from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from django.contrib import messages
 from django.views.generic import ListView
-from django.core import serializers
-
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import CreateView
 def store(request):
     context= {
             'Products' : Products.objects.all(),
@@ -22,6 +22,15 @@ class ProductListView(ListView):
     template_name = 'products/store.html'
     context_object_name = 'Products'
     ordering = ['-created_at']
+
+class ProductsCreateView(LoginRequiredMixin, CreateView):
+    model = Products
+    template_name = 'dashboard/PR/new_products.html'
+    fields = ['image','price']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
     
 

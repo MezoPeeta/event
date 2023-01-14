@@ -1,13 +1,11 @@
 from django.test import LiveServerTestCase
-from selenium import webdriver
-
 from selenium.webdriver.common.by import By
+from selenium_test import TestUtils
 
-class Test_registration(LiveServerTestCase):
+class Test_registration(LiveServerTestCase,TestUtils):
     def setUp(self):
-        self.path = "C:\Program Files (x86)\msedgedriver.exe"
-        self.browser = webdriver.Edge(self.path)
-        
+        self.init_selenium()
+
         
     def test_registration(self):
         register = self.live_server_url + "/en/register"
@@ -36,15 +34,16 @@ class Test_registration(LiveServerTestCase):
         self.assertEquals(Registration_code_textbox.get_attribute("value"), "481294894")
         self.assertEquals(password_textbox.get_attribute("value"), "Password")
         self.assertEquals(confirm_password_textbox.get_attribute("value"), "Password")
+    
     def test_login(self):
         login = self.live_server_url + "/en/login"
         self.browser.get(login)
-        
+
+
         username_textbox = self.browser.find_element(By.XPATH, '//*[@id="id_username"]')
         password_textbox = self.browser.find_element(By.XPATH,'//*[@id="id_password"]')
         username_textbox.send_keys("hamadaaa")
         password_textbox.send_keys("Password")
-        
         self.assertEquals(username_textbox.get_attribute("value"), "hamadaaa")
         self.assertEquals(password_textbox.get_attribute("value"), "Password")
 

@@ -869,7 +869,7 @@ svglib = ">=1.2.1"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.11"
-content-hash = "377ddb5f75676a42d9c70b5d7bc40aea5de1f4531ed198184e5d46745f38d0da"
+content-hash = "1ddc773c35d4dda29257e2b2d3875af26c09518352b8e7a1efe957755c1da1cf"
 
 [metadata.files]
 arabic-reshaper = [

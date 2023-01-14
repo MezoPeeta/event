@@ -4,22 +4,11 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from django.urls import reverse
 from base.models import Contact
+from selenium_test import TestUtils
 
-class TestingPrHr(LiveServerTestCase):
+class TestingPrHr(LiveServerTestCase, TestUtils):
     def setUp(self):
-        #creating a user
-        self.user = User.objects.create(username="Test")
-        self.user.set_password("123456789")
-        self.user.save()
-        PATH = "C:/Users/abdo/Downloads/chromedriver_win32.exe"
-        #loggin the user in
-        self.client.login(username="Test", password='123456789') #Native django test client
-        cookie = self.client.cookies['sessionid']
-        self.browser = webdriver.Chrome(PATH)         
-        self.browser.get(self.live_server_url + '/us/')  #selenium will set cookie domain based on current page domain
-        self.browser.add_cookie({'name': 'sessionid', 'value': cookie.value, 'secure': False, 'path': '/'})
-        self.browser.refresh() #need to update page for logged in user
-        self.browser.get(self.live_server_url + '/us/')      
+           self.selenium_admin_login()
     def test_pr(self):
         #saving the test profile as a PR member
         dashboard_page = reverse('Dashboard')

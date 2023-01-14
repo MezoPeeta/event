@@ -1,17 +1,14 @@
-from django.contrib.auth.models import User
 from django.test import TestCase 
 from django.shortcuts import reverse 
+from selenium_test import TestUtils
 
-class TestingDashboard(TestCase):
+class TestingDashboard(TestCase,TestUtils):
     def setUp(self):
-        self.user = User.objects.create(username="Test")
-        self.user.set_password("123456789")
-        self.user.save()
-        self.client.login(username='Test', password='123456789')
-        self.user.profile.committee = "PR"
-        self.user.profile.save()
+        self.login_admin()
         
     def test_dashboard(self):
+        self.user.profile.committee = "PR"
+        self.user.profile.save()
         url = reverse('Dashboard')
         request = self.client.get(url)     
         # testing dashboard page
