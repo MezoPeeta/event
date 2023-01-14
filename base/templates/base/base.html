@@ -19,8 +19,6 @@
       content="TEDxManaratAlFaroukSchool is a TEDX event that brings the spirit and passion surrounding TED and TEDx to link the school’s generations."
     />
 
-    <meta name="keywords" content="TEDxManaratAlFaroukSchool, TEDx" />
-
     <meta name="robots" content="index,follow" />
     <!-- CSS LINKS -->
     <link rel="stylesheet" href="/static/base/css/animate.css" />
@@ -100,7 +98,7 @@
 
     {% if messages %} {% for message in messages%}
     <div style="color: white">
-      <p style="color: black; font-family: inherit">­ {{ message }}</p>
+      <p style="color: black; font-family: inherit">{{ message }}</p>
     </div>
     {% endfor %} {% endif %} {% block content %} {% endblock content %}
     <div id="ftco-loader" class="show fullscreen">
