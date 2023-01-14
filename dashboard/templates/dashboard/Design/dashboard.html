@@ -1,0 +1,125 @@
+{% extends 'base/base.html' %} {% load static %} {% block content%} {% load i18n
+%} {% load bgcolor %}
+
+<section class="ftco-section bg-light">
+  <div class="container">
+    <a
+      class="btn btn-outline-dark"
+      href="{% url 'Profile' request.user.username %}"
+      style="font-family: inherit"
+      >&#x2190; Profile</a
+    >
+
+    <center>
+      <h1>Welcome {{request.user.username}}!</h1>
+    </center>
+    <hr />
+    <div class="design-chart">
+      <form action="{% url 'ChangeBgColor' %}" method="POST">
+        {% csrf_token %}
+        <div class="design">
+          <div class="wrap">
+            <div class="half">
+              <div class="colorPicker"></div>
+
+              <span class="title">Selected Color:</span>
+              <div id="values"></div>
+
+              <input
+                id="hexInput"
+                class="form-control"
+                style="border: 3px solid red"
+                name="color"
+              />
+            </div>
+          </div>
+
+          <div class="design_btns">
+            <input
+              type="submit"
+              value="Change Default Color"
+              class="btn btn-dark"
+              style="background:{%color%};border-color:{%color%};color:{%font_color%}"
+            />
+            <br />
+            <br />
+            <input
+              type="submit"
+              value="Change Font Color"
+              class="btn btn-dark"
+              style="background:{%color%};border-color:{%color%};color:{%font_color%}"
+              name="font_btn"
+            />
+          </div>
+        </div>
+      </form>
+
+      <center>
+        <div
+          class="chart-container"
+          
+        >
+          <canvas id="myChart"></canvas>
+        </div>
+      </center>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
+
+    <script>
+      var colorPicker = new iro.ColorPicker(".colorPicker", {
+        width: 280,
+        color: "#ff2a2a",
+        borderWidth: 1,
+        borderColor: "#fff",
+      });
+
+      var values = document.getElementById("values");
+      var hexInput = document.getElementById("hexInput");
+
+      colorPicker.on(["color:init", "color:change"], function (color) {
+        values.innerHTML = [
+          "hex: " + color.hexString,
+          "rgb: " + color.rgbString,
+          "hsl: " + color.hslString,
+        ].join("<br>");
+
+        hexInput.value = color.hexString;
+      });
+
+      hexInput.addEventListener("change", function () {
+        colorPicker.color.hexString = this.value;
+      });
+
+      const ctx = document.getElementById("myChart");
+
+      new Chart(ctx, {
+        type: "doughnut",
+        data: {
+          labels: [ "Default Color","Font Color","Black","Gray","Light"],
+          datasets: [
+            {
+              label: "% Used",
+              data: [30, 20,15,5,17],
+              borderWidth: 1,
+              backgroundColor: [
+                {% for design in designs %}
+                "{{design.color}}","{{design.font_color}}","black","rgb(66 32 32 / 20%)","#a6bffd"
+                {% endfor %}
+            ],
+
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+
+        },
+      });
+    </script>
+  </div>
+</section>
+
+{% endblock content%}

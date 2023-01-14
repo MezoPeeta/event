@@ -23,7 +23,7 @@ db.sqlite3
 .idea/**/gradle.xml 
 .idea/**/libraries 
 *.iws /out/ 
-
+.VSCodeCounter
 # Python # 
 *.py[cod] 
 *$py.class 

@@ -27,18 +27,7 @@ class UserUpdateForm(forms.ModelForm):
 
 #PROFILE UPDATE FORM
 class ProfileUpdateForm(forms.ModelForm):
-    Committees = (
-        ('IT','IT'),
-        ('Design','Design'),
-        ('PR','PR'),
-        ('Logistics','Logistics'),
-        ('HR','HR'),
-        ('Marketing','Marketing'),
-        ('Coaching','Coaching'),
-        ('Media','Media'),
-        ('Branding','Branding'),
-    )
-    committee = forms.ChoiceField(choices=Committees, required=False)    
+     
 
 
     class Meta:

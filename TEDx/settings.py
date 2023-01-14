@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'payment',
     'dashboard',
     'ckeditor',
+    'colorfield',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -172,6 +173,7 @@ EMAIL_HOST_PASSWORD = 'ekvslubsdblgmnlo'
 
 EMAIL_USE_SSL = True
 
+DEFAULT_FROM_EMAIL = "TEDxManaratAlFarouk <noreply@tedxmanaratalfarouk.com>"
 
 #MAINTENANCEEE
 
@@ -182,3 +184,21 @@ MAINTENANCE_MODE = False
 MAINTENANCE_MODE_STATE_FILE_PATH = os.path.join(BASE_DIR, 'maintenance/maintenance_mode_state.txt')
 
 MAINTENANCE_MODE_TEMPLATE = os.path.join(BASE_DIR, 'base/templates/base/503.html')
+
+if DEBUG == False:
+    SECURE_SSL_REDIRECT = True
+
+    SECURE_HSTS_SECONDS = 3600
+
+    SESSION_COOKIE_SECURE = True
+
+    CSRF_COOKIE_SECURE = True
+
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
+    SECURE_HSTS_PRELOAD = True
+
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+

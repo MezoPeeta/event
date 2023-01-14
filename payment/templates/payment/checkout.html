@@ -3,6 +3,7 @@
 {% load static %}
 {% block content%}
 {% load i18n %}
+{% load bgcolor %}
 
 
   <div style=" font-size: 14px;line-height: 1.8;
@@ -16,7 +17,7 @@
   -ms-background-size: cover;
   background-position: center center;
   padding: 115px 0;
-  background: #e42929;
+  background: {%color%};
   ">
   <div class="main" style="color: white;">
       <div class="ftco-navbar-light"></div>

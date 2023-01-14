@@ -4,6 +4,7 @@ from django.urls import reverse
 
 
 class Products(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
     image = models.ImageField(
         default='product_default.jpg', upload_to='products')
@@ -18,6 +19,7 @@ class Products(models.Model):
 
 
 class Customer(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200, null=True, blank=True)
     email = models.EmailField(max_length=200, null=True, blank=True)
     device = models.CharField(max_length=200, null=True, blank=True)
@@ -31,6 +33,7 @@ class Customer(models.Model):
 
 
 class Order(models.Model):
+    id=models.AutoField(primary_key=True)
     customer = models.ForeignKey(
         Customer, on_delete=models.SET_NULL, null=True, blank=True)
     date_ordered = models.DateTimeField(auto_now_add=True)
@@ -54,6 +57,7 @@ class Order(models.Model):
 
 
 class OrderItem(models.Model):
+    id = models.AutoField(primary_key=True)
     product = models.ForeignKey(Products, on_delete=models.SET_NULL, null=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
     quantity = models.IntegerField(default=0, null=True, blank=True)
@@ -66,6 +70,7 @@ class OrderItem(models.Model):
 
 
 class ShippingAddress(models.Model):
+    id = models.AutoField(primary_key=True)
     customer = models.ForeignKey(
         Customer, on_delete=models.SET_NULL, null=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
@@ -81,6 +86,7 @@ class ShippingAddress(models.Model):
 
 
 class Coupon(models.Model):
+    id=models.AutoField(primary_key=True)
     code = models.CharField(max_length=15)
     price = models.DecimalField(max_digits=7, decimal_places=2, null=True)
     start_date = models.DateTimeField(null=True)

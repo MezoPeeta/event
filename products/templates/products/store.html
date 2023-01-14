@@ -2,6 +2,7 @@
 {% load static %}
 {% block content%}
 {% load i18n %}
+{% load bgcolor %}
 
 <div class="hero-wrap js-fullheight">
   <div class="overlay"></div>
@@ -61,8 +62,8 @@ input.addEventListener('keyup', (e)=> {
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
             content.</p>
           <hr>
-          <button class="btn btn-outline-dark" style="cursor: default;">$ {{ product.price }}</button>
-          <a class="btn btn-outline-danger" href="{% url 'Products' product.id %}">View Product</a>
+          <button class="btn btn-outline-dark" style="cursor: default;background:transparent">$ {{ product.price }}</button>
+          <a class="btn btn-outline-danger"  href="{% url 'Products' product.id %}">View Product</a>
         </div>
       </div>
       {% endfor %}

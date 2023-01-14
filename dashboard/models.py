@@ -1,8 +1,10 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
+from colorfield.fields import ColorField
 
 class Report(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=120,null=True)
     image = models.ImageField(upload_to='reports',blank=True)
     remarks = models.TextField()
@@ -15,3 +17,11 @@ class Report(models.Model):
 
     def __str__(self):
         return str(self.name)
+
+class Design(models.Model):
+    id = models.AutoField(primary_key=True)
+    color = ColorField(default='#ff2a2a')
+    font_color = ColorField(default='#ffffff')
+
+    def __str__(self):
+        return str(self.color)

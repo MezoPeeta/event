@@ -5,7 +5,7 @@ from django.urls import reverse
 from ckeditor.fields import RichTextField
 
 class Videos(models.Model):
-    urlID = models.CharField(max_length=300)
+    urlID = models.CharField(max_length=300,primary_key=True)
     memberName = models.CharField(max_length=300, default='')
     name = models.CharField(max_length=500, default='video')
     date_posted= models.DateTimeField(default=timezone.now)     
@@ -17,6 +17,7 @@ class Videos(models.Model):
         return reverse('WatchUs')
 
 class Subscribe(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=12)
     email = models.EmailField()
     subscribed = models.BooleanField(default=False)
@@ -28,6 +29,7 @@ class Subscribe(models.Model):
 
 
 class Contact(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=12)
     email = models.EmailField()
     subject = models.CharField(max_length=12)

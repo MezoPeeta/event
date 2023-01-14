@@ -2,9 +2,10 @@
 {% load static %}
 {% block content%}
 {% load i18n %}
+{% load bgcolor %}
 
 <div class="hero-wrap js-fullheight">
-    <div class="overlay"></div>
+  <div class="overlay"></div>
     <div id="particles-js"></div>
     <div class="container">
       <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
@@ -29,8 +30,8 @@
           <h1 style="position: relative;top: -10px;color: white;">{{video.name}}</h1>
           {% if request.user.profile.committee == 'Marketing' %}
           <center >
-            <a href="{% url 'UpdateVideo' video.id %}" class="btn" style="font-family: inherit;color: white;">Update</a>
-            <a href="{% url 'DeleteVideo' video.id %}" class="btn" style="font-family: inherit;color: rgb(255, 42, 42);">Delete</a>
+            <a href="{% url 'UpdateVideo' video.pk %}" class="btn" style="font-family: inherit;color: white;">Update</a>
+            <a href="{% url 'DeleteVideo' video.pk %}" class="btn" style="font-family: inherit;color: rgb(255, 42, 42);">Delete</a>
           </center>
           {% endif %}
       </div>

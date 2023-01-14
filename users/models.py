@@ -6,6 +6,7 @@ from PIL import Image
 import sys 
 
 class Profile(models.Model):
+    id = models.AutoField(primary_key=True)
     user = models.OneToOneField(User, on_delete= models.CASCADE)
 
     bio = models.TextField(max_length=300)
@@ -19,15 +20,14 @@ class Profile(models.Model):
         ('Marketing','Marketing'),
         ('Coaching','Coaching'),
         ('Media','Media'),
-        ('Branding','Branding'),
     )
-    committee = models.CharField(choices=Committees, max_length=10, default='')
+    committee = models.CharField(choices=Committees, max_length=10, null=True , blank=True)
 
     position_list = (
         ('Member', 'Member'),
         ('Head', 'Head'),
         ('Vice', 'Vice'),
-        ('Co-President', 'Co-President'),
+        ('Operations', 'Operations'),
         ('President', 'President'),
     )
     position = models.CharField(choices=position_list, max_length=20, default='Member')
@@ -59,6 +59,7 @@ class Profile(models.Model):
             
 
 class RegistrationCode(models.Model):
+    id = models.AutoField(primary_key=True)
     code = models.CharField(max_length=16)
     
     def __str__(self):

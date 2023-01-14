@@ -3,13 +3,14 @@
 {% load crispy_forms_tags %}
 {% load static %}
 {% block content%}
+{% load bgcolor %}
 
 <div class="hero-wrap" style="height: 1050px !important;">
   <div class="overlay"></div>
   <div id="particles-js"></div>
   <div class="container">
-    <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
-      <div class="col-md-6 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+    <div class="row no-gutters slider-text align-items-center justify-content-center"  data-scrollax-parent="true">
+      <div  class="col-md-6 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
         <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
           {% trans 'Welcome to Our Website' %}
         </h1>
@@ -79,7 +80,7 @@
     </div>
     <div class="row mt-5 d-flex justify-content-center">
       <div class="col-md-8 text-center heading-section ftco-animate">
-        <h2 class="h1" style="color: tomato;">{% trans 'What is TEDxManaratAlFaroukSchool?' %} </h2>
+        <h2 class="h1">{% trans 'What is TEDxManaratAlFaroukSchool?' %} </h2>
         <p style="font-size: 20px;font-family: 'Helvetica';">
           {% trans 'TEDxManaratAlFaroukSchool is a TEDx event , x = independently organized TED event,' %} <br>
           {% trans 'TEDxManaratAlFaroukSchool brings the spirit and passion surrounding TED and TEDx to link the school’s generations.' %}</p>
@@ -89,7 +90,7 @@
   </div>
   <div class="mt-5 d-flex justify-content-center">
     <div class="col-md-8 text-center heading-section ftco-animate">
-      <h2 class="h1" style="color: tomato;">{% trans 'What is TEDx?' %}
+      <h2 class="h1">{% trans 'What is TEDx?' %}
       <p style="font-size: 20px;font-family: 'Helvetica';">
         {% trans 'In the spirit of ideas worth spreading,' %} 
         {% trans 'TED has created a program called TEDx. TEDx is a program of local,' %} 
@@ -111,7 +112,7 @@
     <div class="row justify-content-center mb-5 pb-5">
       <div class="col-md-7 text-center heading-section ftco-animate">
         <span class="subheading">{% trans 'Old Talks' %}</span>
-        <h2 style="color: black;">{% trans 'Talks' %}</h2>
+        <h2 class="mb-5">{% trans 'Talks' %}</h2>
       </div>
     </div>
     <section class="ftco-section bg-light ftco-animate" style="position: relative;left: 5%;" >
@@ -190,7 +191,7 @@
     <div class="row justify-content-center mb-5 pb-5">
       <div class="col-md-7 text-center heading-section ftco-animate" >
         <span class="subheading">{% trans 'Speakers & Performers Says' %}</span>
-        <h2 class="mb-4" style="color: black;">{% trans 'Our satisfied speakers says' %}</h2>
+        <h2 class="mb-5">{% trans 'Our satisfied speakers says' %}</h2>
         <p style="font-family: 'Helvetica';">{% trans 'Thank you for your feedback ❤' %}</p>
       </div>
     </div>
