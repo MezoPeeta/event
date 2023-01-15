@@ -18,6 +18,11 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Creating the requirements file
+        run: |
+          pip install poetry
+          poetry export --without-hashes --format=requirements.txt > requirements.txt
+
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
@@ -26,6 +31,9 @@ jobs:
       - name: Merging Migrations
         run: |
           python manage.py makemigrations --merge --no-input
+      - uses: browser-actions/setup-chrome@latest
+      - run: chrome --version
+
       - name: Run Tests
         run: |
           python manage.py test

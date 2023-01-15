@@ -2,11 +2,11 @@ from selenium import webdriver
 from django.contrib.auth.models import User
 import sys
 from enum import Enum
-from winreg import *
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.core.utils import ChromeType
+from selenium.webdriver import ActionChains
 
 
 class Browser(Enum):
@@ -20,6 +20,8 @@ class TestUtils:
         (e.g. "chrome", "firefox", etc.)
         """
         if sys.platform == "win32":
+            from winreg import OpenKey, QueryValueEx, HKEY_CURRENT_USER
+
             with OpenKey(
                 HKEY_CURRENT_USER,
                 r"Software\\Microsoft\\Windows\\Shell\\Associations\\UrlAssociations\\http\\UserChoice",
@@ -27,7 +29,7 @@ class TestUtils:
                 browser = QueryValueEx(key, "Progid")[0]
                 return browser.lower()
         else:
-            return "firefox"
+            return "chrome"
 
     def init_selenium(self, headless=True):
         """
@@ -38,21 +40,32 @@ class TestUtils:
         if Browser.EDGE.value in browser:
             options = webdriver.EdgeOptions()
             options.headless = headless
-            self.browser = webdriver.Edge(EdgeChromiumDriverManager().install())
-        elif Browser.FIREFOX.value in browser:
-            options = webdriver.FirefoxOptions()
-            options.headless = headless
-            self.browser = webdriver.Firefox(GeckoDriverManager().install())
+            self.browser = webdriver.Edge(
+                EdgeChromiumDriverManager().install(), options=options
+            )
         elif Browser.CHROME.value in browser:
             options = webdriver.ChromeOptions()
             options.headless = headless
-            self.browser = webdriver.Chrome(ChromeDriverManager().install())
+            self.browser = webdriver.Chrome(
+                ChromeDriverManager().install(), options=options
+            )
         elif Browser.BRAVE.value in browser:
             options = webdriver.ChromeOptions()
+            options.add_argument("--window-size=1200,1200,--ignore-certificate-errors")
             options.headless = headless
             self.browser = webdriver.Chrome(
-                ChromeDriverManager(chrome_type=ChromeType.BRAVE).install()
+                ChromeDriverManager(chrome_type=ChromeType.BRAVE).install(),
+                options=options,
             )
+        elif Browser.FIREFOX.value in browser:
+            options = webdriver.FirefoxOptions()
+            options.headless = headless
+            options.add_argument("--window-size=1200,1200,--ignore-certificate-errors")
+            self.browser = webdriver.Firefox(
+                executable_path=GeckoDriverManager().install(), options=options
+            )
+        else:
+            raise Exception("Browser not supported")
 
         return self.browser
 
@@ -75,3 +88,17 @@ class TestUtils:
         browser.refresh()
         browser.get(self.live_server_url + "/us/")
         return browser
+
+    def send_keys_action_chains(self, element, keys):
+        return (
+            ActionChains(self.browser)
+            .move_to_element(element)
+            .click(element)
+            .send_keys(keys)
+            .perform()
+        )
+
+    def click_action_chains(self, element):
+        return (
+            ActionChains(self.browser).move_to_element(element).click(element).perform()
+        )

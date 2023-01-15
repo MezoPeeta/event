@@ -23,3 +23,13 @@ jobs:
     - name: Analysing the code with pylint
       run: |
         pylint --load-plugins pylint_django --django-settings-module=TEDx.settings  $(git ls-files '*.py')
+        OUTPUT=$(pylint ./src --exit-zero)
+        #OUTPUT=$(shell command or script to extract the part your want)
+        echo "MESSAGE=$OUTPUT" >> $
+    - name: Post result to PR
+      uses: mshick/add-pr-comment@v1
+      with:
+        message: ${{ env.MESSAGE }}
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        repo-token-user-login: 'github-actions[bot]' # The user.login for temporary GitHub tokens
+        allow-repeats: false # This is the default
