@@ -32,7 +32,7 @@ jobs:
         run: |
           python manage.py makemigrations --merge --no-input
       - name: Run Tests
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python manage.py test
-        with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
