@@ -30,6 +30,7 @@ jobs:
         id: p1
       - uses: alawiii521/current-pr-comment@v1.0
         name: Comment current pull request
+        if: success() || failure()
         with:
           comment: ${{join(steps.p1.outputs.pylint-error, '\n')}}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
