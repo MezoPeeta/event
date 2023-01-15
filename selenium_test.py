@@ -42,13 +42,6 @@ class TestUtils:
             self.browser = webdriver.Edge(
                 EdgeChromiumDriverManager().install(), options=options
             )
-        elif Browser.FIREFOX.value in browser:
-            options = webdriver.FirefoxOptions()
-            options.headless = headless
-            self.browser = webdriver.Firefox(
-                executable_path=GeckoDriverManager().install(), options=options
-            )
-            self.browser.maximize_window()
         elif Browser.CHROME.value in browser:
             options = webdriver.ChromeOptions()
             options.headless = headless
@@ -62,6 +55,15 @@ class TestUtils:
                 ChromeDriverManager(chrome_type=ChromeType.BRAVE).install(),
                 options=options,
             )
+        elif Browser.FIREFOX.value in browser:
+            options = webdriver.FirefoxOptions()
+            options.headless = headless
+            self.browser = webdriver.Firefox(
+                executable_path=GeckoDriverManager().install(), options=options
+            )
+            self.browser.maximize_window()
+        else:
+            raise Exception("Browser not supported")
 
         return self.browser
 
