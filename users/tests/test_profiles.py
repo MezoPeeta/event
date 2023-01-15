@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
 from django.shortcuts import reverse
-from users.forms import *
+from users.forms import UserUpdateForm,ProfileUpdateForm
 
 class ProfileTest(TestCase):
     def setUp(self):
@@ -14,12 +14,12 @@ class ProfileTest(TestCase):
     def test_url(self):
         url = reverse("Profile",kwargs={"username":self.user.username})
         request = self.client.get(url)
-        self.assertEquals(request.status_code,200)
+        self.assertEqual(request.status_code,200)
     
     def test_profile_update(self):
         url = reverse("Update_Profile")
         request = self.client.get(url)
-        self.assertEquals(request.status_code,200)
+        self.assertEqual(request.status_code,200)
     
     def test_update_form(self):
         url = reverse("Update_Profile")
