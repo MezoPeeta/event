@@ -23,9 +23,9 @@ jobs:
       - name: Analysing the code with pylint
         run: |
           echo "pylint-error"=$(pylint --load-plugins pylint_django --django-settings-module=TEDx.settings  --ignore=migrations $(git ls-files '*.py')) >> $GITHUB_OUTPUT
-        id: P0
-      - name: Comment current pull request
-        uses: alawiii521/current-pr-comment@v1.0
+
+      - uses: alawiii521/current-pr-comment@v1.0
+        name: Comment current pull request
         with:
           comment: ${{ env.GITHUB_OUTPUT }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
