@@ -48,6 +48,7 @@ class TestUtils:
             self.browser = webdriver.Firefox(
                 executable_path=GeckoDriverManager().install(), options=options
             )
+            self.browser.maximize_window()
         elif Browser.CHROME.value in browser:
             options = webdriver.ChromeOptions()
             options.headless = headless
