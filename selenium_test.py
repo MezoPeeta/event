@@ -42,7 +42,7 @@ class TestUtils:
             self.browser = webdriver.Edge(
                 EdgeChromiumDriverManager().install(), options=options
             )
-        elif Browser.FIREFOX.value in browser or browser == "firefox":
+        elif Browser.FIREFOX.value in browser:
             options = webdriver.FirefoxOptions()
             options.headless = headless
             self.browser = webdriver.Firefox(
