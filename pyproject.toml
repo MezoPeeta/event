@@ -22,7 +22,11 @@ xhtml2pdf = "^0.2.8"
 django-colorfield = "^0.8.0"
 pylint-django = "^2.5.3"
 pylint = "^2.15.10"
+webdriver-manager = "^3.8.5"
 
+
+[tool.poetry.group.dev.dependencies]
+black = {version = "^23.1a1", allow-prereleases = true}
 
 [build-system]
 requires = ["poetry-core"]
