@@ -1,4 +1,4 @@
-[MAIN]
+﻿[MAIN]
 
 # Analyse import fallback blocks. This can be used to support both Python 2 and
 # 3 compatible code, which means that the block might have code that exists
@@ -35,7 +35,7 @@ extension-pkg-whitelist=
 fail-on=
 
 # Specify a score threshold under which the program will exit with error.
-fail-under=10
+fail-under=10.0
 
 # Interpret the stdin as a python script, whose filename needs to be passed as
 # the module_or_package argument.
@@ -317,7 +317,7 @@ overgeneral-exceptions=BaseException,
 expected-line-ending-format=
 
 # Regexp for a line that is allowed to be longer than the limit.
-ignore-long-lines=^\s* # )?<?https?://\S+>?$
+ignore-long-lines=^\s*(# )?<?https?://\S+>?$
 
 # Number of spaces of indent required inside a hanging or continued line.
 indent-after-paren=4
@@ -430,6 +430,7 @@ disable=raw-checker-failed,
         wrong-import-order,
         too-many-ancestors,
         unused-argument,
+        duplicate-code
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option
