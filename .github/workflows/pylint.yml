@@ -29,4 +29,5 @@ jobs:
       - name: Post result to PR
         uses: thollander/actions-comment-pull-request@v2.3.1
         with:
-          message: ${{ env.GITHUB_OUTPUT }}
+          message: |
+            ${{ env.GITHUB_OUTPUT }}
