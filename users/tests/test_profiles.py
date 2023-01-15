@@ -22,7 +22,6 @@ class ProfileTest(TestCase):
         self.assertEqual(request.status_code,200)
     
     def test_update_form(self):
-        url = reverse("Update_Profile")
         user_data = {
             "username": "TestUser1",
             'first_name':"Test",

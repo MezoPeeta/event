@@ -14,6 +14,10 @@ class Browser(Enum):
 
 
 class TestUtils:
+    def __init__(self):
+        self.browser = None
+
+
     def get_default_browser(self):
         """
         Get the default browser on the system and return the browser name as a string
