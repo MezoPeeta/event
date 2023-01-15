@@ -27,5 +27,5 @@ jobs:
       - uses: alawiii521/current-pr-comment@v1.0
         name: Comment current pull request
         with:
-          comment: ${{join(steps.p1.outputs.pylint-error[0], '\n')}}
+          comment: ${{join(steps.p1.outputs.pylint-error, '\n')}}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
