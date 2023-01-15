@@ -12,7 +12,7 @@ class TestingDashboard(TestCase,TestUtils):
         url = reverse('Dashboard')
         request = self.client.get(url)     
         # testing dashboard page
-        self.assertEquals(request.status_code, 200)
+        self.assertEqual(request.status_code, 200)
 
             
         

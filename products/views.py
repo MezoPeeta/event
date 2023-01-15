@@ -42,14 +42,13 @@ def products(request, pk):
 
     if request.method == "POST":
         product = Products.objects.get(id=pk)
-        # Get user account information
         try:
             customer = request.user.customer
-        except:
+        except Customer.DoesNotExist:
             device = request.COOKIES["device"]
-            customer, created = Customer.objects.get_or_create(device=device)
-        order, created = Order.objects.get_or_create(customer=customer, complete=False)
-        orderItem, created = OrderItem.objects.get_or_create(
+            customer, _ = Customer.objects.get_or_create(device=device)
+        order, _ = Order.objects.get_or_create(customer=customer, complete=False)
+        orderItem, _ = OrderItem.objects.get_or_create(
             order=order, product=product
         )
         orderItem.quantity = request.POST["quantity"]
@@ -66,9 +65,9 @@ def cart(request):
         customer = request.user.customer
     except:
         device = request.COOKIES["device"]
-        customer, created = Customer.objects.get_or_create(device=device)
+        customer, _ = Customer.objects.get_or_create(device=device)
 
-    order, created = Order.objects.get_or_create(customer=customer, complete=False)
+    order, _ = Order.objects.get_or_create(customer=customer, complete=False)
 
     context = {"order": order}
 
@@ -78,7 +77,7 @@ def cart(request):
 def checkout(request):
     device = request.COOKIES["device"]
 
-    customer, created = Customer.objects.get_or_create(device=device)
+    customer, _ = Customer.objects.get_or_create(device=device)
 
     order = Order.objects.get(customer=customer, complete=False)
 

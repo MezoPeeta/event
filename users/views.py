@@ -1,4 +1,4 @@
-from django.shortcuts import render , redirect ,HttpResponseRedirect
+from django.shortcuts import render , redirect
 from django.contrib import messages
 from .forms import UserRegisterForm , UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
@@ -35,7 +35,7 @@ def exportTOCSV(request):
 def register(request):
     while RegistrationCode.objects.all().count() <= 24:
         generated_code = random.randint(1,9999999999999999)
-        add_code = RegistrationCode.objects.create(code = generated_code)
+        RegistrationCode.objects.create(code = generated_code)
             
         
     if request.method == 'POST':
@@ -73,7 +73,7 @@ def register(request):
                 return redirect('Need Verification')
 
                 
-            elif existedEmail:
+            if existedEmail:
                 messages.error(request, "This email already exists")
             else:
                 messages.error(request, "The Registration Code is invalid")
@@ -109,9 +109,9 @@ class UpdateProfile(LoginRequiredMixin, UserPassesTestMixin ,UpdateView):
 def update_profile(request):
     for userp in User.objects.all():
         try:
-            u = userp.profile
+            userp.profile
         except ObjectDoesNotExist:
-            u = Profile.objects.create(user=userp)
+            Profile.objects.create(user=userp)
 
 
     if request.method == 'POST':
@@ -150,9 +150,9 @@ def activate_account(request, uidb64, token):
         user.is_active = True
         user.save()
         login(request, user)
-        return render(request, 'users/verify.html')
     else:
         messages.error(request , 'Activation link is invalid!', {'title': 'Verification'})
+    return render(request, 'users/verify.html')
 
 
 def needVerify(request):

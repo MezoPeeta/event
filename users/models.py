@@ -1,9 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
-from io import BytesIO
 from PIL import Image
-import sys 
 
 class Profile(models.Model):
     id = models.AutoField(primary_key=True)
@@ -47,7 +45,7 @@ class Profile(models.Model):
         return reverse('Profile', kwargs={'username': self.user.username})
 
     def save(self, *args, **kwargs):
-        super(Profile, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
   
 
         img = Image.open(self.image.path).convert('RGB')
