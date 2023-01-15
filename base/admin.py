@@ -1,6 +1,4 @@
-from dashboard.forms import ContactForm
 from django.contrib import admin
-from django.contrib.auth.models import Group
 from .models import Contact, Videos, Subscribe, Speakers
 
 admin.site.site_header = "TEDx ManaratAlFarouk School"

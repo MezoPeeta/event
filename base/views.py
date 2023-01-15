@@ -4,19 +4,18 @@ from django.core.mail import send_mail , EmailMessage , get_connection , EmailMu
 from django.contrib import messages
 from django.conf import settings
 from .models import Videos , Subscribe , Contact, Speakers
-from .forms import Subscribe_Form , Newsletter_Form
+from .forms import SubscribeForm , NewsletterForm
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
 from django.views.generic import ListView
 from django.core.cache import cache
 from uuid import uuid4
-from dashboard.models import Design
 
 def home(request):
     cache.clear()
     if request.method == 'POST':
         
-        form = Subscribe_Form(request.POST)
+        form = SubscribeForm(request.POST)
         if form.is_valid():
             user = form.save(commit = False)
             user.is_active = False
@@ -38,7 +37,7 @@ def home(request):
             return redirect('Need Verification')
 
     else:
-        form = Subscribe_Form()
+        form = SubscribeForm()
     
     context = {
         'form' : form,
@@ -60,7 +59,7 @@ def unsubscribe(request):
 def test_email(request):
 
     if request.method == "POST":
-        form = Newsletter_Form(request.POST)
+        form = NewsletterForm(request.POST)
         if form.is_valid():
             form.save()
             name = form.cleaned_data.get('name')
@@ -75,7 +74,7 @@ def test_email(request):
             send_subscribe.send()
             return redirect('/complete-subscribe')
     else:
-        form = Newsletter_Form()
+        form = NewsletterForm()
         
     return render(request, 'base/subscribe_form.html', {'form': form})
 
@@ -83,7 +82,7 @@ def test_email(request):
 def complete_subscribe(request):
 
     if request.method == "POST":
-        form = Newsletter_Form(request.POST)
+        form = NewsletterForm(request.POST)
         if form.is_valid():
             name = form.cleaned_data.get('name')  
             subject = 'News for you'
@@ -104,7 +103,7 @@ def complete_subscribe(request):
                 return redirect('/complete-subscribe')
             
     else:
-        form = Newsletter_Form()
+        form = NewsletterForm()
         
     return render(request, 'base/subscribe_form.html', {'form': form})
 

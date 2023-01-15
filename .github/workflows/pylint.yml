@@ -22,8 +22,7 @@ jobs:
           pip install -r requirements.txt
       - name: Analysing the code with pylint
         run: |
-          pylint --load-plugins pylint_django --django-settings-module=TEDx.settings  --ignore=migrations $(git ls-files '*.py')
-          OUTPUT=$(pylint ./src --exit-zero)
+          OUTPUT=$(pylint --load-plugins pylint_django --django-settings-module=TEDx.settings  --ignore=migrations $(git ls-files '*.py'))
           #OUTPUT=$(shell command or script to extract the part your want)
           echo "MESSAGE=$OUTPUT" >> $
       - name: Post result to PR
