@@ -31,6 +31,9 @@ jobs:
       - name: Merging Migrations
         run: |
           python manage.py makemigrations --merge --no-input
+      - uses: browser-actions/setup-chrome@latest
+      - run: chrome --version
+
       - name: Run Tests
         run: |
           python manage.py test

@@ -29,7 +29,7 @@ class TestUtils:
                 browser = QueryValueEx(key, "Progid")[0]
                 return browser.lower()
         else:
-            return "firefox"
+            return "chrome"
 
     def init_selenium(self, headless=True):
         """
@@ -97,6 +97,8 @@ class TestUtils:
             .send_keys(keys)
             .perform()
         )
-    
+
     def click_action_chains(self, element):
-        return ActionChains(self.browser).move_to_element(element).click(element).perform()
+        return (
+            ActionChains(self.browser).move_to_element(element).click(element).perform()
+        )
