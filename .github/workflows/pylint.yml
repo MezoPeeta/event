@@ -27,5 +27,5 @@ jobs:
       - uses: alawiii521/current-pr-comment@v1.0
         name: Comment current pull request
         with:
-          comment: ${{ env.GITHUB_OUTPUT }}
+          comment: "Hello World!"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
