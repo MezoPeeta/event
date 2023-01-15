@@ -26,8 +26,10 @@ jobs:
 
           echo "MESSAGE=$OUTPUT" >> $
         id: P0
-      - name: Post result to PR
-        uses: thollander/actions-comment-pull-request@v2.3.1
+      - name: Comment current pull request
+        uses: alawiii521/current-pr-comment@v1.0
         with:
-          message: |
-            ${{ env.GITHUB_OUTPUT }}
+          comment: ${{ env.OUTPUT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+
