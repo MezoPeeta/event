@@ -34,3 +34,5 @@ jobs:
       - name: Run Tests
         run: |
           python manage.py test
+        with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
