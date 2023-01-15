@@ -20,6 +20,7 @@ class TestUtils:
         """
         if sys.platform == "win32":
             from winreg import OpenKey, QueryValueEx, HKEY_CURRENT_USER
+
             with OpenKey(
                 HKEY_CURRENT_USER,
                 r"Software\\Microsoft\\Windows\\Shell\\Associations\\UrlAssociations\\http\\UserChoice",
@@ -38,20 +39,27 @@ class TestUtils:
         if Browser.EDGE.value in browser:
             options = webdriver.EdgeOptions()
             options.headless = headless
-            self.browser = webdriver.Edge(EdgeChromiumDriverManager().install())
+            self.browser = webdriver.Edge(
+                EdgeChromiumDriverManager().install(), options=options
+            )
         elif Browser.FIREFOX.value in browser or browser == "firefox":
             options = webdriver.FirefoxOptions()
             options.headless = headless
-            self.browser = webdriver.Firefox(executable_path=GeckoDriverManager().install())
+            self.browser = webdriver.Firefox(
+                executable_path=GeckoDriverManager().install(), options=options
+            )
         elif Browser.CHROME.value in browser:
             options = webdriver.ChromeOptions()
             options.headless = headless
-            self.browser = webdriver.Chrome(ChromeDriverManager().install())
+            self.browser = webdriver.Chrome(
+                ChromeDriverManager().install(), options=options
+            )
         elif Browser.BRAVE.value in browser:
             options = webdriver.ChromeOptions()
             options.headless = headless
             self.browser = webdriver.Chrome(
-                ChromeDriverManager(chrome_type=ChromeType.BRAVE).install()
+                ChromeDriverManager(chrome_type=ChromeType.BRAVE).install(),
+                options=options,
             )
 
         return self.browser
