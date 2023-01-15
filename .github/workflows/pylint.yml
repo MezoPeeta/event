@@ -22,13 +22,11 @@ jobs:
           pip install -r requirements.txt
       - name: Analysing the code with pylint
         run: |
-          OUTPUT=$(pylint --load-plugins pylint_django --django-settings-module=TEDx.settings  --ignore=migrations $(git ls-files '*.py'))
-          #OUTPUT=$(shell command or script to extract the part your want)
+          echo "pylint-error"=$(pylint --load-plugins pylint_django --django-settings-module=TEDx.settings  --ignore=migrations $(git ls-files '*.py')) >> $GITHUB_OUTPUT
+
           echo "MESSAGE=$OUTPUT" >> $
+        id: P0
       - name: Post result to PR
-        uses: mshick/add-pr-comment@v1
+        uses: thollander/actions-comment-pull-request@v2.3.1
         with:
-          message: ${{ env.MESSAGE }}
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          repo-token-user-login: "github-actions[bot]" # The user.login for temporary GitHub tokens
-          allow-repeats: false # This is the default
+          message: ${{ env.GITHUB_OUTPUT }}
