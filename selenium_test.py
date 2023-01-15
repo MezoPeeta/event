@@ -6,6 +6,7 @@ from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.core.utils import ChromeType
+from selenium.webdriver import ActionChains
 
 
 class Browser(Enum):
@@ -87,3 +88,15 @@ class TestUtils:
         browser.refresh()
         browser.get(self.live_server_url + "/us/")
         return browser
+
+    def send_keys_action_chains(self, element, keys):
+        return (
+            ActionChains(self.browser)
+            .move_to_element(element)
+            .click(element)
+            .send_keys(keys)
+            .perform()
+        )
+    
+    def click_action_chains(self, element):
+        return ActionChains(self.browser).move_to_element(element).click(element).perform()
