@@ -2,7 +2,6 @@ from selenium import webdriver
 from django.contrib.auth.models import User
 import sys
 from enum import Enum
-from winreg import *
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.chrome import ChromeDriverManager
@@ -20,6 +19,7 @@ class TestUtils:
         (e.g. "chrome", "firefox", etc.)
         """
         if sys.platform == "win32":
+            from winreg import OpenKey, QueryValueEx, HKEY_CURRENT_USER
             with OpenKey(
                 HKEY_CURRENT_USER,
                 r"Software\\Microsoft\\Windows\\Shell\\Associations\\UrlAssociations\\http\\UserChoice",
