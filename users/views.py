@@ -1,10 +1,10 @@
-from django.shortcuts import render , redirect
+from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import UserRegisterForm , UserUpdateForm, ProfileUpdateForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
-from django.contrib.auth.models import User 
-from .models import Profile , RegistrationCode
+from django.contrib.auth.models import User
+from .models import Profile, RegistrationCode
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from .token_generator import activation_token
@@ -12,67 +12,51 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes
 from django.contrib.auth import login
-from django.views.generic import DetailView , UpdateView
-from django.contrib.auth.mixins import LoginRequiredMixin , UserPassesTestMixin
+from django.views.generic import DetailView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 import random
-import pandas as pd
-from django.http import HttpResponse
 
-def exportTOCSV(request):
-    qs = RegistrationCode.objects.all().values()
-    data = pd.DataFrame(qs)
-
-    response = HttpResponse(content_type='text/csv')
-
-    response['Content-Disposition'] = 'attachment; filename=Registration Code.csv'
-
-    data.to_csv(path_or_buf=response, float_format='%.2f',
-                index=False, decimal=",")
-    
-
-    return response
 
 def register(request):
     while RegistrationCode.objects.all().count() <= 24:
-        generated_code = random.randint(1,9999999999999999)
-        RegistrationCode.objects.create(code = generated_code)
-            
-        
-    if request.method == 'POST':
+        generated_code = random.randint(1, 9999999999999999)
+        RegistrationCode.objects.create(code=generated_code)
+
+    if request.method == "POST":
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            user = form.save(commit = False)
+            user = form.save(commit=False)
             current_site = get_current_site(request)
             subject = "Email Verification"
-            username = form.cleaned_data.get('username')
+            username = form.cleaned_data.get("username")
             email = form.cleaned_data.get("email")
             registration_code = form.cleaned_data.get("registration_code")
-            
-            required_code = RegistrationCode.objects.filter(code = registration_code)
-            
-            existedEmail = User.objects.filter(email = email).exists()
-            
-            if required_code and existedEmail == False:
+
+            required_code = RegistrationCode.objects.filter(code=registration_code)
+
+            existedEmail = User.objects.filter(email=email).exists()
+
+            if required_code and not existedEmail:
                 user.is_active = False
                 user.save()
-                message = render_to_string('users/email.html', {
-                'username': username,
-                'current_site': current_site,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                'token': activation_token.make_token(user)
-                })
-                email_ = EmailMessage(subject, message,to=[email])
-                email_.content_subtype = 'html'
+                message = render_to_string(
+                    "users/email.html",
+                    {
+                        "username": username,
+                        "current_site": current_site,
+                        "uid": urlsafe_base64_encode(force_bytes(user.pk)),
+                        "token": activation_token.make_token(user),
+                    },
+                )
+                email_ = EmailMessage(subject, message, to=[email])
+                email_.content_subtype = "html"
                 email_.send()
                 print("done")
-                
 
-                
                 required_code.delete()
-                
-                return redirect('Need Verification')
 
-                
+                return redirect("Need Verification")
+
             if existedEmail:
                 messages.error(request, "This email already exists")
             else:
@@ -81,20 +65,30 @@ def register(request):
     else:
         form = UserRegisterForm()
 
-    return render(request , 'users/register.html', {'form': form, 'title': 'Register'})
+    return render(request, "users/register.html", {"form": form, "title": "Register"})
 
 
 class UserProfile(DetailView):
     model = User
     template_name = "users/profile.html"
-    context_object_name = 'user'
+    context_object_name = "user"
     slug_field = "username"
-    slug_url_kwarg = 'username'
-    
-class UpdateProfile(LoginRequiredMixin, UserPassesTestMixin ,UpdateView):
+    slug_url_kwarg = "username"
+
+
+class UpdateProfile(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Profile
-    template_name = 'users/update_profile.html'
-    fields = ['image','bio','committee','position','awards','experience', 'achievement']
+    template_name = "users/update_profile.html"
+    fields = [
+        "image",
+        "bio",
+        "committee",
+        "position",
+        "awards",
+        "experience",
+        "achievement",
+    ]
+
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
@@ -105,55 +99,51 @@ class UpdateProfile(LoginRequiredMixin, UserPassesTestMixin ,UpdateView):
             return True
         return False
 
+
 @login_required
 def update_profile(request):
-    for userp in User.objects.all():
-        try:
-            userp.profile
-        except ObjectDoesNotExist:
-            Profile.objects.create(user=userp)
-
-
-    if request.method == 'POST':
+    if request.method == "POST":
         user_form = UserUpdateForm(request.POST, instance=request.user)
         profile_form = ProfileUpdateForm(
-            request.POST, 
+            request.POST,
             request.FILES,
             instance=request.user.profile,
-            )
+        )
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-            messages.success(request,"You have successfully updated your profile")
-            return redirect('Profile' , username = request.user.username)
+            messages.success(request, "You have successfully updated your profile")
+            return redirect("Profile", username=request.user.username)
 
-        
     else:
         user_form = UserUpdateForm(instance=request.user)
         profile_form = ProfileUpdateForm(instance=request.user.profile)
 
     context = {
-        'user_form': user_form,
-        'profile_form': profile_form,
-        'title' : 'Editting Profile'
-        }
+        "user_form": user_form,
+        "profile_form": profile_form,
+        "title": "Editting Profile",
+    }
 
-    return render(request, 'users/update_profile.html', context)
+    return render(request, "users/update_profile.html", context)
+
 
 def activate_account(request, uidb64, token):
     try:
         uid = force_bytes(urlsafe_base64_decode(uidb64))
         user = User.objects.get(pk=uid)
-    except(TypeError, ValueError, OverflowError, ObjectDoesNotExist):
+    except (TypeError, ValueError, OverflowError, ObjectDoesNotExist):
         user = None
     if user and activation_token.check_token(user, token):
         user.is_active = True
         user.save()
         login(request, user)
     else:
-        messages.error(request , 'Activation link is invalid!', {'title': 'Verification'})
-    return render(request, 'users/verify.html')
+        messages.error(
+            request, "Activation link is invalid!", {"title": "Verification"}
+        )
+    return render(request, "users/verify.html")
 
 
 def needVerify(request):
-    return render(request, 'users/need_verify.html')
+    return render(request, "users/need_verify.html")

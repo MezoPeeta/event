@@ -21,8 +21,8 @@
     <div class="container" style="background: #d3d2d2;box-shadow: 5px 5px black;">
       {% if name %}
       <center>
-      <h2 style="color: white;font-family: inherit;">Thanks {{ name }}!</h2>
-      <p style="font-family: inherit;color: white;"> {% trans 'We recieved your email and will respond shortly..' %}</p>
+      <h2 style="font-family: inherit;color:black !important;font-weight:bold;">Thanks {{ name }}!</h2>
+      <p style="font-family: inherit;"> {% trans 'We recieved your email and will respond shortly..' %}</p>
       </center>
     {% else %}
       <div class="row d-flex mb-5 contact-info">
@@ -31,13 +31,13 @@
         </div>
         <div class="w-100"></div>
         <div class="col-md-3">
-          <p style="font-family: inherit;color: white;"><span>{% trans 'Address:' %}</span> .....</p>
+          <p style="font-family: inherit;color: black;"><span>{% trans 'Address:' %}</span> .....</p>
         </div>
         <div class="col-md-3">
-          <p style="font-family: inherit;color: white;"><span>{% trans 'Phone:' %}</span>...</p>
+          <p style="font-family: inherit;color: black;"><span>{% trans 'Phone:' %}</span>...</p>
         </div>
         <div class="col-md-3">
-          <p style="font-family: inherit;color: white;"><span>{% trans 'Email:' %}</span> <a href="#" style="font-family: inherit;color: white;">...</a></p>
+          <p style="font-family: inherit;color: black;"><span>{% trans 'Email:' %}</span> <a href="#" style="font-family: inherit;color: black;">...</a></p>
         </div>
       </div>
       <div class="row block-9">
@@ -49,14 +49,15 @@
             </div>
             <div class="form-group">
               <input type="email" class="form-control" placeholder="{% trans 'Your Email' %}" name="email">
+              {% if messages %}
+              <ul class="messages">
+                  {% for message in messages %}
+                  <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                  {% endfor %}
+              </ul>
+              {% endif %}
             </div>
-            {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %}
+           
             <div class="form-group">
               <input type="text" class="form-control" placeholder="{% trans 'subject' %}" name="subject">
             </div>

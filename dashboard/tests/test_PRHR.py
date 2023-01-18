@@ -3,7 +3,6 @@ from selenium.webdriver.common.by import By
 from django.urls import reverse
 from base.models import Contact
 from selenium_test import TestUtils
-from selenium.webdriver import ActionChains
 
 
 class TestingPrHr(LiveServerTestCase, TestUtils):
@@ -33,7 +32,6 @@ class TestingPrHr(LiveServerTestCase, TestUtils):
         self.user.profile.committee = "HR"
         self.user.profile.save()
         # accessing the dashboard
-        self.browser.get(dashboard)
         self.browser.get(self.live_server_url + contact_page)
         # creating a contact report
         name = self.browser.find_element(
@@ -61,8 +59,10 @@ class TestingPrHr(LiveServerTestCase, TestUtils):
         # checking the contact in the inbox page
         self.browser.get(dashboard)
         # checking if report is saved
-        is_contacted = True if Contact.objects.get(name="Tester") else False
-        self.assertTrue(is_contacted)
+        contact = Contact.objects.get(name="Tester")
+        self.assertTrue(contact)
         # checking the current url
         current_url = self.browser.current_url
         self.assertEqual(current_url, dashboard)
+
+
