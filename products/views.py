@@ -14,7 +14,7 @@ from django.views.generic import CreateView
 
 def store(request):
     context = {
-        "Products": Products.objects.all(),
+        "Products": Products.objects.all().iterator(),
         "title": "Store",
     }
     return render(request, "products/store.html", context)

@@ -27,7 +27,7 @@ def complete_order(request):
 
             form_email = form.cleaned_data.get('email')
             
-            qrcode = QrCode.objects.all().get(name = form_name)
+            qrcode = QrCode.objects.get(name = form_name)
             image_link = request.build_absolute_uri(qrcode.qr_code.url)
 
             subject = 'Ticket'

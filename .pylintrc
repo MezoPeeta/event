@@ -430,8 +430,9 @@ disable=raw-checker-failed,
         wrong-import-order,
         too-many-ancestors,
         unused-argument,
-        duplicate-code
-
+        duplicate-code,
+        line-too-long
+        
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option
 # multiple time (only on the command line, not in the configuration file where

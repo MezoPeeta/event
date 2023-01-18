@@ -23,6 +23,9 @@ django-colorfield = "^0.8.0"
 pylint-django = "^2.5.3"
 pylint = "^2.15.10"
 webdriver-manager = "^3.8.5"
+coverage = "^7.0.5"
+django-debug-toolbar = "^3.8.1"
+daphne = "^4.0.0"
 
 
 [tool.poetry.group.dev.dependencies]

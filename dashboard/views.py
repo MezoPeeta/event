@@ -39,7 +39,7 @@ def dashboard(request):
     context = {
         "title": f"{committee} | Dashboard",
         "form": DesignForm(),
-        "designs": Design.objects.all(),
+        "designs": Design.objects.all().iterator(),
     }
     return render(request, template, context)
 
@@ -54,7 +54,7 @@ class SubscribersListView(LoginRequiredMixin, ListView):
 
 @login_required
 def dataFrame(request):
-    qs = Products.objects.all().values()
+    qs = Products.objects.prefetch_related("Products").values()
     data = pd.DataFrame(qs)
     context = {
         "df": data.to_html(classes="products_table thead", index=False),
@@ -85,7 +85,7 @@ class ProductChartView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["pt"] = Products.objects.all()
+        context["pt"] = Products.objects.all().iterator()
         context["form"] = ReportForm()
         return context
 

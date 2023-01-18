@@ -16,6 +16,9 @@ class Browser(Enum):
 class TestUtils:
     def __init__(self):
         self.browser = None
+        self.client = None
+        self.user = None
+        
 
 
     def get_default_browser(self):

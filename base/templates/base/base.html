@@ -36,7 +36,6 @@
     <link rel="stylesheet" href="/static/base/css/register.css" />
     <link rel="stylesheet" href="{% static 'base/css/speakers.css'%}" />
     <link rel="stylesheet" href="{% static 'base/css/404.css'%}" />
-
   </head>
   <body>
     <style>
@@ -51,7 +50,7 @@
         border-color:{% font_color %} !important;
         background:{%color%};
       }
-      .h1,.name, .mb-5{
+      .h1,.name, .mb-5,.position{
         color:{% color %} !important;
       }
       .task ,.skills,.pew{
@@ -61,7 +60,6 @@
       .ftco-heading-2{
         color:white;
       }
-      
     </style>
 
     <nav>
@@ -144,7 +142,7 @@
                   type="submit"
                   value="English"
                   class="btn btn-danger"
-                  style="font-family: inherit;"
+                  style="font-family: inherit"
                 />
               </form>
               <div class="ml-2"></div>
@@ -156,11 +154,7 @@
                   value="{{ request.get_full_path|slice:'3:' }}"
                 />
                 <input name="language" type="hidden" value="ar" />
-                <input
-                  type="submit"
-                  value="العربية"
-                  class="btn btn-danger"
-                />
+                <input type="submit" value="العربية" class="btn btn-danger" />
               </form>
             </div>
           </div>
@@ -322,38 +316,6 @@
 
       document.cookie = "device=" + device + ";domain=;path=/";
     </script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-3SBQYR0PJE"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "G-3SBQYR0PJE");
-    </script>
-
-    <script>
-      const hamburger = document.querySelector(".hamburger");
-      const navLinks = document.querySelector(".nav-links");
-      const links = document.querySelectorAll(".nav-links li");
-
-      hamburger.addEventListener("click", () => {
-        navLinks.classList.toggle("open");
-        links.forEach((link) => {
-          link.classList.toggle("fade");
-        });
-      });
-    </script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
-      crossorigin="anonymous"
-    ></script>
     <script src="/static/base/js/jquery.min.js"></script>
     <script src="/static/base/js/jquery-migrate-3.0.1.min.js"></script>
     <script src="/static/base/js/popper.min.js "></script>
