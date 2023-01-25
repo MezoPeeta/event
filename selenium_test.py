@@ -48,20 +48,20 @@ class TestUtils:
             options = webdriver.EdgeOptions()
             options.headless = headless
             self.browser = webdriver.Edge(
-                EdgeChromiumDriverManager().install(), options=options
+                EdgeChromiumDriverManager(path=r"driver").install(), options=options
             )
         elif Browser.CHROME.value in browser:
             options = webdriver.ChromeOptions()
             options.headless = headless
             self.browser = webdriver.Chrome(
-                ChromeDriverManager().install(), options=options
+                ChromeDriverManager(path=r"driver").install(), options=options
             )
         elif Browser.BRAVE.value in browser:
             options = webdriver.ChromeOptions()
             options.add_argument("--window-size=1200,1200,--ignore-certificate-errors")
             options.headless = headless
             self.browser = webdriver.Chrome(
-                ChromeDriverManager(chrome_type=ChromeType.BRAVE).install(),
+                ChromeDriverManager(chrome_type=ChromeType.BRAVE,path=r"driver").install(),
                 options=options,
             )
         elif Browser.FIREFOX.value in browser:
@@ -69,7 +69,7 @@ class TestUtils:
             options.headless = headless
             options.add_argument("--window-size=1200,1200,--ignore-certificate-errors")
             self.browser = webdriver.Firefox(
-                executable_path=GeckoDriverManager().install(), options=options
+                executable_path=GeckoDriverManager(path=r"driver").install(), options=options
             )
         else:
             raise Exception("Browser not supported")
