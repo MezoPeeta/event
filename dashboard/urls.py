@@ -2,12 +2,13 @@ from django.urls import path
 from . import views
 from products import views as product_views
 urlpatterns = [
-    path('/dashboard/', views.dashboard, name="Dashboard"),
-    path('/new/video', views.VideoCreateView.as_view(), name="CreateVideo"),
-    path('/update/video/<str:pk>', views.VideoUpdateView.as_view(), name="UpdateVideo"),
-    path('/delete/video/<str:pk>', views.VideoDeleteView.as_view(), name="DeleteVideo"),
-    path('/emails/', views.SubscribersListView.as_view(), name="Emails"),
+    path('dashboard/', views.dashboard, name="Dashboard"),
+    path('new/video', views.VideoCreateView.as_view(), name="CreateVideo"),
+    path('update/video/<str:pk>', views.VideoUpdateView.as_view(), name="UpdateVideo"),
+    path('delete/video/<str:pk>', views.VideoDeleteView.as_view(), name="DeleteVideo"),
+    path('emails/', views.SubscribersListView.as_view(), name="Emails"),
     path('new/product/', product_views.ProductsCreateView.as_view(), name="CreateProducts"),
+
 
     ## ER
 

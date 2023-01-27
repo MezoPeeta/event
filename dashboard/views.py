@@ -214,4 +214,19 @@ class InboxDetailView(LoginRequiredMixin, FormMixin, DetailView):
 def inbox_Delete(request, pk):
     form = Contact.objects.get(pk=pk)
     form.delete()
-    return render(request, 'dashboard/HR/inbox.html')
+    return render(request, "dashboard/HR/inbox.html")
+
+
+def change_background_color(request):
+    if request.method == "POST":
+        font_btn = request.POST.get("font_btn")
+        color = request.POST.get("color")
+        print(font_btn)
+        if font_btn:
+            Design.objects.filter(id=1).update(font_color=color)
+        else:
+            Design.objects.filter(id=1).update(color=color)
+    return redirect("Dashboard")
+
+
+# 1
