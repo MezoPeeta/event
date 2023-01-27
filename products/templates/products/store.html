@@ -17,21 +17,18 @@
     </div>
   </div>
 </div>
-        
+
 <section class="ftco-section bg-light ftco-animate">
   <div class="container">
     <a href="{% url 'Cart' %}"><i class="fa fa-shopping-cart"
         style="font-size: 30px;color: black; float: right;"></i></a>
-    <form action = "/en/store/">
-     <div class="input-group">
-      <input name = "q" type="search" class="form-control" placeholder="Search For Item" id="search_box" style="font-family:sans-serif;"/>
-      <div class = "input-group-append">
-      <button type="submit" class="btn btn-danger" id="search-bar">Search</button>
-      </div>
-    </div>
-    </form>
-     
-<!--<script>
+
+    <!-- <div class="input-group">
+      <input type="search" class="form-control" placeholder="Search" id="search_box" />
+    </div> -->
+    {%comment%}
+
+<!-- <script>
 {% for product in Products %}
   var data = '{{Products}}';
   data.trim()
@@ -54,21 +51,10 @@ input.addEventListener('keyup', (e)=> {
 );
 
 </script> -->
-
-
+{%endcomment%}
 
     <br><br><br>
-    {%if q%}
-    {% if Products|length > 0%}
-    <h3 class = "my-4 border-bottom pb-1"><span class = "text-muted">Search results for</span> "{{request.GET.q}}"</h3>
-    
-    {% else %}
-      <h3 class = "my-4 border-bottom pb-1"><span class = "text-muted">No results for</span> "{{request.GET.q}}"</h3>
-    {%endif%}
-    {%endif%}
     <div class="products" style="display:flex;flex-wrap:wrap;justify-content:space-between;" id="products_id">
-    
-    
       {% for product in Products %}
       <div class="card" style="width: 18rem;">
         <img class="card-img-top" src="{{ product.image.url}}" alt="Card image cap">
@@ -80,144 +66,9 @@ input.addEventListener('keyup', (e)=> {
           <a class="btn btn-outline-danger"  href="{% url 'Products' product.id %}">View Product</a>
         </div>
       </div>
-      
       {% endfor %}
-    
-<div class="container paginator">
-    <div class="pagination p1">
-      <ul>
-        {% if q %}
-        {%if Products.has_previous%}
-        <a href="?q={{q}}&page={{ Products.previous_page_number }}"|urlencoding><li>Previous</li></a>
-        {%endif%}
-        {% with ''|center:Products.paginator.num_pages as range %}
-        {% for i in range %}
-        {% if forloop.counter == Products.number %}
-             <a class="is-active" href="?q={{q}}&page={{ forloop.counter }}"|urlencoding><li>{{ forloop.counter }}</li></a>
-        {%else%}
-        <a href="?q={{q}}&page={{ forloop.counter }}"><li>{{ forloop.counter }}</li></a>
-        {%endif%}
 
-        {% endfor %}
-        {% endwith %}
-        {%if Products.has_next%}
-        <a href="?q={{q}}&page={{ Products.next_page_number }}"|urlencoding><li>Next</li></a>
-        
-        {%endif%}
-        
-        
-        
-        {%else%}
-        {%if Products.has_previous%}
-        <a href="?page={{ Products.previous_page_number }}"><li>Previous</li></a>
-        {%endif%}
-        {% with ''|center:Products.paginator.num_pages as range %}
-        {% for i in range %}
-        {% if forloop.counter == Products.number %}
-             <a class="is-active" href="?page={{ forloop.counter }}"><li>{{ forloop.counter }}</li></a>
-        {%else%}
-        <a href="?page={{ forloop.counter }}"><li>{{ forloop.counter }}</li></a>
-        {%endif%}
-
-        {% endfor %}
-        {% endwith %}
-        {%if Products.has_next%}
-        <a href="?page={{ Products.next_page_number }}"><li>Next</li></a>
-        
-        {%endif%}
-        {%endif%}
-      </ul>
     </div>
 </section>
 
-
-
-<style>
-
-input[type="text"]
-{
-    font-family:sans-serif;
-}
-.paginator a{
-  text-decoration: none;
-}
-
-.paginator p, li, a{
-  font-size: 15px;
-}
-
-/* GRID */
-
-
-.one { width: 6.866%; }
-
-/* COLUMNS */
-
-.paginator .col {
-	display: block;
-
-	margin: 1% 0 1% 1.6%;
-}
-
-.paginator .col:first-of-type {
-  margin-left: 0;
-}
-
-.pagination{
-  justify-content:center;
-  width: 100%;
-  max-width: 940px;
-  margin: 0 auto;
-  position: relative;
-  text-align: center;
-}
-
-/* CLEARFIX */
-
-.cf:before,
-.cf:after {
-    content: " ";
-    display: table;
-}
-
-.cf:after {
-    clear: both;
-}
-
-.cf {
-    *zoom: 1;
-}
-
-/* GENERAL STYLES */
-
-.pagination{
-  padding: 30px 0;
-}
-
-.pagination ul{
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-}
-
-.pagination a{
-  display: inline-block;
-  padding: 10px 18px;
-  color: #222;
-}
-.p1 a{
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-  padding: 0;
-  text-align: center;
-}
-
-.p1 a.is-active{
-  background-color: red;
-  border-radius: 100%;
-  color: #fff;
-}
-
-</style>
 {% endblock content%}
