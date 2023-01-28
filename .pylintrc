@@ -414,7 +414,6 @@ disable=raw-checker-failed,
         file-ignored,
         suppressed-message,
         useless-suppression,
-        deprecated-pragma,
         use-symbolic-message-instead,
         missing-final-newline,
         import-outside-toplevel,
@@ -423,15 +422,8 @@ disable=raw-checker-failed,
         missing-class-docstring,
         trailing-newlines,
         trailing-whitespace,
-        ungrouped-imports,
         imported-auth-user,
-        invalid-name,
-        consider-using-f-string,
         wrong-import-order,
-        too-many-ancestors,
-        unused-argument,
-        duplicate-code,
-        line-too-long
         
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option

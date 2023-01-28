@@ -18,7 +18,6 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls.i18n import i18n_patterns
-import debug_toolbar
 
 urlpatterns = [
     path("maintenance-mode/", include("maintenance_mode.urls")),
@@ -35,8 +34,7 @@ urlpatterns += i18n_patterns(
 )
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-    urlpatterns += path("__debug__/", include('debug_toolbar.urls')),
+    urlpatterns += [path(r"__debug__/", include('debug_toolbar.urls'))]
 
 
 

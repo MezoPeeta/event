@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 
 class Products(models.Model):
     id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=200,default='Product Name')
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     image = models.ImageField(
         default='product_default.jpg', upload_to='products',blank=True)
