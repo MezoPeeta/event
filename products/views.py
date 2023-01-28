@@ -1,12 +1,8 @@
 from django.shortcuts import render, redirect
-from .models import *
-from .forms import *
-from .utils import *
-import json
+from .models import Products, Order, OrderItem, Customer ,ShippingAddress
 import datetime
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
-from django.contrib import messages
 from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView
