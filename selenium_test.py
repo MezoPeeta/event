@@ -13,11 +13,7 @@ class Browser(Enum):
     CHROME, FIREFOX, EDGE, BRAVE = "chrome", "firefox", "edge", "brave"
 
 
-class TestUtils:
-    def __init__(self):
-        self.browser = None
-        self.client = None
-        self.user = None
+class TestUtils:        
         
 
 
