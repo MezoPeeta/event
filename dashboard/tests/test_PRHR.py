@@ -8,7 +8,7 @@ from selenium_test import TestUtils
 class TestingPrHr(LiveServerTestCase, TestUtils):
     def setUp(self):
         self.selenium_admin_login()
-
+        
     def test_pr(self):
         # saving the test profile as a PR member
         dashboard_page = reverse("Dashboard")

@@ -180,13 +180,6 @@ class SpeakersListView(ListView):
     paginate_by = 6
 
 
-class SpeakersListView(ListView):
-    model = Speakers
-    template_name = "base/speakers.html"
-    context_object_name = "speakers"
-    ordering = ["-date_posted"]
-    paginate_by = 6
-
 
 def error_404_view(request, exception=None):
     return render(request, "base/404.html", status=404)
