@@ -2,7 +2,7 @@ import json
 from .models import Products, Order, OrderItem, Customer
 
 
-def cookieCart(request):
+def cookie_cart(request):
     try:
         cart = json.loads(request.COOKIES["cart"])
     except KeyError:
@@ -11,11 +11,11 @@ def cookieCart(request):
 
     items = []
     order = {"get_cart_total": 0, "get_cart_items": 0, "shipping": False}
-    cartItems = order["get_cart_items"]
+    cart_items = order["get_cart_items"]
 
     for i in cart:
         try:
-            cartItems += cart[i]["quantity"]
+            cart_items += cart[i]["quantity"]
 
             product = Products.objects.get(id=i)
             total = product.price * cart[i]["quantity"]
@@ -42,24 +42,24 @@ def cookieCart(request):
         except Products.DoesNotExist:
             pass
 
-    return {"cartItems": cartItems, "order": order, "items": items}
+    return {"cartItems": cart_items, "order": order, "items": items}
 
 
-def cartData(request):
-    cookieData = cookieCart(request)
-    cartItems = cookieData["cartItems"]
-    order = cookieData["order"]
-    items = cookieData["items"]
+def cart_data(request):
+    cookie_data = cookie_cart(request)
+    cart_items = cookie_data["cartItems"]
+    order = cookie_data["order"]
+    items = cookie_data["items"]
 
-    return {"cartItems": cartItems, "order": order, "items": items}
+    return {"cartItems": cart_items, "order": order, "items": items}
 
 
-def guestOrder(request, data):
+def guest_order(request, data):
     name = data["form"]["name"]
     email = data["form"]["email"]
 
-    cookieData = cookieCart(request)
-    items = cookieData["items"]
+    cookie_data = cookie_cart(request)
+    items = cookie_data["items"]
 
     customer, _ = Customer.objects.get_or_create(
         email=email,

@@ -5,7 +5,7 @@ from django.core.files import File
 from PIL import Image, ImageDraw
 
 
-class TicketForm(models.Model):
+class Ticket(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200)
     email = models.EmailField()
@@ -16,7 +16,7 @@ class TicketForm(models.Model):
 class QrCode(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100, default='')
-    ticket = models.OneToOneField(TicketForm, on_delete=models.SET_NULL, null=True)
+    ticket = models.OneToOneField(Ticket, on_delete=models.SET_NULL, null=True)
     qr_code = models.ImageField(upload_to='qrcodes', blank=True)
 
     def __str__(self):
@@ -25,7 +25,7 @@ class QrCode(models.Model):
     def save(self,*args,**kwargs):
         qrcode_img = qrcode.make(self.ticket.email)
         canvas = Image.new('RGB', (340,340), 'white')
-        draw = ImageDraw.Draw(canvas)
+        ImageDraw.Draw(canvas)
         canvas.paste(qrcode_img)
         fname = f'{self.name}.png'
         buffer = BytesIO()
@@ -35,7 +35,7 @@ class QrCode(models.Model):
         super().save(*args, **kwargs)
 
 
-class Ticket_Recieved(models.Model):
+class TicketRecieved(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200)
     email = models.EmailField()

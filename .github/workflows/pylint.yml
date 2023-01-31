@@ -22,11 +22,11 @@ jobs:
           pip install -r requirements.txt
       - name: Analysing the code with pylint
         run: |
-          pylint --load-plugins pylint_django --django-settings-module=TEDx.settings --ignore=migrations **/*.py
+          pylint --load-plugins pylint_django --django-settings-module=TEDx.settings --rcfile=.pylintrc **/*.py
       - name: Add pylint output
         if: success() || failure()
         run: |
-          echo "pylint-error"=$(pylint --load-plugins pylint_django --django-settings-module=TEDx.settings --ignore=migrations **/*.py | grep rated) >> $GITHUB_OUTPUT
+          echo "pylint-error"=$(pylint --load-plugins pylint_django --django-settings-module=TEDx.settings --rcfile=.pylintrc **/*.py | grep rated) >> $GITHUB_OUTPUT
         id: p1
       - uses: alawiii521/current-pr-comment@v1.0
         name: Comment current pull request

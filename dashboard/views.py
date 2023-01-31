@@ -25,7 +25,6 @@ from django.template.loader import render_to_string
 from django.views.generic.edit import FormMixin
 from xhtml2pdf import pisa
 from django.template.loader import get_template
-from django.contrib import messages
 
 
 @login_required
@@ -39,8 +38,11 @@ def dashboard(request):
     context = {
         "title": f"{committee} | Dashboard",
         "form": DesignForm(),
-        "designs": Design.objects.all().iterator(),
     }
+
+    if committee == "Design":
+        context["designs"]: Design.objects.all().iterator()
+
     return render(request, template, context)
 
 
@@ -53,7 +55,7 @@ class SubscribersListView(LoginRequiredMixin, ListView):
 
 
 @login_required
-def dataFrame(request):
+def data_frame(request):
     qs = Products.objects.prefetch_related("Products").values()
     data = pd.DataFrame(qs)
     context = {
@@ -64,7 +66,7 @@ def dataFrame(request):
 
 
 @login_required
-def exportTOCSV(request):
+def export_to_csv(request):
     if request.method == "POST":
         qs = Products.objects.all().values()
         data = pd.DataFrame(qs)
@@ -147,9 +149,6 @@ class VideoUpdateView(LoginRequiredMixin, UpdateView):
     template_name = "dashboard/Marketing/update_video.html"
     fields = ["name", "urlID"]
 
-    def form_valid(self, form):
-        return super().form_valid(form)
-
     def test_func(self):
         video = self.get_object()
         if self.request.user == video.user:
@@ -194,8 +193,8 @@ class InboxDetailView(LoginRequiredMixin, FormMixin, DetailView):
         form = self.get_form()
         if form.is_valid():
             return self.form_valid(form)
-        else:
-            return self.form_invalid(form)
+
+        return self.form_invalid(form)
 
     def form_valid(self, form):
         self.object.reply = form.cleaned_data["reply"]
@@ -205,13 +204,13 @@ class InboxDetailView(LoginRequiredMixin, FormMixin, DetailView):
             "dashboard/HR/reply_email.html",
             {"reply": self.object.reply, "message": self.object.message},
         )
-        sendingEmail = EmailMessage(subject, message, to=[self.object.email])
-        sendingEmail.content_subtype = "html"
-        sendingEmail.send()
+        sending_email = EmailMessage(subject, message, to=[self.object.email])
+        sending_email.content_subtype = "html"
+        sending_email.send()
         return super().form_valid(form)
 
 
-def inbox_Delete(request, pk):
+def inbox_delete(request, pk):
     form = Contact.objects.get(pk=pk)
     form.delete()
     return render(request, "dashboard/HR/inbox.html")

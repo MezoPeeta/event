@@ -44,11 +44,11 @@ def products(request, pk):
             device = request.COOKIES["device"]
             customer, _ = Customer.objects.get_or_create(device=device)
         order, _ = Order.objects.get_or_create(customer=customer, complete=False)
-        orderItem, _ = OrderItem.objects.get_or_create(
+        order_item, _ = OrderItem.objects.get_or_create(
             order=order, product=product
         )
-        orderItem.quantity = request.POST["quantity"]
-        orderItem.save()
+        order_item.quantity = request.POST["quantity"]
+        order_item.save()
 
         return redirect("Cart")
 
@@ -59,7 +59,7 @@ def products(request, pk):
 def cart(request):
     try:
         customer = request.user.customer
-    except:
+    except Customer.DoesNotExist:
         device = request.COOKIES["device"]
         customer, _ = Customer.objects.get_or_create(device=device)
 
@@ -106,14 +106,12 @@ def checkout(request):
             zipcode=zipcode,
         )
 
-        # SEND EMAIIIl
         order_product = OrderItem.objects.get(order=order).product
         order_quantity = OrderItem.objects.get(order=order).quantity
         product_name = order_product.name
         product_image = order_product.image
         order_price = order_product.price
         order_date = order.date_ordered
-        current_time = datetime.datetime.now()
         subject = "Purchase Confirmation"
         message = render_to_string(
             "products/purchase.html",
@@ -127,9 +125,9 @@ def checkout(request):
                 "order_date": order_date,
             },
         )
-        # confirmation_purchase = EmailMessage(subject , message , to=[email])
-        # confirmation_purchase.content_subtype = 'html'
-        # confirmation_purchase.send()
+        confirmation_purchase = EmailMessage(subject , message , to=[email])
+        confirmation_purchase.content_subtype = 'html'
+        confirmation_purchase.send()
 
         return redirect("Store")
 

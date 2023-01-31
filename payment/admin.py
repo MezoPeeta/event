@@ -1,11 +1,11 @@
 from django.contrib import admin
-from .models import TicketForm, QrCode , Ticket_Recieved
+from .models import Ticket, QrCode , TicketRecieved
 
 class TicketModel(admin.ModelAdmin):
     list_display = ('id',"name" , 'email')
     
-admin.site.register(TicketForm, TicketModel)
+admin.site.register(Ticket, TicketModel)
 
-admin.site.register(Ticket_Recieved, TicketModel)
+admin.site.register(TicketRecieved, TicketModel)
 
 admin.site.register(QrCode)

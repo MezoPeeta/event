@@ -1,16 +1,16 @@
 from django import forms
-from .models import TicketForm , Ticket_Recieved
+from .models import Ticket , TicketRecieved
 
-class Ticket_Form(forms.ModelForm):
+class TicketForm(forms.ModelForm):
     name = forms.CharField(max_length=200)
     email = forms.EmailField()
     class Meta:
-        model = TicketForm
+        model = Ticket
         fields = ['name', 'email']
 
 
-class TicketRecieved(forms.ModelForm):
+class TicketRecievedForm(forms.ModelForm):
     class Meta:
-        model = Ticket_Recieved
+        model = TicketRecieved
         fields = ['name','email','code']
     

@@ -8,7 +8,7 @@ class Report(models.Model):
     name = models.CharField(max_length=120,null=True)
     image = models.ImageField(upload_to='reports',blank=True)
     remarks = models.TextField()
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
