@@ -5,7 +5,7 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('register/',user_views.register, name='Register'),
-    path('need-verify/',user_views.needVerify, name='Need Verification'),
+    path('need-verify/',user_views.need_verify, name='Need Verification'),
     path('verify/<uidb64>/<token>',
     user_views.activate_account, name='Verify'),    
     path('login/',auth_views.LoginView.as_view(template_name='users/login.html'), name='Login'),

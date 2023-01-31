@@ -34,9 +34,9 @@ def register(request):
 
             required_code = RegistrationCode.objects.filter(code=registration_code)
 
-            existedEmail = User.objects.filter(email=email).exists()
+            existed_email = User.objects.filter(email=email).exists()
 
-            if required_code and not existedEmail:
+            if required_code and not existed_email:
                 user.is_active = False
                 user.save()
                 message = render_to_string(
@@ -57,7 +57,7 @@ def register(request):
 
                 return redirect("Need Verification")
 
-            if existedEmail:
+            if existed_email:
                 messages.error(request, "This email already exists")
             else:
                 messages.error(request, "The Registration Code is invalid")
@@ -145,5 +145,5 @@ def activate_account(request, uidb64, token):
     return render(request, "users/verify.html")
 
 
-def needVerify(request):
+def need_verify(request):
     return render(request, "users/need_verify.html")

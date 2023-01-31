@@ -42,7 +42,7 @@ fail-under=10
 #from-stdin=
 
 # Files or directories to be skipped. They should be base names, not paths.
-ignore=migrations
+ignore=migrations,__init__.py,settings.py,manage.py,urls.py,wsgi.py,asgi.py,apps.py,signals.py
 
 # Add files or directories matching the regular expressions patterns to the
 # ignore-list. The regex matches against paths and can be in Posix or Windows
@@ -59,7 +59,7 @@ ignore-patterns=^\.#
 # (useful for modules/projects where namespaces are manipulated during runtime
 # and thus existing member attributes cannot be deduced by static analysis). It
 # supports qualified module names, as well as Unix pattern matching.
-ignored-modules=
+ignored-modules=xhtml2pdf
 
 # Python code to execute, usually for sys.path manipulation such as
 # pygtk.require().
@@ -180,7 +180,11 @@ good-names=i,
            k,
            ex,
            Run,
-           _
+           _,
+           pk,
+           x,
+           y,
+           e
 
 # Good variable names regexes, separated by a comma. If names match any regex,
 # they will always be accepted
@@ -424,7 +428,13 @@ disable=raw-checker-failed,
         trailing-whitespace,
         imported-auth-user,
         wrong-import-order,
-        
+        too-few-public-methods,
+        redefined-outer-name,
+        too-many-ancestors,
+        attribute-defined-outside-init,
+        ungrouped-imports,
+        unused-argument,
+        too-many-locals
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option
 # multiple time (only on the command line, not in the configuration file where

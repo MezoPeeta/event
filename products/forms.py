@@ -1,5 +1,5 @@
 from django import forms
-from .models import ShippingAddress, Customer
+from .models import ShippingAddress
 
 class ShippingAddressClass(forms.ModelForm):
     class Meta:

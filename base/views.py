@@ -161,7 +161,7 @@ def contact(request):
             )
             send_mail(
                 subject,
-                "Email: {}\n\nMessage: {}".format(email, message),
+                f"Email: {email}\n\nMessage: {message}",
                 "from@example.com",
                 [settings.EMAIL_HOST_USER],
             )

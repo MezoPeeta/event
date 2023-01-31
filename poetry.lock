@@ -273,6 +273,17 @@ python-versions = "*"
 python-fsutil = ">=0.6.0"
 
 [[package]]
+name = "django-pwa"
+version = "1.1.0"
+description = "A Django app to include a manifest.json and Service Worker instance to enable progressive web app behavior"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+django = ">=2.0"
+
+[[package]]
 name = "h11"
 version = "0.14.0"
 description = "A pure-Python, bring-your-own-I/O implementation of HTTP/1.1"
@@ -951,7 +962,7 @@ svglib = ">=1.2.1"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.11"
-content-hash = "78d102148fcc0a378dbf69add45b20021ca447afaf71f2c291b4e45791d50dce"
+content-hash = "40a702c7d766b22496d7ab6183f86f854d3f7867663b4ef651017c0e74187282"
 
 [metadata.files]
 arabic-reshaper = [
@@ -1273,6 +1284,10 @@ django-js-asset = [
 django-maintenance-mode = [
     {file = "django-maintenance-mode-0.16.3.tar.gz", hash = "sha256:f9a702e333aa48bf9366af7b412ad15790ecf1e6c3892fd991b7c02b6bcedaa4"},
     {file = "django_maintenance_mode-0.16.3-py3-none-any.whl", hash = "sha256:adacbfdce4b467390ca98bc975fe5957b1f9984317c7da434b9c07c8ff086f99"},
+]
+django-pwa = [
+    {file = "django-pwa-1.1.0.tar.gz", hash = "sha256:9cf8e5ac02ee462dd7c2c4309ee2cb0066334f9963dcadd053bd3805792bac29"},
+    {file = "django_pwa-1.1.0-py3-none-any.whl", hash = "sha256:92ab82211eb3c79dfb3fc1f40cdf2727503199ec5c4bf21e7fbf8c0dd1daeaa0"},
 ]
 h11 = [
     {file = "h11-0.14.0-py3-none-any.whl", hash = "sha256:e3fe4ac4b851c468cc8363d500db52c2ead036020723024a109d37346efaa761"},

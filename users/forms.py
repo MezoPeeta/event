@@ -21,7 +21,7 @@ class UserRegisterForm(UserCreationForm):
             "password2",
         ]
 
-    def isExists(self):
+    def is_exists(self):
         return User.objects.get(email=self.email).exists()
 
 

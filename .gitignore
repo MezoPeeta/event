@@ -27,7 +27,7 @@ db.sqlite3
 # Python # 
 *.py[cod] 
 *$py.class 
-
+driver/
 # Distribution / packaging 
 .Python build/ 
 develop-eggs/ 
@@ -46,7 +46,7 @@ wheels/
 *.egg 
 *.manifest 
 *.spec 
-
+pylint-report.json
 # Installer logs 
 pip-log.txt 
 pip-delete-this-directory.txt 
