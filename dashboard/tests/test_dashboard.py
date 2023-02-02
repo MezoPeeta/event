@@ -1,6 +1,6 @@
 from django.test import TestCase 
 from django.shortcuts import reverse 
-from selenium_test import TestUtils
+from utils.selenium_test import TestUtils
 
 class TestingDashboard(TestCase,TestUtils):
     def setUp(self):

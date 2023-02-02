@@ -27,6 +27,10 @@ coverage = "^7.0.5"
 django-debug-toolbar = "^3.8.1"
 dill = "^0.3.6"
 django-pwa = "^1.1.0"
+extcolors = "^1.0.0"
+matplotlib = "^3.6.3"
+django-htmlmin = "^0.11.0"
+django-pipeline = "^2.0.9"
 
 
 [tool.poetry.group.dev.dependencies]

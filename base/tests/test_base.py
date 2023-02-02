@@ -1,7 +1,7 @@
 from django.test import LiveServerTestCase, TestCase
 from selenium.webdriver.common.by import By
 from base.models import Videos, Subscribe, Contact
-from selenium_test import TestUtils
+from utils.selenium_test import TestUtils
 from django.core.exceptions import ValidationError
 
 

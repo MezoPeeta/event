@@ -22,6 +22,8 @@ class Design(models.Model):
     id = models.AutoField(primary_key=True)
     color = ColorField(default='#ff2a2a')
     font_color = ColorField(default='#ffffff')
+    palette = models.ImageField(upload_to='palette',null=True)
+    generated_colors = models.TextField(blank=True)
 
     def __str__(self):
         return str(self.color)

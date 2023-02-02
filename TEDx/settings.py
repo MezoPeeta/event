@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "colorfield",
     "debug_toolbar",
     "pwa",
+
 ]
 
 MIDDLEWARE = [
@@ -59,9 +60,13 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "maintenance_mode.middleware.MaintenanceModeMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
+    'htmlmin.middleware.HtmlMinifyMiddleware',
+    'htmlmin.middleware.MarkRequestMiddleware',
+
 ]
 
 ROOT_URLCONF = "TEDx.urls"
+
 
 
 TEMPLATES = [
@@ -142,6 +147,36 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+# STATICFILES_STORAGE = 'pipeline.storage.PipelineManifestStorage'
+
+
+
+# PIPELINE = {
+#     'PIPELINE_ENABLED': True,
+#     'STYLESHEETS': {
+#         'main': {
+#             'source_filenames': (
+#                 ''
+#             ),
+#             'output_filename': 'static/base/css/main.css',
+#         },
+#     },
+#     'JAVASCRIPT': {
+#         'main': {
+#             'source_filenames': (
+#                 'static/base/js/*.js',
+#             ),
+#             'output_filename': 'static/base/js/main.js',
+#         },
+#     },
+# }
+
+
+# PIPELINE["COMPILERS"] = (
+#     'pipeline.compilers.stylus.StylusCompiler',
+#     'pipeline.compilers.coffee.CoffeeScriptCompiler',
+# )
 
 
 MEDIA_URL = "/media/"
@@ -228,3 +263,9 @@ PWA_APP_SPLASH_SCREEN = [
 ]
 PWA_APP_DIR = "ltr"
 PWA_APP_LANG = "en-US"
+
+
+# HTMLMIN
+HTML_MINIFY = True
+
+EXCLUDE_FROM_MINIFYING = ('^us/')
