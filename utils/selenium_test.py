@@ -8,6 +8,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.core.utils import ChromeType
 from selenium.webdriver import ActionChains
 
+#pylint: disable=no-member
 
 class Browser(Enum):
     CHROME, FIREFOX, EDGE, BRAVE = "chrome", "firefox", "edge", "brave"
@@ -18,7 +19,7 @@ class TestUtils:
 
 
     def get_default_browser(self):
-        #pylint: disable=too-many-lines
+        #pylint: disable=line-too-long
         """
         Get the default browser on the system and return the browser name as a string
         (e.g. "chrome", "firefox", etc.)
