@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 from products.models import Products
 
 from django.urls import reverse
-from selenium_test import TestUtils
+from utils.selenium_test import TestUtils
 
 
 

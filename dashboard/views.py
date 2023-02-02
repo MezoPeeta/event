@@ -16,7 +16,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from products.models import Products
 import pandas as pd
 from django.http import Http404
-from .forms import ContactForm, ReportForm, DesignForm
+from .forms import ContactForm, ReportForm, DesignForm, PaletteForm
 from django.http import JsonResponse
 from .utils import get_report_image, is_ajax
 from django.contrib.auth.models import User
@@ -25,6 +25,8 @@ from django.template.loader import render_to_string
 from django.views.generic.edit import FormMixin
 from xhtml2pdf import pisa
 from django.template.loader import get_template
+from .utils import get_colors_in_hex
+from ast import literal_eval
 
 
 @login_required
@@ -37,11 +39,19 @@ def dashboard(request):
 
     context = {
         "title": f"{committee} | Dashboard",
-        "form": DesignForm(),
     }
 
     if committee == "Design":
-        context["designs"]: Design.objects.all().iterator()
+        context["form"] = DesignForm()
+        context["designs"] = Design.objects.get_or_create(
+            pk=1, defaults={"color": "#ff2a2a", "font_color": "#ffffff"}
+        )[0]
+        context["palette"] = PaletteForm()
+        context["colors"] = (
+            literal_eval(Design.objects.get(pk=1).generated_colors)
+            if Design.objects.get(pk=1).generated_colors
+            else []
+        )
 
     return render(request, template, context)
 
@@ -87,13 +97,13 @@ class ProductChartView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["pt"] = Products.objects.all().iterator()
+        context["pt"] = Products.objects.all()
         context["form"] = ReportForm()
         return context
 
 
 def create_report_view(request):
-    form = ReportForm(request.POST or None)
+    form = ReportForm(request.POST)
     print(form)
     if is_ajax(request=request):
         image = request.POST.get("image")
@@ -220,12 +230,32 @@ def change_background_color(request):
     if request.method == "POST":
         font_btn = request.POST.get("font_btn")
         color = request.POST.get("color")
-        print(font_btn)
+
         if font_btn:
             Design.objects.filter(id=1).update(font_color=color)
+
         else:
             Design.objects.filter(id=1).update(color=color)
     return redirect("Dashboard")
 
 
-# 1
+def get_colors_palette(request):
+    if request.method == "POST":
+        form = PaletteForm(request.POST, request.FILES)
+        if form.is_valid():
+            palette = request.FILES.get("palette")
+            design = Design.objects.get(id=1)
+            design.palette = palette
+
+            colors = get_colors_in_hex(palette)
+            design.generated_colors = colors
+            design.save()
+
+    return redirect("Dashboard")
+
+
+def change_font_color(request):
+    if request.method == "POST":
+        color = request.POST.get("color")
+        Design.objects.filter(id=1).update(font_color=color)
+    return redirect("Dashboard")

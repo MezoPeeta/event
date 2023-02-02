@@ -9169,13 +9169,7 @@ textarea.form-control {
       }
     }
 
-  .profile-body
-  {
-    background: url(../img/red.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
+  
   #mfis_logo 
   {
     width: 100%;

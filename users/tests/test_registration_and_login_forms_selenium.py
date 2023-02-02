@@ -1,6 +1,6 @@
 from django.test import LiveServerTestCase
 from selenium.webdriver.common.by import By
-from selenium_test import TestUtils
+from utils.selenium_test import TestUtils
 
 
 class TestRegistration(LiveServerTestCase, TestUtils):

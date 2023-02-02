@@ -27,5 +27,6 @@ urlpatterns = [
 
     ## Design
     path('change_bg_color/', views.change_background_color, name="ChangeBgColor"),
+    path('get_palette_color/', views.get_colors_palette, name="getPaletteColor"),
 
 ]

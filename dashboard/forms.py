@@ -18,3 +18,8 @@ class DesignForm(forms.ModelForm):
     class Meta:
         model = Design
         fields = ['color']
+
+class PaletteForm(forms.ModelForm):
+    class Meta:
+        model = Design
+        fields = ['palette']

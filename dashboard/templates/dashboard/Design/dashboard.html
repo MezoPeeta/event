@@ -52,17 +52,68 @@
             />
           </div>
         </div>
+        <div></div>
       </form>
 
       <center>
-        <div
-          class="chart-container"
-          
-        >
+        <div class="chart-container">
           <canvas id="myChart"></canvas>
         </div>
       </center>
     </div>
+
+    <form
+      action="{% url 'getPaletteColor' %}"
+      method="POST"
+      enctype="multipart/form-data"
+      style="color:black !important"
+    >
+      {% csrf_token %} {{palette}}
+      <br />
+      <input
+        type="submit"
+        value="Get Palette Color"
+        class="btn btn-dark"
+        style="background:{%color%};border-color:{%color%};color:{%font_color%}"
+      />
+    </form>
+    <br>
+
+    <div>
+      {% if designs.palette %}
+      <img src="{{designs.palette.url}}" alt="color_palette" width="500"/>
+      {% endif %}
+  <div>
+   <br>
+  <div style="display:flex;flex-wrap:wrap;gap:2%">
+  {% for color in colors %}
+  <div>
+    <center>
+      <form action="" method="POST" id="color_gen_form">
+        {% csrf_token %}
+        <div>
+
+          <span class="color_gen_span" style="background:{{color}}"
+          onClick="changeColor(this.style.background)">
+        </span> 
+        </div>
+      </form>
+
+      {{color}}
+    </center>
+    <div>   
+      
+    </div>
+    
+    <br>
+  </div>
+  {% endfor %} 
+ 
+
+  </div>
+
+  
+</div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -77,7 +128,7 @@
       });
 
       var values = document.getElementById("values");
-      var hexInput = document.getElementById("hexInput");
+      var hexInput = document.getElementById("hexInput"); 
 
       colorPicker.on(["color:init", "color:change"], function (color) {
         values.innerHTML = [
@@ -105,9 +156,7 @@
               data: [30, 20,15,5,17],
               borderWidth: 1,
               backgroundColor: [
-                {% for design in designs %}
-                "{{design.color}}","{{design.font_color}}","black","rgb(66 32 32 / 20%)","#a6bffd"
-                {% endfor %}
+                "{{designs.color}}","{{designs.font_color}}","black","rgb(66 32 32 / 20%)","#a6bffd"
             ],
 
             },
@@ -118,6 +167,35 @@
 
         },
       });
+
+      function RGBToHex(rgb) {
+        let sep = rgb.indexOf(",") > -1 ? "," : " ";
+        rgb = rgb.substr(4).split(")")[0].split(sep);
+      
+        let r = (+rgb[0]).toString(16),
+            g = (+rgb[1]).toString(16),
+            b = (+rgb[2]).toString(16);
+      
+        if (r.length == 1)
+          r = "0" + r;
+        if (g.length == 1)
+          g = "0" + g;
+        if (b.length == 1)
+          b = "0" + b;
+      
+        return "#" + r + g + b;
+      }
+
+      function changeColor(color) {
+        console.log(RGBToHex(color));
+        hexInput.value = RGBToHex(color);
+        colorPicker.color.hexString = RGBToHex(color);
+        hexInput.addEventListener("change", function () {
+          colorPicker.color.hexString = this.value;
+        });
+      }
+
+     
     </script>
   </div>
 </section>

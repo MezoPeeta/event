@@ -2,7 +2,7 @@ from django.test import LiveServerTestCase
 from selenium.webdriver.common.by import By
 from django.urls import reverse
 from base.models import Contact
-from selenium_test import TestUtils
+from utils.selenium_test import TestUtils
 
 
 class TestingPrHr(LiveServerTestCase, TestUtils):
