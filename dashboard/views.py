@@ -26,6 +26,7 @@ from django.views.generic.edit import FormMixin
 from xhtml2pdf import pisa
 from django.template.loader import get_template
 from .utils import get_colors_in_hex
+from ast import literal_eval
 
 
 @login_required
@@ -47,7 +48,7 @@ def dashboard(request):
         )[0]
         context["palette"] = PaletteForm()
         context["colors"] = (
-            eval(Design.objects.get(pk=1).generated_colors)
+            literal_eval(Design.objects.get(pk=1).generated_colors)
             if Design.objects.get(pk=1).generated_colors
             else []
         )
