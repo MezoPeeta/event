@@ -7,7 +7,7 @@ from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.core.utils import ChromeType
 from selenium.webdriver import ActionChains
-from django.tests import LiveServerTestCase
+from django.test import LiveServerTestCase
 
 
 class Browser(Enum):
