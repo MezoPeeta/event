@@ -7,15 +7,18 @@ from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.core.utils import ChromeType
 from selenium.webdriver import ActionChains
-from django.test import LiveServerTestCase
 
 
 class Browser(Enum):
     CHROME, FIREFOX, EDGE, BRAVE = "chrome", "firefox", "edge", "brave"
 
 
-class TestUtils(LiveServerTestCase):
+class TestUtils:        
+        
+
+
     def get_default_browser(self):
+        #pylint: disable=too-many-lines
         """
         Get the default browser on the system and return the browser name as a string
         (e.g. "chrome", "firefox", etc.)
@@ -25,9 +28,7 @@ class TestUtils(LiveServerTestCase):
 
             with OpenKey(
                 HKEY_CURRENT_USER,
-                r"Software\\Microsoft\\Windows\
-                \\Shell\\Associations\\UrlAssociations\\\
-                http\\UserChoice",
+                r"Software\\Microsoft\\Windows\\Shell\\Associations\\UrlAssociations\\http\\UserChoice",
             ) as key:
                 browser = QueryValueEx(key, "Progid")[0]
                 return browser.lower()
@@ -57,9 +58,7 @@ class TestUtils(LiveServerTestCase):
             options.add_argument("--window-size=1200,1200,--ignore-certificate-errors")
             options.headless = headless
             self.browser = webdriver.Chrome(
-                ChromeDriverManager(
-                    chrome_type=ChromeType.BRAVE, path=r"driver"
-                ).install(),
+                ChromeDriverManager(chrome_type=ChromeType.BRAVE,path=r"driver").install(),
                 options=options,
             )
         elif Browser.FIREFOX.value in browser:
@@ -67,8 +66,7 @@ class TestUtils(LiveServerTestCase):
             options.headless = headless
             options.add_argument("--window-size=1200,1200,--ignore-certificate-errors")
             self.browser = webdriver.Firefox(
-                executable_path=GeckoDriverManager(path=r"driver").install(),
-                options=options,
+                executable_path=GeckoDriverManager(path=r"driver").install(), options=options
             )
         else:
             raise Exception("Browser not supported")
