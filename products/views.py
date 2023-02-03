@@ -40,7 +40,7 @@ def products(request, pk):
         product = Products.objects.get(id=pk)
         try:
             customer = request.user.customer
-        except Customer.DoesNotExist:
+        except AttributeError:
             device = request.COOKIES["device"]
             customer, _ = Customer.objects.get_or_create(device=device)
         order, _ = Order.objects.get_or_create(customer=customer, complete=False)
@@ -59,7 +59,7 @@ def products(request, pk):
 def cart(request):
     try:
         customer = request.user.customer
-    except Customer.DoesNotExist:
+    except AttributeError:
         device = request.COOKIES["device"]
         customer, _ = Customer.objects.get_or_create(device=device)
 
