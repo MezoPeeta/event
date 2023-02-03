@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     "colorfield",
     "debug_toolbar",
     "pwa",
-
+    "pipeline",
 ]
 
 MIDDLEWARE = [
@@ -60,13 +60,11 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "maintenance_mode.middleware.MaintenanceModeMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
-    'htmlmin.middleware.HtmlMinifyMiddleware',
-    'htmlmin.middleware.MarkRequestMiddleware',
-
+    "htmlmin.middleware.HtmlMinifyMiddleware",
+    "htmlmin.middleware.MarkRequestMiddleware",
 ]
 
 ROOT_URLCONF = "TEDx.urls"
-
 
 
 TEMPLATES = [
@@ -148,35 +146,48 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
-# STATICFILES_STORAGE = 'pipeline.storage.PipelineManifestStorage'
+STATICFILES_STORAGE = "pipeline.storage.PipelineStorage"
 
 
+PIPELINE_ENABLED = True
 
-# PIPELINE = {
-#     'PIPELINE_ENABLED': True,
-#     'STYLESHEETS': {
-#         'main': {
-#             'source_filenames': (
-#                 ''
-#             ),
-#             'output_filename': 'static/base/css/main.css',
-#         },
-#     },
-#     'JAVASCRIPT': {
-#         'main': {
-#             'source_filenames': (
-#                 'static/base/js/*.js',
-#             ),
-#             'output_filename': 'static/base/js/main.js',
-#         },
-#     },
-# }
+PIPELINE = {
+    "STYLESHEETS": {
+        "main": {
+            "source_filenames": (
+                "base/css/style.css",
+                "base/css/design.css",
+                "base/css/main.css",
+                "base/css/checkout.css",
+                "base/css/register.css",
+                "base/css/icomoon.css",
+                "base/css/register.css",
+                "base/css/speakers.css",
+                "base/css/404.css",
+                "base/css/animate.css",
+            ),
+            "output_filename": "base/css/app.css",
+        },
+    },
+    "JAVASCRIPT": {
+        "main": {
+            "source_filenames": (
+                "base/js/main.js",
+                "base/js/register.js",
+                "base/js/checkout.js",
+                "base/js/navbar.js",
+            ),
+            "output_filename": "base/js/app.js",
+            "extra_context": {
+                "async": True,
+            },
+        },
+    },
+}
 
 
-# PIPELINE["COMPILERS"] = (
-#     'pipeline.compilers.stylus.StylusCompiler',
-#     'pipeline.compilers.coffee.CoffeeScriptCompiler',
-# )
+PIPELINE["CSS_COMPRESSOR"] = "pipeline.compressors.yuglify.YuglifyCompressor"
+PIPELINE["JS_COMPRESSOR"] = "pipeline.compressors.yuglify.YuglifyCompressor"
 
 
 MEDIA_URL = "/media/"
@@ -268,4 +279,4 @@ PWA_APP_LANG = "en-US"
 # HTMLMIN
 HTML_MINIFY = True
 
-EXCLUDE_FROM_MINIFYING = ('^us/')
+EXCLUDE_FROM_MINIFYING = "^us/"

@@ -5,7 +5,6 @@ AOS.init({
 
 (function($) {
 
-   "use strict";
 
    var isMobile = {
 	   Android: function() {
