@@ -26,14 +26,16 @@ def home(request):
             current_site = get_current_site(request)
             subject = "Email Verification"
             email = form.cleaned_data.get("email")
+            name = form.cleaned_data.get("name")
             token = uuid4()
 
             message = render_to_string(
-                "base/email.html",
+                "base/email_verify_subscribe.html",
                 {
                     "current_site": current_site,
                     "form_id": user.id,
                     "token": token,
+                    "name": name,
                 },
             )
             subscribe_email = EmailMessage(subject, message, to=[email])
@@ -134,8 +136,6 @@ def about(request):
     return render(request, "base/about.html", {"title": "About"})
 
 
-
-
 class VideoListView(ListView):
     model = Videos
     template_name = "base/watch-us.html"
@@ -178,7 +178,6 @@ class SpeakersListView(ListView):
     context_object_name = "speakers"
     ordering = ["-date_posted"]
     paginate_by = 6
-
 
 
 def error_404_view(request, exception=None):

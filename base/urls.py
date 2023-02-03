@@ -14,5 +14,7 @@ urlpatterns = [
     path("email_test/", views.test_email, name="TestingEmail"),
     path("unsubscribe/", views.unsubscribe, name="Unsubscribed"),
     path("complete-subscribe/", views.complete_subscribe, name="Subscribed"),
-    path("verify/<int:pk>/<uuid:token>", views.activate_account, name="Verified"),
+    path(
+        "verify/<int:pk>/<uuid:token>", views.activate_account, name="VerifySubscribe"
+    ),
 ]
