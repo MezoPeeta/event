@@ -11,6 +11,7 @@
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Add products</legend>
                 {{ form.image|as_crispy_field }}
+                {{  form.name|as_crispy_field }}
                 {{ form.price|as_crispy_field }}
 
             </fieldset>
