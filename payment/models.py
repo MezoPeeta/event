@@ -39,7 +39,7 @@ class TicketRecieved(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200)
     email = models.EmailField()
-    code = models.OneToOneField(QrCode , on_delete=models.SET_NULL, null=True)
+    code = models.OneToOneField(QrCode , on_delete=models.CASCADE, blank=True , null=True)
     def __str__(self):
         return f'{self.name}'
 
