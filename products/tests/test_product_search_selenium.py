@@ -37,7 +37,8 @@ class Test_Searching(LiveServerTestCase, TestUtils):
         )
         self.search_button.click()
         url = self.browser.current_url
-        search_query_is_in_url = f"?q={self.product_name}" in url
+        
+        search_query_is_in_url = f"?search_query={self.product_name}" in url
         self.assertTrue(search_query_is_in_url)
 
     # def test_search_products(self):
