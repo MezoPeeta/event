@@ -53,7 +53,7 @@ class ProductListView(ListView):
 class ProductsCreateView(LoginRequiredMixin, CreateView):
     model = Products
     template_name = "dashboard/PR/new_products.html"
-    fields = ["image", "price"]
+    fields = ["image", "price","name"]
 
     def form_valid(self, form):
         form.instance.user = self.request.user
