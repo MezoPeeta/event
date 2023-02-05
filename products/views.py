@@ -132,7 +132,7 @@ def checkout(request):
         )
 
         # SEND EMAIIIl
-        order_product = OrderItem.objects.get(order=order).product
+        # order_product = OrderItem.objects.get(order=order).product
         # order_quantity = OrderItem.objects.get(order=order).quantity
         # product_name = order_product.name
         # product_image = order_product.image
