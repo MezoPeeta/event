@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Products, Order, OrderItem, Customer, ShippingAddress
 import datetime
-from django.template.loader import render_to_string
+# from django.template.loader import render_to_string
 from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView
@@ -33,7 +33,7 @@ class ProductListView(ListView):
             products = Products.objects.filter(name__icontains=search_query).order_by("-id")
         else:
             products = Products.objects.all()
-        context = super(ProductListView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         paginator = Paginator(products, self.paginate_by)
         page = self.request.GET.get("page")
         try:
@@ -133,11 +133,11 @@ def checkout(request):
 
         # SEND EMAIIIl
         order_product = OrderItem.objects.get(order=order).product
-        order_quantity = OrderItem.objects.get(order=order).quantity
-        product_name = order_product.name
-        product_image = order_product.image
-        order_price = order_product.price
-        order_date = order.date_ordered
+        # order_quantity = OrderItem.objects.get(order=order).quantity
+        # product_name = order_product.name
+        # product_image = order_product.image
+        # order_price = order_product.price
+        # order_date = order.date_ordered
         # current_time = datetime.datetime.now()
         # subject = "Purchase Confirmation"
         # message = render_to_string(
