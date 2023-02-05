@@ -31,7 +31,7 @@
         style="font-size: 30px;color: black; float: right;"></i></a>
     <form action = "/en/store/">
      <div class="input-group">
-      <input name = "q" type="search" class="form-control" placeholder="Search For Item" id="search_box" style="font-family:sans-serif;"/>
+      <input name = "search_query" type="search" class="form-control" placeholder="Search For Item" id="search_box" style="font-family:sans-serif;"/>
       <div class = "input-group-append">
       <button type="submit" class="btn btn-danger" id="search-bar">Search</button>
       </div>
@@ -65,12 +65,12 @@ input.addEventListener('keyup', (e)=> {
 
 
     <br><br><br>
-    {%if q%}
+    {%if search_query%}
     {% if Products|length > 0%}
-    <h3 class = "my-4 border-bottom pb-1"><span class = "text-muted">Search results for</span> "{{request.GET.q}}"</h3>
+    <h3 class = "my-4 border-bottom pb-1"><span class = "text-muted">Search results for</span> "{{research_queryuest.GET.search_query}}"</h3>
     
     {% else %}
-      <h3 class = "my-4 border-bottom pb-1"><span class = "text-muted">No results for</span> "{{request.GET.q}}"</h3>
+      <h3 class = "my-4 border-bottom pb-1"><span class = "text-muted">No results for</span> "{{research_queryuest.GET.search_query}}"</h3>
     {%endif%}
     {%endif%}
     <div class="products" style="display:flex;flex-wrap:wrap;justify-content:space-between;" id="products_id">
@@ -80,7 +80,7 @@ input.addEventListener('keyup', (e)=> {
       <div class="card" style="width: 18rem;">
         <img class="card-img-top" src="{{ product.image.url}}" alt="Card image cap">
         <div class="card-body">
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+          <p class="card-text">Some search_queryuick example text to build on the card title and make up the bulk of the card's
             content.</p>
           <hr>
           <button class="btn btn-outline-dark" style="cursor: default;background:transparent">$ {{ product.price }}</button>
@@ -93,22 +93,22 @@ input.addEventListener('keyup', (e)=> {
 <div class="container paginator">
     <div class="pagination p1">
       <ul>
-        {% if q %}
+        {% if search_query %}
         {%if Products.has_previous%}
-        <a href="?q={{q}}&page={{ Products.previous_page_number }}"|urlencoding><li>Previous</li></a>
+        <a href="?search_query={{search_query}}&page={{ Products.previous_page_number }}"|urlencoding><li>Previous</li></a>
         {%endif%}
         {% with ''|center:Products.paginator.num_pages as range %}
         {% for i in range %}
         {% if forloop.counter == Products.number %}
-             <a class="is-active" href="?q={{q}}&page={{ forloop.counter }}"|urlencoding><li>{{ forloop.counter }}</li></a>
+             <a class="is-active" href="?search_query={{search_query}}&page={{ forloop.counter }}"|urlencoding><li>{{ forloop.counter }}</li></a>
         {%else%}
-        <a href="?q={{q}}&page={{ forloop.counter }}"><li>{{ forloop.counter }}</li></a>
+        <a href="?search_query={{search_query}}&page={{ forloop.counter }}"><li>{{ forloop.counter }}</li></a>
         {%endif%}
 
         {% endfor %}
         {% endwith %}
         {%if Products.has_next%}
-        <a href="?q={{q}}&page={{ Products.next_page_number }}"|urlencoding><li>Next</li></a>
+        <a href="?search_query={{search_query}}&page={{ Products.next_page_number }}"|urlencoding><li>Next</li></a>
         
         {%endif%}
         
@@ -153,7 +153,7 @@ a {
   font-size: 15px;
 }
 
-/* GRID */
+/* GRID*/
 
 
 .one {

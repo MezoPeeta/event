@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
 from .models import Products, Order, OrderItem, Customer, ShippingAddress
 import datetime
-from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.utils.datastructures import MultiValueDictKeyError
 
 
 def store(request):
@@ -26,11 +26,11 @@ class ProductListView(ListView):
 
     def get_context_data(self, **kwargs):
         try:
-            q = self.request.GET["q"]
-        except:
-            q = False
-        if q:
-            products = Products.objects.filter(name__icontains=q).order_by("-id")
+            search_query = self.request.GET["search_query"]
+        except MultiValueDictKeyError:
+            search_query = False
+        if search_query:
+            products = Products.objects.filter(name__icontains=search_query).order_by("-id")
         else:
             products = Products.objects.all()
         context = super(ProductListView, self).get_context_data(**kwargs)
@@ -45,7 +45,7 @@ class ProductListView(ListView):
         context = {
             "Products": products_list,
             "title": "Store",
-            "q": q,
+            "search_query": search_query,
         }
         return context
 
@@ -67,13 +67,13 @@ def products(request, pk):
         product = Products.objects.get(id=pk)
         try:
             customer = request.user.customer
-        except Customer.DoesNotExist:
+        except (Customer.DoesNotExist, AttributeError):
             device = request.COOKIES["device"]
             customer, _ = Customer.objects.get_or_create(device=device)
         order, _ = Order.objects.get_or_create(customer=customer, complete=False)
-        orderItem, _ = OrderItem.objects.get_or_create(order=order, product=product)
-        orderItem.quantity = request.POST["quantity"]
-        orderItem.save()
+        order_item, _ = OrderItem.objects.get_or_create(order=order, product=product)
+        order_item.quantity = request.POST["quantity"]
+        order_item.save()
 
         return redirect("Cart")
 
@@ -138,20 +138,20 @@ def checkout(request):
         product_image = order_product.image
         order_price = order_product.price
         order_date = order.date_ordered
-        current_time = datetime.datetime.now()
-        subject = "Purchase Confirmation"
-        message = render_to_string(
-            "products/purchase.html",
-            {
-                "name": name,
-                "total": total,
-                "quantity": order_quantity,
-                "product_name": product_name,
-                "order_price": order_price,
-                "product_image": product_image,
-                "order_date": order_date,
-            },
-        )
+        # current_time = datetime.datetime.now()
+        # subject = "Purchase Confirmation"
+        # message = render_to_string(
+        #     "products/purchase.html",
+        #     {
+        #         "name": name,
+        #         "total": total,
+        #         "quantity": order_quantity,
+        #         "product_name": product_name,
+        #         "order_price": order_price,
+        #         "product_image": product_image,
+        #         "order_date": order_date,
+        #     },
+        # )
         # confirmation_purchase = EmailMessage(subject , message , to=[email])
         # confirmation_purchase.content_subtype = 'html'
         # confirmation_purchase.send()
