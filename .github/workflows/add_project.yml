@@ -13,7 +13,7 @@ jobs:
       - uses: actions/add-to-project@RELEASE_VERSION
         with:
           # You can target a repository in a different organization
-          # to the issue
+          # to the issu
           project-url: https://github.com/users/MezoPeeta/projects/10/
           github-token: ${{ secrets.GITHUB_TOKEN }}
           labeled: bug, needs-triage
