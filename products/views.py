@@ -84,7 +84,7 @@ def products(request, pk):
 def cart(request):
     try:
         customer = request.user.customer
-    except:
+    except AttributeError:
         device = request.COOKIES["device"]
         customer, _ = Customer.objects.get_or_create(device=device)
 
