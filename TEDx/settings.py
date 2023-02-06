@@ -165,6 +165,7 @@ PIPELINE = {
                 "base/css/speakers.css",
                 "base/css/404.css",
                 "base/css/animate.css",
+                "base/css/store.css"
             ),
             "output_filename": "base/css/app.css",
         },
