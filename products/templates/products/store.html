@@ -4,6 +4,9 @@
 {% load i18n %}
 {% load bgcolor %}
 
+
+
+
 <div class="hero-wrap js-fullheight">
   <div class="overlay"></div>
   <div id="particles-js"></div>
@@ -17,18 +20,21 @@
     </div>
   </div>
 </div>
-
+        
 <section class="ftco-section bg-light ftco-animate">
   <div class="container">
     <a href="{% url 'Cart' %}"><i class="fa fa-shopping-cart"
         style="font-size: 30px;color: black; float: right;"></i></a>
-
-    <!-- <div class="input-group">
-      <input type="search" class="form-control" placeholder="Search" id="search_box" />
-    </div> -->
-    {%comment%}
-
-<!-- <script>
+    <form action = "/en/store/">
+     <div class="input-group">
+      <input name = "search_query" type="search" class="form-control" placeholder="Search For Item" id="search_box" style="font-family:sans-serif;"/>
+      <div class = "input-group-append">
+      <button type="submit" class="btn btn-danger" id="search-bar">Search</button>
+      </div>
+    </div>
+    </form>
+     
+<!--<script>
 {% for product in Products %}
   var data = '{{Products}}';
   data.trim()
@@ -51,10 +57,21 @@ input.addEventListener('keyup', (e)=> {
 );
 
 </script> -->
-{%endcomment%}
+
+
 
     <br><br><br>
+    {%if search_query%}
+    {% if Products|length > 0%}
+    <h3 class = "my-4 border-bottom pb-1"><span class = "text-muted">Search results for</span> "{{request.GET.search_query}}"</h3>
+    
+    {% else %}
+      <h3 class = "my-4 border-bottom pb-1"><span class = "text-muted">No results for</span> "{{request.GET.search_query}}"</h3>
+    {%endif%}
+    {%endif%}
     <div class="products" style="display:flex;flex-wrap:wrap;justify-content:space-between;" id="products_id">
+    
+    
       {% for product in Products %}
       <div class="card" style="width: 18rem;">
         <img class="card-img-top" src="{{ product.image.url}}" alt="Card image cap">
@@ -66,9 +83,59 @@ input.addEventListener('keyup', (e)=> {
           <a class="btn btn-outline-danger"  href="{% url 'Products' product.id %}">View Product</a>
         </div>
       </div>
+      
       {% endfor %}
+    
+<div class="container paginator">
+    <div class="pagination p1">
+      <ul>
+        {% if search_query %}
+        {%if Products.has_previous%}
+        <a href="?search_query={{search_query}}&page={{ Products.previous_page_number }}"|urlencoding><li>Previous</li></a>
+        {%endif%}
+        {% with ''|center:Products.paginator.num_pages as range %}
+        {% for i in range %}
+        {% if forloop.counter == Products.number %}
+             <a class="is-active" href="?search_query={{search_query}}&page={{ forloop.counter }}"|urlencoding><li>{{ forloop.counter }}</li></a>
+        {%else%}
+        <a href="?search_query={{search_query}}&page={{ forloop.counter }}"><li>{{ forloop.counter }}</li></a>
+        {%endif%}
 
+        {% endfor %}
+        {% endwith %}
+        {%if Products.has_next%}
+        <a href="?search_query={{search_query}}&page={{ Products.next_page_number }}"|urlencoding><li>Next</li></a>
+        
+        {%endif%}
+        
+        
+        
+        {%else%}
+        {%if Products.has_previous%}
+        <a href="?page={{ Products.previous_page_number }}"><li>Previous</li></a>
+        {%endif%}
+        {% with ''|center:Products.paginator.num_pages as range %}
+        {% for i in range %}
+        {% if forloop.counter == Products.number %}
+             <a class="is-active" href="?page={{ forloop.counter }}"><li>{{ forloop.counter }}</li></a>
+        {%else%}
+        <a href="?page={{ forloop.counter }}"><li>{{ forloop.counter }}</li></a>
+        {%endif%}
+
+        {% endfor %}
+        {% endwith %}
+        {%if Products.has_next%}
+        <a href="?page={{ Products.next_page_number }}"><li>Next</li></a>
+        
+        {%endif%}
+        {%endif%}
+      </ul>
     </div>
 </section>
 
-{% endblock content%}
+
+
+
+
+
+{% endblock content%}}

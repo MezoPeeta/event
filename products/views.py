@@ -1,16 +1,18 @@
 from django.shortcuts import render, redirect
-from .models import Products, Order, OrderItem, Customer ,ShippingAddress
+from .models import Products, Order, OrderItem, Customer, ShippingAddress
 import datetime
-from django.core.mail import EmailMessage
-from django.template.loader import render_to_string
+# from django.template.loader import render_to_string
 from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.utils.datastructures import MultiValueDictKeyError
 
 
 def store(request):
+    products = Products.objects.all()
     context = {
-        "Products": Products.objects.all().iterator(),
+        "Products": products,
         "title": "Store",
     }
     return render(request, "products/store.html", context)
@@ -19,14 +21,39 @@ def store(request):
 class ProductListView(ListView):
     model = Products
     template_name = "products/store.html"
-    context_object_name = "Products"
     ordering = ["-created_at"]
+    paginate_by = 9
+
+    def get_context_data(self, **kwargs):
+        try:
+            search_query = self.request.GET["search_query"]
+        except MultiValueDictKeyError:
+            search_query = False
+        if search_query:
+            products = Products.objects.filter(name__icontains=search_query).order_by("-id")
+        else:
+            products = Products.objects.all()
+        context = super().get_context_data(**kwargs)
+        paginator = Paginator(products, self.paginate_by)
+        page = self.request.GET.get("page")
+        try:
+            products_list = paginator.page(page)
+        except PageNotAnInteger:
+            products_list = paginator.page(1)
+        except EmptyPage:
+            products_list = paginator.page(paginator.num_pages)
+        context = {
+            "Products": products_list,
+            "title": "Store",
+            "search_query": search_query,
+        }
+        return context
 
 
 class ProductsCreateView(LoginRequiredMixin, CreateView):
     model = Products
     template_name = "dashboard/PR/new_products.html"
-    fields = ["name", "image", "price"]
+    fields = ["image", "price","name"]
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -44,9 +71,7 @@ def products(request, pk):
             device = request.COOKIES["device"]
             customer, _ = Customer.objects.get_or_create(device=device)
         order, _ = Order.objects.get_or_create(customer=customer, complete=False)
-        order_item, _ = OrderItem.objects.get_or_create(
-            order=order, product=product
-        )
+        order_item, _ = OrderItem.objects.get_or_create(order=order, product=product)
         order_item.quantity = request.POST["quantity"]
         order_item.save()
 
@@ -106,28 +131,30 @@ def checkout(request):
             zipcode=zipcode,
         )
 
-        order_product = OrderItem.objects.get(order=order).product
-        order_quantity = OrderItem.objects.get(order=order).quantity
-        product_name = order_product.name
-        product_image = order_product.image
-        order_price = order_product.price
-        order_date = order.date_ordered
-        subject = "Purchase Confirmation"
-        message = render_to_string(
-            "products/purchase.html",
-            {
-                "name": name,
-                "total": total,
-                "quantity": order_quantity,
-                "product_name": product_name,
-                "order_price": order_price,
-                "product_image": product_image,
-                "order_date": order_date,
-            },
-        )
-        confirmation_purchase = EmailMessage(subject , message , to=[email])
-        confirmation_purchase.content_subtype = 'html'
-        confirmation_purchase.send()
+        # SEND EMAIIIl
+        # order_product = OrderItem.objects.get(order=order).product
+        # order_quantity = OrderItem.objects.get(order=order).quantity
+        # product_name = order_product.name
+        # product_image = order_product.image
+        # order_price = order_product.price
+        # order_date = order.date_ordered
+        # current_time = datetime.datetime.now()
+        # subject = "Purchase Confirmation"
+        # message = render_to_string(
+        #     "products/purchase.html",
+        #     {
+        #         "name": name,
+        #         "total": total,
+        #         "quantity": order_quantity,
+        #         "product_name": product_name,
+        #         "order_price": order_price,
+        #         "product_image": product_image,
+        #         "order_date": order_date,
+        #     },
+        # )
+        # confirmation_purchase = EmailMessage(subject , message , to=[email])
+        # confirmation_purchase.content_subtype = 'html'
+        # confirmation_purchase.send()
 
         return redirect("Store")
 
