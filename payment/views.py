@@ -26,8 +26,8 @@ def complete_order(request):
 
             form_email = form.cleaned_data.get("email")
 
-            qrcode = QrCode.objects.get(name=form_name)
-            image_link = request.build_absolute_uri(qrcode.qr_code.url)
+            # qrcode = QrCode.objects.get(name=form_name)
+            # image_link = request.build_absolute_uri(qrcode.qr_code.url)
 
             subject = "Ticket"
             message = render_to_string(
@@ -35,7 +35,7 @@ def complete_order(request):
                 {
                     "name": form_name,
                     "email": form_email,
-                    "image": image_link,
+                    # "image": image_link,
                 },
             )
             send_ticket = EmailMessage(subject, message, to=[form_email])

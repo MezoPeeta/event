@@ -12,5 +12,5 @@ class TicketForm(forms.ModelForm):
 class TicketRecievedForm(forms.ModelForm):
     class Meta:
         model = TicketRecieved
-        fields = ['name','email','code']
+        fields = ['name','email']
     

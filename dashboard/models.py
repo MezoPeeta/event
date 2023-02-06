@@ -11,7 +11,7 @@ class Report(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-
+    
     def get_absolute_url(self):
         return reverse('Reports_Detail',kwargs={'pk':self.pk})
 
