@@ -337,14 +337,6 @@ python-versions = "*"
 python-fsutil = ">=0.6.0"
 
 [[package]]
-name = "django-pipeline"
-version = "2.0.9"
-description = "Pipeline is an asset packaging library for Django."
-category = "main"
-optional = false
-python-versions = "*"
-
-[[package]]
 name = "django-pwa"
 version = "1.1.0"
 description = "A Django app to include a manifest.json and Service Worker instance to enable progressive web app behavior"
@@ -1140,6 +1132,17 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "whitenoise"
+version = "6.3.0"
+description = "Radically simplified static file serving for WSGI applications"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.extras]
+brotli = ["Brotli"]
+
+[[package]]
 name = "wrapt"
 version = "1.14.1"
 description = "Module for decorators, wrappers and monkey patching."
@@ -1180,7 +1183,7 @@ svglib = ">=1.2.1"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.11"
-content-hash = "f37865d33d83f679d871a3bdd8819ec02028a29005aca31807a18b40b55aa8eb"
+content-hash = "7e2417dbf4c72e0bb01d2d34d39df793aa87ea6510efdfbb35ce5893ad79717e"
 
 [metadata.files]
 arabic-reshaper = [
@@ -1575,10 +1578,6 @@ django-maintenance-mode = [
     {file = "django-maintenance-mode-0.16.3.tar.gz", hash = "sha256:f9a702e333aa48bf9366af7b412ad15790ecf1e6c3892fd991b7c02b6bcedaa4"},
     {file = "django_maintenance_mode-0.16.3-py3-none-any.whl", hash = "sha256:adacbfdce4b467390ca98bc975fe5957b1f9984317c7da434b9c07c8ff086f99"},
 ]
-django-pipeline = [
-    {file = "django-pipeline-2.0.9.tar.gz", hash = "sha256:deb278d151c6cc8de3d3eec5e70d8a21527000dd58b616215deba2fa9a51c7e2"},
-    {file = "django_pipeline-2.0.9-py3-none-any.whl", hash = "sha256:b0f2748d43e4e773033f563ac0e8c3b2d47b88320abf726eb83e35a7172bf83a"},
-]
 django-pwa = [
     {file = "django-pwa-1.1.0.tar.gz", hash = "sha256:9cf8e5ac02ee462dd7c2c4309ee2cb0066334f9963dcadd053bd3805792bac29"},
     {file = "django_pwa-1.1.0-py3-none-any.whl", hash = "sha256:92ab82211eb3c79dfb3fc1f40cdf2727503199ec5c4bf21e7fbf8c0dd1daeaa0"},
@@ -1932,6 +1931,13 @@ pillow = [
     {file = "Pillow-9.4.0-1-cp39-cp39-macosx_10_10_x86_64.whl", hash = "sha256:b8c2f6eb0df979ee99433d8b3f6d193d9590f735cf12274c108bd954e30ca858"},
     {file = "Pillow-9.4.0-1-pp38-pypy38_pp73-macosx_10_10_x86_64.whl", hash = "sha256:b70756ec9417c34e097f987b4d8c510975216ad26ba6e57ccb53bc758f490dab"},
     {file = "Pillow-9.4.0-1-pp39-pypy39_pp73-macosx_10_10_x86_64.whl", hash = "sha256:43521ce2c4b865d385e78579a082b6ad1166ebed2b1a2293c3be1d68dd7ca3b9"},
+    {file = "Pillow-9.4.0-2-cp310-cp310-macosx_10_10_x86_64.whl", hash = "sha256:9d9a62576b68cd90f7075876f4e8444487db5eeea0e4df3ba298ee38a8d067b0"},
+    {file = "Pillow-9.4.0-2-cp311-cp311-macosx_10_10_x86_64.whl", hash = "sha256:87708d78a14d56a990fbf4f9cb350b7d89ee8988705e58e39bdf4d82c149210f"},
+    {file = "Pillow-9.4.0-2-cp37-cp37m-macosx_10_10_x86_64.whl", hash = "sha256:8a2b5874d17e72dfb80d917213abd55d7e1ed2479f38f001f264f7ce7bae757c"},
+    {file = "Pillow-9.4.0-2-cp38-cp38-macosx_10_10_x86_64.whl", hash = "sha256:83125753a60cfc8c412de5896d10a0a405e0bd88d0470ad82e0869ddf0cb3848"},
+    {file = "Pillow-9.4.0-2-cp39-cp39-macosx_10_10_x86_64.whl", hash = "sha256:9e5f94742033898bfe84c93c831a6f552bb629448d4072dd312306bab3bd96f1"},
+    {file = "Pillow-9.4.0-2-pp38-pypy38_pp73-macosx_10_10_x86_64.whl", hash = "sha256:013016af6b3a12a2f40b704677f8b51f72cb007dac785a9933d5c86a72a7fe33"},
+    {file = "Pillow-9.4.0-2-pp39-pypy39_pp73-macosx_10_10_x86_64.whl", hash = "sha256:99d92d148dd03fd19d16175b6d355cc1b01faf80dae93c6c3eb4163709edc0a9"},
     {file = "Pillow-9.4.0-cp310-cp310-macosx_10_10_x86_64.whl", hash = "sha256:2968c58feca624bb6c8502f9564dd187d0e1389964898f5e9e1fbc8533169157"},
     {file = "Pillow-9.4.0-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:c5c1362c14aee73f50143d74389b2c158707b4abce2cb055b7ad37ce60738d47"},
     {file = "Pillow-9.4.0-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:bd752c5ff1b4a870b7661234694f24b1d2b9076b8bf337321a814c612665f343"},
@@ -2250,6 +2256,10 @@ webdriver-manager = [
 webencodings = [
     {file = "webencodings-0.5.1-py2.py3-none-any.whl", hash = "sha256:a0af1213f3c2226497a97e2b3aa01a7e4bee4f403f95be16fc9acd2947514a78"},
     {file = "webencodings-0.5.1.tar.gz", hash = "sha256:b36a1c245f2d304965eb4e0a82848379241dc04b865afcc4aab16748587e1923"},
+]
+whitenoise = [
+    {file = "whitenoise-6.3.0-py3-none-any.whl", hash = "sha256:cf8ecf56d86ba1c734fdb5ef6127312e39e92ad5947fef9033dc9e43ba2777d9"},
+    {file = "whitenoise-6.3.0.tar.gz", hash = "sha256:fe0af31504ab08faa1ec7fc02845432096e40cc1b27e6a7747263d7b30fb51fa"},
 ]
 wrapt = [
     {file = "wrapt-1.14.1-cp27-cp27m-macosx_10_9_x86_64.whl", hash = "sha256:1b376b3f4896e7930f1f772ac4b064ac12598d1c38d04907e696cc4d794b43d3"},
