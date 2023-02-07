@@ -9,7 +9,7 @@ register = template.Library()
 def color():
 
     try:
-        color = Design.objects.only("color").get(pk=1).color
+        color = Design.objects.filter(pk=1).first().color
     except:
         color = "#FF2A2A"
     return color
@@ -18,7 +18,7 @@ def color():
 @register.simple_tag
 def font_color():
     try:
-        font_color = Design.objects.only("font_color").get(pk=1).font_color
+        font_color = Design.objects.filter(pk=1).first().font_color
     except:
         font_color = "#ffffff"
     return font_color

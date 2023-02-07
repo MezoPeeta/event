@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "z#j+0d9jx0yme*if+&7htan5@u-2o=ln+x^x%0uv=ypg@jb8jz"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -151,6 +151,7 @@ STATICFILES_STORAGE = "pipeline.storage.PipelineStorage"
 
 PIPELINE_ENABLED = True
 
+
 PIPELINE = {
     "STYLESHEETS": {
         "main": {
@@ -165,7 +166,6 @@ PIPELINE = {
                 "base/css/speakers.css",
                 "base/css/404.css",
                 "base/css/animate.css",
-                "base/css/store.css"
             ),
             "output_filename": "base/css/app.css",
         },
@@ -189,6 +189,8 @@ PIPELINE = {
 
 PIPELINE["CSS_COMPRESSOR"] = "pipeline.compressors.yuglify.YuglifyCompressor"
 PIPELINE["JS_COMPRESSOR"] = "pipeline.compressors.yuglify.YuglifyCompressor"
+PIPELINE['USE_SHELL'] = True
+PIPELINE['YUGLIFY_BINARY'] = 'yuglify'
 
 
 MEDIA_URL = "/media/"
