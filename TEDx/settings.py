@@ -21,9 +21,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "z#j+0d9jx0yme*if+&7htan5@u-2o=ln+x^x%0uv=ypg@jb8jz"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     "colorfield",
     "debug_toolbar",
     "pwa",
-    "pipeline",
 ]
 
 MIDDLEWARE = [
@@ -63,7 +62,6 @@ MIDDLEWARE = [
     "htmlmin.middleware.HtmlMinifyMiddleware",
     "htmlmin.middleware.MarkRequestMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
-
 ]
 
 ROOT_URLCONF = "TEDx.urls"
@@ -148,55 +146,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
-STATICFILES_STORAGE="whitenoise.storage.CompressedManifestStaticFilesStorage"
-
-
-PIPELINE_ENABLED = True
-
-
-PIPELINE = {
-    "STYLESHEETS": {
-        "main": {
-            "source_filenames": (
-                "base/css/style.css",
-                "base/css/design.css",
-                "base/css/main.css",
-                "base/css/checkout.css",
-                "base/css/register.css",
-                "base/css/icomoon.css",
-                "base/css/register.css",
-                "base/css/speakers.css",
-                "base/css/404.css",
-                "base/css/animate.css",
-            ),
-            "output_filename": "base/css/app.css",
-        },
-    },
-    "JAVASCRIPT": {
-        "main": {
-            "source_filenames": (
-                "base/js/main.js",
-                "base/js/register.js",
-                "base/js/checkout.js",
-                "base/js/navbar.js",
-            ),
-            "output_filename": "base/js/app.js",
-            "extra_context": {
-                "async": True,
-            },
-        },
-    },
-}
-
-
-PIPELINE["CSS_COMPRESSOR"] = "pipeline.compressors.yuglify.YuglifyCompressor"
-PIPELINE["JS_COMPRESSOR"] = "pipeline.compressors.yuglify.YuglifyCompressor"
-PIPELINE['USE_SHELL'] = True
-PIPELINE['YUGLIFY_BINARY'] = 'yuglify'
-
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = "/media/"
-
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
@@ -238,22 +190,6 @@ INTERNAL_IPS = ["127.0.0.1"]
 
 mimetypes.add_type("application/javascript", ".js", True)
 
-if not DEBUG:
-    SECURE_SSL_REDIRECT = True
-
-    SECURE_HSTS_SECONDS = 3600
-
-    SESSION_COOKIE_SECURE = True
-
-    CSRF_COOKIE_SECURE = True
-
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-
-    SECURE_HSTS_PRELOAD = True
-
-    SECURE_CONTENT_TYPE_NOSNIFF = True
-
-    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 
 # PWA
@@ -280,8 +216,24 @@ PWA_APP_SPLASH_SCREEN = [
 PWA_APP_DIR = "ltr"
 PWA_APP_LANG = "en-US"
 
-
 # HTMLMIN
 HTML_MINIFY = True
 
 EXCLUDE_FROM_MINIFYING = "^us/"
+
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+
+    SECURE_HSTS_SECONDS = 3600
+
+    SESSION_COOKIE_SECURE = True
+
+    CSRF_COOKIE_SECURE = True
+
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
+    SECURE_HSTS_PRELOAD = True
+
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")

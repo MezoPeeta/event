@@ -28,7 +28,8 @@
 
       <div class="col-md-3 mb-3">
         <a href="#" class="featured-img">
-          <img src="/static/base/img/ted.png" class="img-fluid" alt="" loading="lazy">
+          
+          <img src="{% static 'base/img/ted.png' %}" class="img-fluid" alt="" loading="lazy">
           
         </a>
       </div>
@@ -39,14 +40,15 @@
             <div class="row no-gutters d-flex align-items-end">
 
               <div class="col-md-8">
-                <a href="#" class="featured-img">             
-                  <img src="/static/base/img//us.jpg" class="img-fluid" alt="" loading="lazy">       
+                <a href="#" class="featured-img"> 
+                              
+                  <img src="{% static 'base/img/us.jpg' %}" class="img-fluid" alt="" loading="lazy">       
                 </a>
               </div>
 
               <div class="col-md-4">
-                <a href="#" class="featured-img">   
-                  <img src="/static/base/img/logo.jpg" class="img-fluid" alt="" loading="lazy">                
+                <a href="#" class="featured-img">  
+                  <img src="{% static 'base/img/logo.jpg' %}" class="img-fluid" alt="" loading="lazy">                
                 </a>
               </div>
               
@@ -57,13 +59,13 @@
             <div class="row no-gutters d-flex align-items-start">
               <div class="col-md-8">
                 <a href="#" class="featured-img">
-                  <img src="/static/base/img/eunoia.jpg" class="img-fluid" alt="" loading="lazy">                        
+                  <img src="{% static 'base/img/eunoia.jpg' %}" class="img-fluid" alt="" loading="lazy">                        
                 </a>
               </div>
               <div class="col-md-4">
                 <a href="{% url 'About' %}#Team" class="featured-img">
-  
-                  <img src="/static/base/img/mrs_maryam.jpg" class="img-fluid" alt="" loading="lazy"> 
+
+                  <img src="{% static 'base/img/mrs_maryam.jpg' %}" class="img-fluid" alt="" loading="lazy"> 
                 </a>
               </div>
             </div>
@@ -73,7 +75,7 @@
 
       <div class="col-md-3">
         <a href="#" class="featured-img">
-          <img src=" /static/base/img/mrs_asmaa.jpeg" class="img-fluid" alt="" loading="lazy">
+          <img src="{% static 'base/img/mrs_asmaa.jpeg' %}" class="img-fluid" alt="" loading="lazy">
         </a>
       </div>
 
@@ -107,7 +109,7 @@
 </div>
 
 
-<section class="ftco-section bg-light">
+{% comment %} <section class="ftco-section bg-light">
   <div class="container">
     <div class="row justify-content-center mb-5 pb-5">
       <div class="col-md-7 text-center heading-section ftco-animate">
@@ -160,7 +162,7 @@
 </div>
     </div>
   </div>
-</section>
+</section> {% endcomment %}
 
 <section class="ftco-section-parallax">
   <div class="parallax-img d-flex align-items-center">

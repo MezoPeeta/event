@@ -337,14 +337,6 @@ python-versions = "*"
 python-fsutil = ">=0.6.0"
 
 [[package]]
-name = "django-pipeline"
-version = "2.0.9"
-description = "Pipeline is an asset packaging library for Django."
-category = "main"
-optional = false
-python-versions = "*"
-
-[[package]]
 name = "django-pwa"
 version = "1.1.0"
 description = "A Django app to include a manifest.json and Service Worker instance to enable progressive web app behavior"
@@ -1191,7 +1183,7 @@ svglib = ">=1.2.1"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.11"
-content-hash = "9bbed40edb75dfc2e9e5b724f4ab303de879914dd3b35bc4c37e7f04736dc18e"
+content-hash = "7e2417dbf4c72e0bb01d2d34d39df793aa87ea6510efdfbb35ce5893ad79717e"
 
 [metadata.files]
 arabic-reshaper = [
@@ -1585,10 +1577,6 @@ django-js-asset = [
 django-maintenance-mode = [
     {file = "django-maintenance-mode-0.16.3.tar.gz", hash = "sha256:f9a702e333aa48bf9366af7b412ad15790ecf1e6c3892fd991b7c02b6bcedaa4"},
     {file = "django_maintenance_mode-0.16.3-py3-none-any.whl", hash = "sha256:adacbfdce4b467390ca98bc975fe5957b1f9984317c7da434b9c07c8ff086f99"},
-]
-django-pipeline = [
-    {file = "django-pipeline-2.0.9.tar.gz", hash = "sha256:deb278d151c6cc8de3d3eec5e70d8a21527000dd58b616215deba2fa9a51c7e2"},
-    {file = "django_pipeline-2.0.9-py3-none-any.whl", hash = "sha256:b0f2748d43e4e773033f563ac0e8c3b2d47b88320abf726eb83e35a7172bf83a"},
 ]
 django-pwa = [
     {file = "django-pwa-1.1.0.tar.gz", hash = "sha256:9cf8e5ac02ee462dd7c2c4309ee2cb0066334f9963dcadd053bd3805792bac29"},
