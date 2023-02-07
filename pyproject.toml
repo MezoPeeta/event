@@ -33,6 +33,7 @@ django-htmlmin = "^0.11.0"
 django-pipeline = "^2.0.9"
 uvicorn = "^0.20.0"
 gunicorn = "^20.1.0"
+whitenoise = "^6.3.0"
 
 
 [tool.poetry.group.dev.dependencies]
