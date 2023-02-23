@@ -1,0 +1,28 @@
+#dark-mode-toggle {
+  border: none;
+  color: white;
+  display: inline-block;
+  max-width: 5%;
+  
+}
+  
+  :root {
+    --clr-light: #ffffff;
+    --clr-dark: #00332a;
+    --clr-primary: #dbffa2;
+    --clr-secondary: #c3fcf2;
+    --clr-accent: #ff7750;
+    --foreground: var(--clr-dark);
+    --background: var(--clr-light);
+    --ff-title: "Playfair Display",
+    --ff-body: "Assistant", sans-serif
+    }
+    .darkmode {
+    --clr-light: #ffffff;
+    --clr-dark: #000000;
+    --clr-primary: #ff0015;
+    --clr-secondary: #ffffff;
+    --clr-accent: #ff7750;
+    --foreground: var(--clr-light);
+    --background: var(--clr-dark);
+    }
