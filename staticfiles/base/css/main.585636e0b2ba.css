@@ -1,6 +1,7 @@
 @font-face{
   font-family: "Helvetica";
   src: url("/static/base/fonts/HelveticaNeueLTPro-MdCn.e5ef1fe8983f.otf");
+  font-display: swap;
 }
 * {
 	margin: 0px; 

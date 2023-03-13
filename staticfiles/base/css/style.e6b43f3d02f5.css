@@ -3,6 +3,7 @@
  @font-face{
   font-family: "Helvetica";
   src: url("/static/base/fonts/HelveticaNeueLTPro-MdCn.e5ef1fe8983f.otf");
+  font-display: swap;
 }
 
 [tabindex="-1"]:focus {
@@ -7206,7 +7207,6 @@ a.text-dark:hover, a.text-dark:focus {
     border: 1px solid #dee2e6 !important; } }
 
 body {
-  font-family: "Work Sans", Arial, sans-serif;
   font-size: 16px;
   line-height: 1.8;
   font-weight: 300;

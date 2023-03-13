@@ -23,7 +23,7 @@ SECRET_KEY = "z#j+0d9jx0yme*if+&7htan5@u-2o=ln+x^x%0uv=ypg@jb8jz"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "colorfield",
     "debug_toolbar",
     "pwa",
+    "silk",
 ]
 
 MIDDLEWARE = [
@@ -62,6 +63,7 @@ MIDDLEWARE = [
     "htmlmin.middleware.HtmlMinifyMiddleware",
     "htmlmin.middleware.MarkRequestMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
+    "silk.middleware.SilkyMiddleware",
 ]
 
 ROOT_URLCONF = "TEDx.urls"
@@ -94,6 +96,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
     }
+
 }
 
 
@@ -191,7 +194,6 @@ INTERNAL_IPS = ["127.0.0.1"]
 mimetypes.add_type("application/javascript", ".js", True)
 
 
-
 # PWA
 
 PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, "static/base/js", "serviceworker.js")
@@ -222,7 +224,7 @@ HTML_MINIFY = True
 EXCLUDE_FROM_MINIFYING = "^us/"
 
 if not DEBUG:
-    SECURE_SSL_REDIRECT = True
+    # SECURE_SSL_REDIRECT = True
 
     SECURE_HSTS_SECONDS = 3600
 
@@ -236,4 +238,4 @@ if not DEBUG:
 
     SECURE_CONTENT_TYPE_NOSNIFF = True
 
-    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+    # SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
