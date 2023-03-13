@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     "colorfield",
     "debug_toolbar",
     "pwa",
-    "silk",
 ]
 
 MIDDLEWARE = [
