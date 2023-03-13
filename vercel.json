@@ -1,0 +1,19 @@
+{
+    "builds": [
+      {
+        "src": "TEDx/wsgi.py",
+        "use": "@vercel/python",
+        "config": {"runtime": "python3.11" }
+      }
+    ],
+    "routes": [
+    {
+        "src": "/static/(.*)",
+        "dest": "/static/$1"
+    },
+      {
+        "src": "/(.*)",
+        "dest": "TEDx/wsgi.py"
+      }
+    ]
+  }
