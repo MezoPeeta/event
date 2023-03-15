@@ -5,7 +5,7 @@ from django.urls import reverse
 from ckeditor.fields import RichTextField
 
 class Videos(models.Model):
-    id = models.AutoField(primary_key=True,default=1)
+    id = models.AutoField(primary_key=True)
     urlID = models.CharField(max_length=300,null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=500, default='video')

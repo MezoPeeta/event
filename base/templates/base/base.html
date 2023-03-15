@@ -1,9 +1,10 @@
-{% load static %} {% load i18n %} {% load bgcolor %} {% load pwa %}
+{% load static %} {% load i18n %} {% load bgcolor %} 
+{% comment %} {% load pwa %} {% endcomment %}
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    {% progressive_web_app_meta %}
+    {% comment %} {% progressive_web_app_meta %} {% endcomment %}
     <meta charset="UTF-8" />
     {% if title %}
     <title>{{ title }}</title>
@@ -58,7 +59,7 @@
         color:white;
       }
     </style>
-
+    
     <nav>
       <div class="logo">
         <a href="{% url 'Home' %}">
@@ -70,6 +71,7 @@
         <div class="line"></div>
         <div class="line"></div>
       </div>
+      
       <ul class="nav-links">
         <li><a href="{% url 'Home' %}">Home</a></li>
         <li><a href="{% url 'About' %}">About</a></li>

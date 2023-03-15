@@ -71,9 +71,15 @@ def register(request):
 class UserProfile(DetailView):
     model = User
     template_name = "users/profile.html"
-    context_object_name = "user"
     slug_field = "username"
     slug_url_kwarg = "username"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user_id = User.objects.get(username=self.kwargs["username"]).id
+        context["user"] = User.objects.get(username=self.kwargs["username"])
+        context["committees"] = Profile.objects.get(user=user_id).committee.all()
+        return context
 
 
 class UpdateProfile(LoginRequiredMixin, UserPassesTestMixin, UpdateView):

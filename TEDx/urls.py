@@ -23,7 +23,7 @@ urlpatterns = [
     path("maintenance-mode/", include("maintenance_mode.urls")),
     path("i18n/", include("django.conf.urls.i18n")),
     path("us/", admin.site.urls, name="Admin_Dashboard"),
-    path('', include('pwa.urls'))
+    # path('', include('pwa.urls'))
 ]
 urlpatterns += i18n_patterns(
     path("", include("base.urls")),
@@ -31,13 +31,13 @@ urlpatterns += i18n_patterns(
     path("", include("products.urls")),
     path("", include("users.urls")),
     path("", include("dashboard.urls")),
+    prefix_default_language=False,
 )
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += [path(r"__debug__/", include('debug_toolbar.urls'))]
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
-
 
 
 handler404 = "base.views.error_404_view"

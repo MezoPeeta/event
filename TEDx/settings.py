@@ -23,7 +23,7 @@ SECRET_KEY = "z#j+0d9jx0yme*if+&7htan5@u-2o=ln+x^x%0uv=ypg@jb8jz"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -43,8 +43,6 @@ INSTALLED_APPS = [
     "dashboard",
     "ckeditor",
     "colorfield",
-    "debug_toolbar",
-    "pwa",
 ]
 
 MIDDLEWARE = [
@@ -58,8 +56,6 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "maintenance_mode.middleware.MaintenanceModeMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
-    "htmlmin.middleware.HtmlMinifyMiddleware",
-    "htmlmin.middleware.MarkRequestMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
@@ -93,7 +89,6 @@ DATABASES = {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
     }
-
 }
 
 
@@ -131,8 +126,7 @@ USE_L10N = True
 USE_TZ = True
 
 
-SITE_ROOT = os.path.dirname(os.path.realpath(__name__))
-LOCALE_PATHS = (os.path.join(SITE_ROOT, "locale"),)
+LOCALE_PATHS = (os.path.join(BASE_DIR, "locale"),)
 
 
 # Static files (CSS, JavaScript, Images)
@@ -186,53 +180,9 @@ MAINTENANCE_MODE_STATE_FILE_PATH = os.path.join(
 
 MAINTENANCE_MODE_TEMPLATE = os.path.join(BASE_DIR, "base/templates/base/503.html")
 
-INTERNAL_IPS = ["127.0.0.1"]
+# INTERNAL_IPS = ["127.0.0.1"]
 
-mimetypes.add_type("application/javascript", ".js", True)
+# mimetypes.add_type("application/javascript", ".js", True)
 
 
-# PWA
-
-PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, "static/base/js", "serviceworker.js")
-
-PWA_APP_NAME = "TEDx MFIS"
-PWA_APP_DESCRIPTION = "TEDxMFIS Pwa"
-PWA_APP_THEME_COLOR = "#0A0302"
-PWA_APP_BACKGROUND_COLOR = "#ffffff"
-PWA_APP_DISPLAY = "standalone"
-PWA_APP_SCOPE = "/"
-PWA_APP_ORIENTATION = "any"
-PWA_APP_START_URL = "/"
-PWA_APP_STATUS_BAR_COLOR = "default"
-PWA_APP_ICONS = [{"src": "/static/base/img/icon.png", "sizes": "160x160"}]
-PWA_APP_ICONS_APPLE = [{"src": "/static/base/img/icon.png", "sizes": "160x160"}]
-PWA_APP_SPLASH_SCREEN = [
-    {
-        "src": "/static/base/img/icon.png",
-        "media": "(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)",
-    }
-]
-PWA_APP_DIR = "ltr"
-PWA_APP_LANG = "en-US"
-
-# HTMLMIN
-HTML_MINIFY = True
-
-EXCLUDE_FROM_MINIFYING = "^us/"
-
-if not DEBUG:
-    # SECURE_SSL_REDIRECT = True
-
-    SECURE_HSTS_SECONDS = 3600
-
-    SESSION_COOKIE_SECURE = True
-
-    CSRF_COOKIE_SECURE = True
-
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-
-    SECURE_HSTS_PRELOAD = True
-
-    SECURE_CONTENT_TYPE_NOSNIFF = True
-
-    # SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+# # PWA
