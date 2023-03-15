@@ -46,4 +46,8 @@ class ProfileUpdateForm(forms.ModelForm):
             "achievement",
             "awards",
             "experience",
+
         ]
+        widgets = {
+            'committee': forms.CheckboxSelectMultiple(),
+        }

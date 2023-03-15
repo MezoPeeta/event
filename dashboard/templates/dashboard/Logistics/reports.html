@@ -3,9 +3,8 @@
 {% block content%}
 {% load i18n %}
 {% load crispy_forms_tags %}
-{% if request.user.profile.committee == "Logistics"%}
 
-<div class="container" style="padding: 2.5%;">
+<div class="container" style="padding-top: 10%;">
     <a  class="btn btn-outline-dark" href="{% url 'Dashboard' %}" style="font-family: inherit;">&#x2190; Dashboard</a>
 
     <h1>Reports</h1>
@@ -31,9 +30,4 @@
   </div>
 
 </div>
-{%else%}
-<div class="container" style="padding: 2.5%;">
-    <h1>Sorry you're not allowed </h1>
-</div>
-{% endif %}
 {% endblock content%}

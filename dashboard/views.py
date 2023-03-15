@@ -14,7 +14,7 @@ from django.views.generic import (
 from base.models import Contact, Subscribe, Videos
 from django.contrib.auth.mixins import LoginRequiredMixin
 from products.models import Products
-import pandas as pd
+# import pandas as pd
 from django.http import Http404
 from .forms import ContactForm, ReportForm, DesignForm, PaletteForm
 from django.http import JsonResponse
@@ -25,33 +25,40 @@ from django.template.loader import render_to_string
 from django.views.generic.edit import FormMixin
 from xhtml2pdf import pisa
 from django.template.loader import get_template
-from .utils import get_colors_in_hex
 from ast import literal_eval
 
 
 @login_required
 def dashboard(request):
-    committee = request.user.profile.committee
-    if committee != "IT":
-        template = f"dashboard/{committee}/dashboard.html"
-    else:
-        return redirect("/us/")
+    committees = request.user.profile.committee.all()
 
-    context = {
+    if committees.count() == 1:
+        committee = committees[0].name
+        template = f"dashboard/{committee}/dashboard.html"
+        context = {
         "title": f"{committee} | Dashboard",
     }
+        if committee == "Design":
+            context["form"] = DesignForm()
+            context["designs"] = Design.objects.get_or_create(
+                pk=1, defaults={"color": "#ff2a2a", "font_color": "#ffffff"}
+            )[0]
+            context["palette"] = PaletteForm()
+            context["colors"] = (
+                literal_eval(Design.objects.get(pk=1).generated_colors)
+                if Design.objects.get(pk=1).generated_colors
+                else []
+            )
+    else:
+        template = "dashboard/Logistics/dashboard.html"
+        context = {
+        "title": "Logistics | Dashboard",
+    }
+  
+    
+   
 
-    if committee == "Design":
-        context["form"] = DesignForm()
-        context["designs"] = Design.objects.get_or_create(
-            pk=1, defaults={"color": "#ff2a2a", "font_color": "#ffffff"}
-        )[0]
-        context["palette"] = PaletteForm()
-        context["colors"] = (
-            literal_eval(Design.objects.get(pk=1).generated_colors)
-            if Design.objects.get(pk=1).generated_colors
-            else []
-        )
+    
 
     return render(request, template, context)
 
@@ -64,32 +71,32 @@ class SubscribersListView(LoginRequiredMixin, ListView):
     paginate_by = 10
 
 
-@login_required
-def data_frame(request):
-    qs = Products.objects.prefetch_related("Products").values()
-    data = pd.DataFrame(qs)
-    context = {
-        "df": data.to_html(classes="products_table thead", index=False),
-    }
+# @login_required
+# def data_frame(request):
+#     qs = Products.objects.prefetch_related("Products").values()
+#     data = pd.DataFrame(qs)
+#     context = {
+#         "df": data.to_html(classes="products_table thead", index=False),
+#     }
 
-    return render(request, "dashboard/dataframes.html", context)
+#     return render(request, "dashboard/dataframes.html", context)
 
 
-@login_required
-def export_to_csv(request):
-    if request.method == "POST":
-        qs = Products.objects.all().values()
-        data = pd.DataFrame(qs)
+# @login_required
+# def export_to_csv(request):
+#     if request.method == "POST":
+#         qs = Products.objects.all().values()
+#         data = pd.DataFrame(qs)
 
-        response = HttpResponse(content_type="text/csv")
+#         response = HttpResponse(content_type="text/csv")
 
-        response["Content-Disposition"] = "attachment; filename=dataframe.csv"
+#         response["Content-Disposition"] = "attachment; filename=dataframe.csv"
 
-        data.to_csv(path_or_buf=response, float_format="%.2f", index=False, decimal=",")
-    else:
-        raise Http404()
+#         data.to_csv(path_or_buf=response, float_format="%.2f", index=False, decimal=",")
+#     else:
+#         raise Http404()
 
-    return response
+#     return response
 
 
 class ProductChartView(LoginRequiredMixin, TemplateView):
@@ -239,19 +246,19 @@ def change_background_color(request):
     return redirect("Dashboard")
 
 
-def get_colors_palette(request):
-    if request.method == "POST":
-        form = PaletteForm(request.POST, request.FILES)
-        if form.is_valid():
-            palette = request.FILES.get("palette")
-            design = Design.objects.get(id=1)
-            design.palette = palette
+# def get_colors_palette(request):
+#     if request.method == "POST":
+#         form = PaletteForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             palette = request.FILES.get("palette")
+#             design = Design.objects.get(id=1)
+#             design.palette = palette
 
-            colors = get_colors_in_hex(palette)
-            design.generated_colors = colors
-            design.save()
+#             colors = get_colors_in_hex(palette)
+#             design.generated_colors = colors
+#             design.save()
 
-    return redirect("Dashboard")
+#     return redirect("Dashboard")
 
 
 def change_font_color(request):

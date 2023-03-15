@@ -4,26 +4,22 @@ from django.urls import reverse
 from PIL import Image
 
 
+class Committee(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+
+
 class Profile(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(upload_to="profile_pics", blank=True, null=True)
 
-    bio = models.TextField(max_length=300,blank=True)
+    bio = models.TextField(max_length=300, blank=True)
 
-    Committees = (
-        ("IT", "IT"),
-        ("Design", "Design"),
-        ("PR", "PR"),
-        ("Logistics", "Logistics"),
-        ("HR", "HR"),
-        ("Marketing", "Marketing"),
-        ("Coaching", "Coaching"),
-        ("Media", "Media"),
-    )
-    committee = models.CharField(
-        choices=Committees, max_length=10, null=True, blank=True
-    )
+    committee = models.ManyToManyField(Committee, blank=True)
 
     position_list = (
         ("Member", "Member"),
@@ -40,7 +36,6 @@ class Profile(models.Model):
 
     achievement = models.TextField(max_length=300, blank=True)
 
-
     def __str__(self):
         return f"{self.user.username} Profile"
 
@@ -56,9 +51,8 @@ class Profile(models.Model):
                 new_img = (300, 300)
                 img.thumbnail(new_img)
                 img.save(f"{self.image.path}.jpg")
-        else :
+        else:
             super().save(*args, **kwargs)
-            
 
 
 class RegistrationCode(models.Model):
