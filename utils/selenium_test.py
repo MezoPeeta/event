@@ -17,7 +17,6 @@ class Browser(Enum):
 class TestUtils:        
         
 
-
     def get_default_browser(self):
         #pylint: disable=line-too-long
         """

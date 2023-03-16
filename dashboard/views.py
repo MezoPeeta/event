@@ -237,8 +237,15 @@ def change_background_color(request):
     if request.method == "POST":
         font_btn = request.POST.get("font_btn")
         color = request.POST.get("color")
+        reset_btn = request.POST.get("reset_btn")
 
         if font_btn:
+            Design.objects.filter(id=1).update(font_color=color)
+
+        elif reset_btn:
+            color = '#ff2a2a'
+            Design.objects.filter(id=1).update(color=color)
+            color = '#ffffff'
             Design.objects.filter(id=1).update(font_color=color)
 
         else:
@@ -261,8 +268,8 @@ def change_background_color(request):
 #     return redirect("Dashboard")
 
 
-def change_font_color(request):
-    if request.method == "POST":
-        color = request.POST.get("color")
-        Design.objects.filter(id=1).update(font_color=color)
-    return redirect("Dashboard")
+# def change_font_color(request):
+#     if request.method == "POST":
+#         color = request.POST.get("color")
+#         Design.objects.filter(id=1).update(font_color=color)
+#     return redirect("Dashboard")

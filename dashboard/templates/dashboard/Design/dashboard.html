@@ -36,6 +36,7 @@
 
           <div class="design_btns">
             <input
+              id="change_default"
               type="submit"
               value="Change Default Color"
               class="btn btn-dark"
@@ -44,11 +45,22 @@
             <br />
             <br />
             <input
+              id="change_default_font"
               type="submit"
               value="Change Font Color"
               class="btn btn-dark"
               style="background:{%color%};border-color:{%color%};color:{%font_color%}"
               name="font_btn"
+            />
+            <br />
+            <br />
+            <input
+              id="reset"
+              type="submit"
+              value="Reset All Colors"
+              class="btn btn-dark"
+              style="background:{%color%};border-color:{%color%};color:{%font_color%}"
+              name="reset_btn"
             />
           </div>
         </div>
@@ -118,11 +130,18 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
-
     <script>
+      function stopRKey(evt) {
+  var evt = (evt) ? evt : ((event) ? event : null);
+  var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null);
+  if ((evt.keyCode == 13) && (node.type=="text"))  {return false;}
+}
+      document.onkeypress = stopRKey;
+
       var colorPicker = new iro.ColorPicker(".colorPicker", {
         width: 280,
-        color: "#ff2a2a",
+        color: "{{designs.color}}",
+        // ff2a2a
         borderWidth: 1,
         borderColor: "#fff",
       });
