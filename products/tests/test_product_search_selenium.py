@@ -5,7 +5,6 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from products.models import Products
 from utils.selenium_test import TestUtils
-from time import sleep
 
 
 class Test_Searching(LiveServerTestCase, TestUtils):
@@ -16,8 +15,8 @@ class Test_Searching(LiveServerTestCase, TestUtils):
             name=self.product_name + "sadahkl", price=10
         )
         self.browser = self.init_selenium()
-        self.store = self.live_server_url + "/en/store/"
-        self.product_url = self.live_server_url + "/en/products/"
+        self.store = self.live_server_url + "/store/"
+        self.product_url = self.live_server_url + "/products/"
 
         self.browser.get(self.store)
 
@@ -25,7 +24,6 @@ class Test_Searching(LiveServerTestCase, TestUtils):
         element = WebDriverWait(self.browser, 10).until(
             EC.element_to_be_clickable((By.XPATH, '//*[@id="search_box"]'))
         )
-        sleep(10)
         self.search_bar = self.browser.find_element(By.XPATH, '//*[@id="search_box"]')
         self.search_bar.send_keys(self.product_name)
 
