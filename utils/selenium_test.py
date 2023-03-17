@@ -8,18 +8,16 @@ from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.core.utils import ChromeType
 from selenium.webdriver import ActionChains
 
-#pylint: disable=no-member
+# pylint: disable=no-member
+
 
 class Browser(Enum):
     CHROME, FIREFOX, EDGE, BRAVE = "chrome", "firefox", "edge", "brave"
 
 
-class TestUtils:        
-        
-
-
+class TestUtils:
     def get_default_browser(self):
-        #pylint: disable=line-too-long
+        # pylint: disable=line-too-long
         """
         Get the default browser on the system and return the browser name as a string
         (e.g. "chrome", "firefox", etc.)
@@ -36,7 +34,7 @@ class TestUtils:
         else:
             return "chrome"
 
-    def init_selenium(self, headless=True):
+    def init_selenium(self, headless=False):
         """
         Initialize selenium webdriver based on the default browser on the system
         and return the webdriver object
@@ -59,7 +57,9 @@ class TestUtils:
             options.add_argument("--window-size=1200,1200,--ignore-certificate-errors")
             options.headless = headless
             self.browser = webdriver.Chrome(
-                ChromeDriverManager(chrome_type=ChromeType.BRAVE,path=r"driver").install(),
+                ChromeDriverManager(
+                    chrome_type=ChromeType.BRAVE, path=r"driver"
+                ).install(),
                 options=options,
             )
         elif Browser.FIREFOX.value in browser:
@@ -67,7 +67,8 @@ class TestUtils:
             options.headless = headless
             options.add_argument("--window-size=1200,1200,--ignore-certificate-errors")
             self.browser = webdriver.Firefox(
-                executable_path=GeckoDriverManager(path=r"driver").install(), options=options
+                executable_path=GeckoDriverManager(path=r"driver").install(),
+                options=options,
             )
         else:
             raise Exception("Browser not supported")
