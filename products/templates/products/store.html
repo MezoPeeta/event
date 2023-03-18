@@ -79,7 +79,7 @@ input.addEventListener('keyup', (e)=> {
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
             content.</p>
           <hr>
-          <button class="btn btn-outline-dark" style="cursor: default;background:transparent">$ {{ product.price }}</button>
+          <button class="btn" style="cursor: default;background: #4e4e4e">{{ product.price }} $</button>
           <a class="btn btn-outline-danger"  href="{% url 'Products' product.id %}">View Product</a>
         </div>
       </div>

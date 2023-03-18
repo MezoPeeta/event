@@ -1,29 +1,35 @@
-{% extends 'base/base.html' %}
-{% load static %}
-{% block content%}
-{% load i18n %}
+{% extends 'base/base.html' %} {% load static %} {% block content%} {% load i18n
+%}
 
-  <section class="ftco-section bg-light">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6">
-          <img style="border:1px solid #888" src="{{product.image.url}}">
-        </div>
-      
-        <div style="padding:50px" class="col-lg-6">
-      
-          <h3 style="color: black;">{{product.name}}</h3>
-          <hr>
-          
-          <form method="POST" action="{% url 'Products' product.id %}">
-            {% csrf_token %}
-            <input min="1" value=1 type="number" name="quantity" style="color: black;" >
-            <input class="btn btn-dark" type="submit" value="Add to Cart">
-          </form>
-      
-          <h2 style="color: black !important;">Price: ${{product.price}}</h2>
-        </div>
+<section class="ftco-section bg-light">
+  <div class="container">
+    <a  class="btn btn-outline-dark" href="{% url 'Store' %}" style="font-family: inherit;">&#x2190; Continue Shopping</a>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <img style="border: 1px solid #888" src="{{product.image.url}}" />
+      </div>
+
+      <div style="padding: 50px" class="col-lg-6">
+        <h3 style="color: black">{{product.name}}</h3>
+        <hr />
+        
+        <form method="POST" action="{% url 'Products' product.id %}">
+          {% csrf_token %}
+          <input
+            min="1"
+            value="1"
+            type="number"
+            name="quantity"
+            style="color: black; width: 20%"
+            max="100"
+          />
+          <input class="btn btn-dark" type="submit" value="Add to Cart" />
+        </form>
+
+        <h2 style="color: black !important">Price: ${{product.price}}</h2>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 {% endblock content%}
