@@ -16,7 +16,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from products.models import Products
 
 # import pandas as pd
-from django.http import Http404
 from .forms import ContactForm, ReportForm, DesignForm, PaletteForm
 from django.http import JsonResponse
 from .utils import get_report_image, is_ajax

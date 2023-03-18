@@ -70,7 +70,7 @@ class TestUtils:
                 executable_path=GeckoDriverManager(path=r"driver").install(), options=options
             )
         else:
-            raise Exception("Browser not supported")
+            raise ValueError("Browser not supported")
 
         return self.browser
 
