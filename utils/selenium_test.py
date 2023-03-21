@@ -71,7 +71,7 @@ class TestUtils:
                 options=options,
             )
         else:
-            raise Exception("Browser not supported")
+            raise ValueError("Browser not supported")
 
         return self.browser
 

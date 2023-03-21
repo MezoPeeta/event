@@ -14,8 +14,8 @@ from django.views.generic import (
 from base.models import Contact, Subscribe, Videos
 from django.contrib.auth.mixins import LoginRequiredMixin
 from products.models import Products
+
 # import pandas as pd
-from django.http import Http404
 from .forms import ContactForm, ReportForm, DesignForm, PaletteForm
 from django.http import JsonResponse
 from .utils import get_report_image, is_ajax
@@ -31,13 +31,16 @@ from ast import literal_eval
 @login_required
 def dashboard(request):
     committees = request.user.profile.committee.all()
-
+    context = {
+        "title": "Dashboard",
+    }
     if committees.count() == 1:
         committee = committees[0].name
         template = f"dashboard/{committee}/dashboard.html"
-        context = {
-        "title": f"{committee} | Dashboard",
-    }
+
+        if committee == "IT":
+            return redirect("/us")
+
         if committee == "Design":
             context["form"] = DesignForm()
             context["designs"] = Design.objects.get_or_create(
@@ -49,16 +52,12 @@ def dashboard(request):
                 if Design.objects.get(pk=1).generated_colors
                 else []
             )
+
     else:
         template = "dashboard/Logistics/dashboard.html"
         context = {
-        "title": "Logistics | Dashboard",
-    }
-  
-    
-   
-
-    
+            "title": "Logistics | Dashboard",
+        }
 
     return render(request, template, context)
 
