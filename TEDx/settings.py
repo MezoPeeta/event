@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "maintenance_mode",
+    "debug-toolbar",
     "products",
     "crispy_forms",
     "base",
