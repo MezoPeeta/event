@@ -3,11 +3,14 @@ from utils.selenium_test import TestUtils
 from dashboard.models import Report, Design
 from django.contrib.auth.models import User
 from django.urls import reverse
+from users.models import Committee
 
 class TestReport(TestCase, TestUtils):
     def setUp(self):
         self.login_admin()
-        self.user.profile.committee = "Logistics"
+        committee = Committee.objects.create(name="Logistics")
+        committee.save()
+        self.user.profile.committee = committee
         self.user.profile.save()
         self.report = Report.objects.create(name="report", remarks="remark", author=self.user)
 

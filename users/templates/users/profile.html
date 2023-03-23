@@ -13,7 +13,7 @@
                     {% if user.profile.image %}
 
                     <img src="{{ user.profile.image.url}}" 
-                    style="max-width: 30%; 
+                    style="
                     border-radius: 50%;
                     object-fit: cover;
                     height: 300px;
@@ -31,15 +31,14 @@
                     {% endif %}
                  <h1 class="tm-title bold" style="color: {%color%};">{{ user.first_name}} {{ user.last_name }}</h1>
                  <h1 class="bold"> 
-                    {% if committees %}
-                    {{ user.profile.position }} of
-                    {% for committee in committees %}
-                    {% if committee != None%}
-                        {{committee.name}}
+                    {% if user.profile.position not in 'President,Operations' %}
+                    {{ user.profile.position }}
+                    of 
+                    {% if user.profile.committee %}
+                    {{ user.profile.committee.name }} Committee
+                    {% else %}
+                    {{ user.profile.position }}
                     {% endif %}
-                    
-                    {% endfor %}
-                    Committee
                     {% else %}
                     {{ user.profile.position }}
                     {% endif %}
@@ -54,30 +53,17 @@
     {% if request.user.is_authenticated  and request.user.id == user.id %}
     <div class="row" style="justify-content: center;margin-right: 10px;">
         <a href="{% url 'Update_Profile' %}" class="btn btn-danger" style="position: relative; top: -50px;margin-right: 1%;">Edit</a>
-        {% comment %} {% if committee == "HR"%}
+        {% if committee.name == "HR"%}
         <a href="{%url 'Inbox' %}"
         class="btn btn-danger" style="position: relative; top: -50px;">Inbox</a> 
-        {% elif request.user.profile.committee == None or request.user.profile.committee == "Coaching" %}
+        {% elif committee == None or committee not in "Coaching,Media,Videography" %}
           <a href=""></a>
         {%else%}
         <a href="{%url 'Dashboard' %}"
         class="btn btn-danger" style="position: relative; top: -50px;">Dashboard</a>
         
-        {% endif %}  {% endcomment %}
-        {% for committee in committees %}
-        {% if committee.name == "HR"%}
-        <a href="{%url 'Inbox' %}"
-        class="btn btn-danger" style="position: relative; top: -50px;">Inbox</a> 
-        {% elif committee.name == None or committee.name == "Coaching" %}
-          <a href=""></a>
-        
-        {% endif %} 
-
-        {% endfor %}
-
-        <a href="{%url 'Dashboard' %}"
-        class="btn btn-danger" style="position: relative; top: -50px;">Dashboard</a>
-
+        {% endif %}  
+       
     </div>
 
     {%else%}
@@ -86,6 +72,8 @@
     
     <!-- about and skills section -->
     <section class="container">
+        
+
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <div class="about">
@@ -168,7 +156,22 @@
                 </div>
             </div>
         </div>
+        <div class="mb-5">
+            <div class="task" >
+                <h2 class="white">Committee Description</h2>
+                    <div class="task-content">
+                            <div class="task-school">
+                                <ul>
+                                    <li>
+                                        {{ user.profile.committee.description|linebreaksbr}}
+                                    </li>
+                                </ul>
+                            </div>
+                    </div>
+            </div>
+        </div>
     </div>
+
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/jdenticon@3.2.0/dist/jdenticon.min.js" async

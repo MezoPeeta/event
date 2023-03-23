@@ -8,9 +8,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import mimetypes
-import sentry_sdk
-from sentry_sdk.integrations.django import DjangoIntegration
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -137,7 +134,7 @@ LOCALE_PATHS = (os.path.join(BASE_DIR, "locale"),)
 
 STATIC_URL = "static/"
 
-STATIC_ROOT = os.path.join(BASE_DIR, "assets")
+STATIC_ROOT = os.path.join(BASE_DIR, "public")
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),

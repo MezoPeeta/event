@@ -43,11 +43,7 @@
       .mb-4, h2,.number,.mb-3,.task-school ,.interests-content{
         color: {% font_color %} !important;
       }
-      .btn{
-        color:{% font_color %} !important;
-        border-color:{% font_color %} !important;
-        background:{%color%};
-      }
+      
       .h1,.name, .mb-5,.position{
         color:{% color %} !important;
       }
@@ -128,7 +124,7 @@
             <div class="ftco-footer-widget mb-4">
               <h2 class="ftco-heading-2">TEDxManaratAlFaroukSchool</h2>
             </div>
-            <div class="row ml-5">
+            <div class="row mb-5" style="justify-content:center;">
               <form action="{% url 'set_language' %}" method="post">
                 {% csrf_token %}
                 <input
@@ -158,7 +154,7 @@
             </div>
           </div>
           <div class="col-md">
-            <div class="ftco-footer-widget mb-4 ml-5">
+            <div class="ftco-footer-widget mb-4">
               <h2 class="ftco-heading-2">Quick Links</h2>
               <ul class="list-unstyled">
                 <li>
@@ -324,7 +320,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" integrity="sha512-IsNh5E3eYy3tr/JiX2Yx4vsCujtkhwl7SLqgnwLNgf04Hrt9BT9SXlLlZlWx+OK4ndzAoALhsMNcCmkggjZB1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-animateNumber/0.0.14/jquery.animateNumber.min.js" integrity="sha512-WY7Piz2TwYjkLlgxw9DONwf5ixUOBnL3Go+FSdqRxhKlOqx9F+ee/JsablX84YBPLQzUPJsZvV88s8YOJ4S/UA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer" lazy></script>
-    <script async src="{%static 'base/js/scrollax.min.js'%}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script async src="{%static 'base/js/main.js'%}"></script>
     <script async src="{%static 'base/js/navbar.js'%}"></script>
     <script async src="{%static 'base/js/checkout.js'%}"></script>

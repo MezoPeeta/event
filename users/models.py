@@ -7,6 +7,7 @@ from PIL import Image
 class Committee(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=20)
+    description = models.TextField(max_length=300, blank=True)
 
     def __str__(self):
         return self.name
@@ -19,8 +20,7 @@ class Profile(models.Model):
 
     bio = models.TextField(max_length=300, blank=True)
 
-    committee = models.ManyToManyField(Committee, blank=True)
-
+    committee = models.ForeignKey(Committee, on_delete=models.CASCADE, blank=True, null=True)
     position_list = (
         ("Member", "Member"),
         ("Head", "Head"),

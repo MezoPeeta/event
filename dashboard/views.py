@@ -30,34 +30,56 @@ from ast import literal_eval
 
 @login_required
 def dashboard(request):
-    committees = request.user.profile.committee.all()
-    context = {
-        "title": "Dashboard",
-    }
-    if committees.count() == 1:
-        committee = committees[0].name
+    # committees = request.user.profile.committee.all()
+    # context = {
+    #     "title": "Dashboard",
+    # }
+    # if committees.count() == 1:
+    #     committee = committees[0].name
+    #     template = f"dashboard/{committee}/dashboard.html"
+
+    #     if committee == "IT":
+    #         return redirect("/us")
+
+    #     if committee == "Design":
+    #         context["form"] = DesignForm()
+    #         context["designs"] = Design.objects.get_or_create(
+    #             pk=1, defaults={"color": "#ff2a2a", "font_color": "#ffffff"}
+    #         )[0]
+    #         context["palette"] = PaletteForm()
+    #         context["colors"] = (
+    #             literal_eval(Design.objects.get(pk=1).generated_colors)
+    #             if Design.objects.get(pk=1).generated_colors
+    #             else []
+    #         )
+
+    # else:
+    #     template = "dashboard/Logistics/dashboard.html"
+    #     context = {
+    #         "title": "Logistics | Dashboard",
+    #     }
+
+    committee = request.user.profile.committee.name 
+
+    context = {"title": f"{committee} | Dashboard"}
+
+    if committee == "IT":
+        return redirect("/us")
+    else:
         template = f"dashboard/{committee}/dashboard.html"
 
-        if committee == "IT":
-            return redirect("/us")
+    if committee == "Design":
+        context["form"] = DesignForm()
+        context["designs"] = Design.objects.get_or_create(
+            pk=1, defaults={"color": "#ff2a2a", "font_color": "#ffffff"}
+        )[0]
+        context["palette"] = PaletteForm()
+        context["colors"] = (
+            literal_eval(Design.objects.get(pk=1).generated_colors)
+            if Design.objects.get(pk=1).generated_colors
+            else []
+        )
 
-        if committee == "Design":
-            context["form"] = DesignForm()
-            context["designs"] = Design.objects.get_or_create(
-                pk=1, defaults={"color": "#ff2a2a", "font_color": "#ffffff"}
-            )[0]
-            context["palette"] = PaletteForm()
-            context["colors"] = (
-                literal_eval(Design.objects.get(pk=1).generated_colors)
-                if Design.objects.get(pk=1).generated_colors
-                else []
-            )
-
-    else:
-        template = "dashboard/Logistics/dashboard.html"
-        context = {
-            "title": "Logistics | Dashboard",
-        }
 
     return render(request, template, context)
 
