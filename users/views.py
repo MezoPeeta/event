@@ -86,15 +86,7 @@ class UserProfile(DetailView):
 class UpdateProfile(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Profile
     template_name = "users/update_profile.html"
-    fields = [
-        "image",
-        "bio",
-        "committee",
-        "position",
-        "awards",
-        "experience",
-        "achievement",
-    ]
+    fields = '__all__'
 
     def form_valid(self, form):
         form.instance.user = self.request.user

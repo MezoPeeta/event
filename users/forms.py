@@ -46,6 +46,18 @@ class ProfileUpdateForm(forms.ModelForm):
             "achievement",
             "awards",
             "experience",
-
+            "facebook",
+            "instagram",
+            "twitter",
+            "linkedin",
+            "behance",
+            "dribbble",
+            "github",
+            "website",
+            "youtube",
+            "phone",
+            "show_email",
+            "show_phone",
         ]
+
        
