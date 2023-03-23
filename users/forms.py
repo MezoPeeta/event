@@ -55,6 +55,7 @@ class ProfileUpdateForm(forms.ModelForm):
             "github",
             "website",
             "youtube",
+            'flickr',
             "phone",
             "show_email",
             "show_phone",

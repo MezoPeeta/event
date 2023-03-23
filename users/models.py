@@ -47,6 +47,7 @@ class Profile(models.Model):
     github = models.CharField(max_length=100, blank=True)
     youtube = models.CharField(max_length=100, blank=True)
     website = models.CharField(max_length=100, blank=True)
+    flickr = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
         return f"{self.user.username} Profile"
