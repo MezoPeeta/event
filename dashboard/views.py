@@ -65,7 +65,8 @@ def dashboard(request):
 
     if committee == "IT":
         return redirect("/us")
-    else:
+    
+    if committee != "IT":
         template = f"dashboard/{committee}/dashboard.html"
 
     if committee == "Design":
