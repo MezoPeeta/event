@@ -17,9 +17,23 @@
                       {{ user_form.username|as_crispy_field}}
                       
                     </div> 
-                    <div class="form-group col-md-4 mb-0">
-                      {{ user_form.email|as_crispy_field }}
-                    </div> 
+                    <div class="form-row">
+                      <div class="form-group col-md-4 mb-0">
+                        {{ user_form.email|as_crispy_field }}
+                      </div> 
+                      <div class="form-group col-md-4 mb-0">
+                        {{ profile_form.phone|as_crispy_field }}
+                      </div> 
+                  
+                    </div>
+                    <br>
+                    <h6 style="float:left;">Show/Hide my data to public</h6> <br>
+                    <div class="form-row" style="gap:2%">
+                    {{ profile_form.show_email|as_crispy_field }}
+                    {{ profile_form.show_phone|as_crispy_field }}
+
+                    </div>
+                    <br>
                     <div class="form-row">  
                       <div class="form-group col-md-2 mb-0" >
                         {{ user_form.first_name|as_crispy_field}}
@@ -31,17 +45,10 @@
                         <div class="form-group col-md-2 mb-0">
                           {{ profile_form.position|as_crispy_field }}
                         </div>
-                        </div> 
-
-                    <div class="form-row">
-
-
-                        
                         <div class="form-group col-md-2 mb-0">
                           {{ profile_form.committee|as_crispy_field }}
                         </div>
-                      </div> 
-
+                        </div> 
                     <div class="form-row ">
 
                       <div class="form-group col-md-5 mb-0">
@@ -61,6 +68,23 @@
                       </div>
                     </div>
                   </div>
+                  <h4>Add your social links</h4>
+                  <div class="form-row" style="gap:2%">
+
+                      {{ profile_form.facebook|as_crispy_field }}
+                      {{ profile_form.twitter|as_crispy_field }}
+                      {{ profile_form.linkedin|as_crispy_field }}
+                      {{ profile_form.instagram|as_crispy_field }}
+                      {{ profile_form.behance|as_crispy_field }}
+                      {{ profile_form.github|as_crispy_field }}
+                      {{ profile_form.dribbble|as_crispy_field }}
+                      {{ profile_form.website|as_crispy_field }}
+                      {{ profile_form.youtube|as_crispy_field }}
+                      {{ profile_form.flickr|as_crispy_field }}
+
+
+                  </div>
+
                 </div>
                     <button type="submit" class="btn btn-danger ">Update</button>
                 </form>

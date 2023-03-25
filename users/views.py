@@ -76,24 +76,17 @@ class UserProfile(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        user_id = User.objects.get(username=self.kwargs["username"]).id
-        context["user"] = User.objects.get(username=self.kwargs["username"])
-        context["committees"] = Profile.objects.get(user=user_id).committee.all()
+        context["title"] = "Profile"
+        context["user"] = self.get_object()
+        context["committee"] = self.get_object().profile.committee
+        
         return context
-
+    
 
 class UpdateProfile(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Profile
     template_name = "users/update_profile.html"
-    fields = [
-        "image",
-        "bio",
-        "committee",
-        "position",
-        "awards",
-        "experience",
-        "achievement",
-    ]
+    fields = '__all__'
 
     def form_valid(self, form):
         form.instance.user = self.request.user

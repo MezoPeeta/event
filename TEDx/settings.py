@@ -8,9 +8,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import mimetypes
-import sentry_sdk
-from sentry_sdk.integrations.django import DjangoIntegration
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -137,7 +134,7 @@ LOCALE_PATHS = (os.path.join(BASE_DIR, "locale"),)
 
 STATIC_URL = "static/"
 
-STATIC_ROOT = os.path.join(BASE_DIR, "assets")
+STATIC_ROOT = os.path.join(BASE_DIR, "public")
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
@@ -188,25 +185,28 @@ MAINTENANCE_MODE_TEMPLATE = os.path.join(BASE_DIR, "base/templates/base/503.html
 # mimetypes.add_type("application/javascript", ".js", True)
 
 
-# if not DEBUG:
-#     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-#     SECURE_SSL_REDIRECT = True
-#     SESSION_COOKIE_SECURE = True
-#     CSRF_COOKIE_SECURE = True
+if not DEBUG:
+    import sentry_sdk
+    from sentry_sdk.integrations.django import DjangoIntegration
 
-#     sentry_sdk.init(
-#         dsn="https://6051be0de76b4e83ba2a2f2b9669c81d@o4504849526030336.ingest.sentry.io/4504850003722240",
-#         integrations=[
-#             DjangoIntegration(),
-#         ],
-#         # Set traces_sample_rate to 1.0 to capture 100%
-#         # of transactions for performance monitoring.
-#         # We recommend adjusting this value in production.
-#         traces_sample_rate=1.0,
-#         # If you wish to associate users to errors (assuming you are using
-#         # django.contrib.auth) you may enable sending PII data.
-#         send_default_pii=True,
-#         _experiments={
-#             "profiles_sample_rate": 1.0,
-#         },
-#     )
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+
+    sentry_sdk.init(
+        dsn="https://6051be0de76b4e83ba2a2f2b9669c81d@o4504849526030336.ingest.sentry.io/4504850003722240",
+        integrations=[
+            DjangoIntegration(),
+        ],
+        # Set traces_sample_rate to 1.0 to capture 100%
+        # of transactions for performance monitoring.
+        # We recommend adjusting this value in production.
+        traces_sample_rate=1.0,
+        # If you wish to associate users to errors (assuming you are using
+        # django.contrib.auth) you may enable sending PII data.
+        send_default_pii=True,
+        _experiments={
+            "profiles_sample_rate": 1.0,
+        },
+    )

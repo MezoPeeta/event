@@ -1,27 +1,25 @@
-{% extends 'base/base.html' %}
-{% load static %}
-{% block content%}
-{% load i18n %}
-{% load crispy_forms_tags %}
-{% if request.user.profile.committee == "Logistics"%}
+{% extends 'base/base.html' %} {% load static %} {% block content%} 
+{% load i18n%} {% load crispy_forms_tags %}
 
-<div class="container" style="padding: 2.5%;">
-    <a  class="btn btn-outline-dark" href="{% url 'Reports' %}" style="font-family: inherit;">&#x2190; Reports</a>
+<div class="container" style="padding-top: 10%;padding-bottom:10%">
+  <a
+    class="btn btn-outline-dark"
+    href="{% url 'Reports' %}"
+    style="font-family: inherit"
+    >&#x2190; Reports</a
+  >
 
-    {%if object.image%}
-        <img src="{{object.image.url}}" alt="{{object.name}}" class="img-fluid">
-    {%endif%}
-    <br>
-    <h3>Remarks</h3>
-    <p style="font-family: inherit;">{{object.remarks}}</p>
-    <hr>
-    <p style="font-family: inherit;">Made by:</p> <b>{{object.author}}</b>
-    <p style="font-family: inherit;">Created at:</p> <b>{{object.created}}</b> 
-
+  {%if object.image%}
+  <img src="{{object.image.url}}" alt="{{object.name}}" class="img-fluid" />
+  {%endif%}
+  <br />
+  <h3>Remarks</h3>
+  <p style="font-family: inherit">{{object.remarks}}</p>
+  <hr />
+  <p style="font-family: inherit">Made by:</p>
+  <b>{{object.author}}</b>
+  <p style="font-family: inherit">Created at:</p>
+  <b>{{object.created}}</b>
 </div>
-{%else%}
-<div class="container" style="padding: 2.5%;">
-    <h1>Sorry you're not allowed </h1>
-</div>
-{% endif %}
+
 {% endblock content%}
