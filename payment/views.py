@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import TicketForm, TicketRecievedForm
+from .forms import TicketRecievedForm
 # from .models import QrCode
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string

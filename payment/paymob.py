@@ -1,5 +1,5 @@
+#pylint: disable=import-error
 from accept.payment import AcceptAPI
-
 # pylint: disable=line-too-long
 API_KEY = "ZXlKaGJHY2lPaUpJVXpVeE1pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SnVZVzFsSWpvaWFXNXBkR2xoYkNJc0ltTnNZWE56SWpvaVRXVnlZMmhoYm5RaUxDSndjbTltYVd4bFgzQnJJam8zTWpnMk1UTjkuaUc3bUFJMGs3bW1LMHhwOWhRQ1RyU2VFX194Rl9mRDBtQnVvNmpZUDkwQ2FoZl9oZEk0Qk9NZmNUOW90XzJiblEzX0gwZGdlXzc1empTS1g1ejNfV0E="
 

@@ -34,7 +34,7 @@ class ProductListView(ListView):
         except EmptyPage:
             products_list = paginator.page(paginator.num_pages)
 
-
+        # pylint: disable=line-too-long
         order_count = OrderItem.objects.filter(order__customer=get_customer(self.request), order__complete=False).count()
         context = {
             "Products": products_list,
