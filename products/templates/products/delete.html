@@ -2,13 +2,13 @@
 {% load static %}
 {% block content%}
 {% load i18n %}
-<div class="content-section">
+<div class="content-section ">
     <form method="POST">
         {% csrf_token %}
         <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Delete Post</legend>
+            <legend class="border-bottom mb-4">Delete Product</legend>
             {% for item in order.orderitem_set.all %}
-            <h2>Are you sure you want to delete the post "{{ item.product.name }}"</h2>
+            <h2>Are you sure you want to delete the product "{{ item.product.name }}"</h2>
             {% endfor %}
         </fieldset>
         <div class="form-group">

@@ -1,19 +1,20 @@
 from django.shortcuts import render, redirect
-from .forms import TicketForm, TicketRecievedForm
+from .forms import TicketRecievedForm
 # from .models import QrCode
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
-
+from .paymob import paymob_iframe
 
 def checkout(request):
-    if request.method == "POST":
-        form = TicketForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("/events")
-
-    form = TicketForm()
-    return render(request, "payment/checkout.html", {"form": form})
+    price = 450
+    quanitity = 1
+    iframe = paymob_iframe(price*100, quanitity,is_ticket=True)
+    context = {
+        "iframeURL": iframe,
+        "price": price,
+        "quantity": quanitity,
+    }
+    return render(request, "payment/checkout.html", context)
 
 
 def complete_order(request):

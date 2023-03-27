@@ -551,7 +551,7 @@ pre code {
   margin-right: auto;
   margin-left: auto;
   position: relative;
-  top: -40px;
+  margin-top: 120px;
 }
 
 .row {
@@ -10347,12 +10347,17 @@ a {
   -webkit-transition: .3s all ease;
   -o-transition: .3s all ease;
   transition: .3s all ease;
-  color: #ee76ad;
+  color: black;
 }
 
 a:hover {
   text-decoration: none;
-  color: #ee76ad;
+  color: red;
+}
+
+.cart:hover{
+  color: red;
+  fill: red;
 }
 
 h1,
@@ -11760,7 +11765,7 @@ textarea.form-control {
 
 @media (max-width: 767.98px) {
   .heading-section h2 {
-    font-size: 8vw;
+    font-size: 6vw;
   }
 }
 
@@ -13424,4 +13429,46 @@ table th {
 .btn-hover.color-11 {
   background-image: linear-gradient(to right, #eb3941, #f15e64, #e14e53, #e2373f);
   box-shadow: 0 5px 15px rgba(242, 97, 103, .4);
+}
+
+.paymob{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.paymob-img{
+  width:100%;
+  margin-left:10%;
+  border-radius:3%;
+  margin-right:20%;
+  margin-top:-50%;
+
+}
+.paymob-img-text{
+  position: relative;
+  top:-100px;
+  float:right
+}
+
+@media screen and (max-width: 790px) {
+  .paymob {
+    flex-direction: column;
+  }
+ 
+  .paymob-img{
+    width:70%;
+    margin-left:0%;
+    border-radius:3%;
+    margin:15%;
+    margin-bottom: -20px;
+  }
+  .paymob-img-text{
+    position: relative;
+    float:left;
+    top:20px;
+    margin-left: 60%;
+    
+  }
+  
 }
