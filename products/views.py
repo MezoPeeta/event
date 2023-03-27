@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect 
-from .models import Products, Order, OrderItem, Customer, ShippingAddress
-import datetime
+from .models import Products, Order, OrderItem
 # from django.template.loader import render_to_string
 from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -86,7 +85,7 @@ def checkout(request):
 
     order = Order.objects.get(customer=get_customer(request), complete=False)
 
-    transaction_id = datetime.datetime.now().timestamp()
+    # transaction_id = datetime.datetime.now().timestamp()
 
     total = order.get_cart_total
 

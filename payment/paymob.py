@@ -1,13 +1,14 @@
-from accept.payment import *
+from accept.payment import AcceptAPI
 
+# pylint: disable=line-too-long
 API_KEY = "ZXlKaGJHY2lPaUpJVXpVeE1pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SnVZVzFsSWpvaWFXNXBkR2xoYkNJc0ltTnNZWE56SWpvaVRXVnlZMmhoYm5RaUxDSndjbTltYVd4bFgzQnJJam8zTWpnMk1UTjkuaUc3bUFJMGs3bW1LMHhwOWhRQ1RyU2VFX194Rl9mRDBtQnVvNmpZUDkwQ2FoZl9oZEk0Qk9NZmNUOW90XzJiblEzX0gwZGdlXzc1empTS1g1ejNfV0E="
 
 accept = AcceptAPI(API_KEY)
 
 auth_token = accept.retrieve_auth_token()
 
-def paymob_iframe(cents:int,quantity:int,is_ticket:bool = False,items:list = []):
-    OrderData = {
+def paymob_iframe(cents:int,quantity:int,is_ticket:bool = False,items:list = None):
+    order_data = {
         "auth_token": auth_token,
         "delivery_needed": "false",
         "amount_cents": str(cents),
@@ -15,7 +16,7 @@ def paymob_iframe(cents:int,quantity:int,is_ticket:bool = False,items:list = [])
         "items": items
     }     
     if is_ticket:
-        OrderData["items"] = [
+        order_data["items"] = [
         {
             "name": "Ticket",
             "amount_cents": str(cents),
@@ -23,11 +24,11 @@ def paymob_iframe(cents:int,quantity:int,is_ticket:bool = False,items:list = [])
             "quantity": str(quantity),
         
         }
-        ],
+        ]
 
-    order = accept.order_registration(OrderData)
+    order = accept.order_registration(order_data)
 
-    Request = {
+    request = {
         "auth_token": auth_token,
         "amount_cents": str(cents),
         "expiration": 3600,
@@ -50,9 +51,9 @@ def paymob_iframe(cents:int,quantity:int,is_ticket:bool = False,items:list = [])
         "currency": "EGP",
         "integration_id": 3692904,
     }
-    payment_token = accept.payment_key_request(Request)
+    payment_token = accept.payment_key_request(request)
 
-    iframeURL = accept.retrieve_iframe(iframe_id="746134", payment_token=payment_token)
+    iframe_url = accept.retrieve_iframe(iframe_id="746134", payment_token=payment_token)
 
-    return iframeURL
+    return iframe_url
 
