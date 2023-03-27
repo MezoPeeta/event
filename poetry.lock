@@ -1,4 +1,15 @@
 [[package]]
+name = "accept-paymob"
+version = "1.0.0"
+description = "Python client for the Paymob.accept API"
+category = "main"
+optional = false
+python-versions = ">=3"
+
+[package.dependencies]
+requests = "*"
+
+[[package]]
 name = "arabic-reshaper"
 version = "3.0.0"
 description = "Reconstruct Arabic sentences to be used in applications that do not support Arabic"
@@ -972,9 +983,13 @@ svglib = ">=1.2.1"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.11"
-content-hash = "569cbad1165a0a4677e85f02d2616cc957d64325023df03369f6f64eca8a520a"
+content-hash = "3bb7a8ec214137996f907290cc7c5be20fe8d84eab73f624b1747dca805ae542"
 
 [metadata.files]
+accept-paymob = [
+    {file = "accept-paymob-1.0.0.tar.gz", hash = "sha256:65c951b2fc448458e1170588ecf28e2d8716de87ac60bfe0d59d8628b49d479a"},
+    {file = "accept_paymob-1.0.0-py3-none-any.whl", hash = "sha256:d5b48a29f23697aa6baf48bf5d5b428666b174b1b626231e79831551e783efdd"},
+]
 arabic-reshaper = [
     {file = "arabic_reshaper-3.0.0-py3-none-any.whl", hash = "sha256:3f71d5034bb694204a239a6f1ebcf323ac3c5b059de02259235e2016a1a5e2dc"},
     {file = "arabic_reshaper-3.0.0.tar.gz", hash = "sha256:ffcd13ba5ec007db71c072f5b23f420da92ac7f268512065d49e790e62237099"},

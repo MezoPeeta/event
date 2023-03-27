@@ -1,112 +1,25 @@
-{% extends 'base/base.html' %}
-{% load crispy_forms_tags %}
-{% load static %}
-{% block content%}
-{% load i18n %}
-{% load bgcolor %}
+{% extends 'base/base.html' %} {% load crispy_forms_tags %} {% load static %}
+{%block content%} {% load i18n %} {% load bgcolor %}
+<a style= "margin-top:8%;margin-left:8%;margin-bottom:-50px"class="btn btn-outline-dark" href="{% url 'Events' %}" style="font-family: inherit;margin-left:20%;">&#x2190; Back</a>
+
+<div class="paymob">
+  
+  <div>
+    <img class="paymob-img" src="https://images.unsplash.com/photo-1485970247670-34cd80f5a996?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80" alt="">
+    <h1 class="paymob-img-text">{{price}} EGP</h1>
+  </div>
+  <iframe
+  style="
+    width: 110vw;
+    height: 130vh !important;
+  "
+  scrolling="no"
+
+  src="{{iframeURL}}"
+></iframe>
 
 
-  <div style=" font-size: 14px;line-height: 1.8;
-  font-weight: 400;
-  font-family: 'Helvetica';
-  background-repeat: no-repeat;
-  background-size: cover;
-  -moz-background-size: cover;
-  -webkit-background-size: cover;
-  -o-background-size: cover;
-  -ms-background-size: cover;
-  background-position: center center;
-  padding: 115px 0;
-  background: {%color%};
-  ">
-  <div class="main" style="color: white;">
-      <div class="ftco-navbar-light"></div>
-
-        <!-- <img src="images/signup-bg.jpg" alt="">  -->
-        <div class="container" style="width: 660px;
-        position: relative;
-        margin: 0 auto;">
-            <div class="signup-content">
-                <form method="POST" id="signup-form" class="signup-form">
-                    <h2 class="form-title" style="color: white;  text-transform: uppercase;  line-height: 1.66;
-                    margin: 0;
-                    padding: 0;
-                    font-weight: 900;
-                    color: white;
-                    font-family: 'Helvetica';
-                    font-size: 24px;
-                    text-align: center;
-                    margin-bottom: 40px;">{% trans 'Check out' %}</h2>
-                    {% csrf_token %}
-                    {{ form|crispy}}
-                    <div class="form-group">
-                      <input type="button" id="continue" class="form-submit" value="{% trans 'Continue' %}" onclick="paypal()" />
-                  </div>
-                  <div class="form-group">
-                    <div id="paypal-button-container" name="paypal_btn" style="display: none;" aria-required="true"></div>
-
-                </div>
-                    <div class="form-group">
-                        <input type="submit" name="submit" id="submit" class="form-submit" value="{% trans 'Buy Now' %}" style="display: none;"/>
-                    </div>
-                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
-                    <script>
-
-                      $(function paypal() {
-
-                        $("#continue").on('click', function () {
-                          $("#paypal-button-container").show();
-                          $("#submit").show();
-                          $("#continue").hide();
-
-                          });
-                    });
-                    </script>
-
-                </form>
-            </div>
-        </div>
-    </section>
-    <script src="https://www.paypal.com/sdk/js?client-id=AfdxyxTCEO-bV058kp-Lm42LjT8HcvSS1Es0_yBUWJS3j3CgXIWfryc7P-tvBEogz7xxVl5dw9Q5y7VZ"></script>
-    <script>
-      
-      var price = 12.0
-
-
-        paypal.Buttons({
-            style: {
-            size: 'responsive',
-            color: 'white',
-            shape: 'pill',
-            label: 'checkout',
-            },
-
-          createOrder: function(data, actions) {
-            // This function sets up the details of the transaction, including the amount and line item details.
-            return actions.order.create({
-              purchase_units: [{
-                amount: {
-                  value:price,         
-                }
-              }]
-            });
-          },
-          onApprove: function(data, actions) {
-            // This function captures the funds from the transaction.
-            return actions.order.capture().then(function(details) {
-              // This function shows a transaction success message to your buyer.
-            //   location.replace("{% url 'Order_Complete' %}")
-            alert(
-              "{% trans 'Thank you for your payment, the ticket will be sent in your email after several minutes , please dont forget to press on buy now' %}")
-
-            });
-          }
-          
-        }).render('#paypal-button-container');
-        //This function displays Smart Payment Buttons on your web page.
-      </script>
 </div>
-</div>
-</div>
+
+
 {% endblock content%}
