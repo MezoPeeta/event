@@ -1,6 +1,6 @@
 from base.models import Contact
 from django import forms
-from .models import Report , Design
+from .models import Report
 from ckeditor.fields import RichTextFormField
 
 class ReportForm(forms.ModelForm):
@@ -13,13 +13,3 @@ class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
         fields = ['reply']
-
-class DesignForm(forms.ModelForm):
-    class Meta:
-        model = Design
-        fields = ['color']
-
-class PaletteForm(forms.ModelForm):
-    class Meta:
-        model = Design
-        fields = ['palette']
