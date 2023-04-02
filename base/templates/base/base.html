@@ -1,10 +1,10 @@
-{% load static %} {% load i18n %} {% load bgcolor %} 
-{% comment %} {% load pwa %} {% endcomment %}
+{% load static %} {% load i18n %}
+{% load pwa %}
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    {% comment %} {% progressive_web_app_meta %} {% endcomment %}
+    {% progressive_web_app_meta %}
     <meta charset="UTF-8" />
     {% if title %}
     <title>{{ title }}</title>
@@ -36,25 +36,6 @@
     <link rel="stylesheet" href="{%static 'base/css/style.css'%}">
   </head>
   <body>
-    <style>
-      .wrapper, .hero-wrap, .quote,.parallax-img ,#section-counter ,.interests{
-        background-color: {% color %} !important;
-      }
-      .mb-4, h2,.number,.mb-3,.task-school ,.interests-content{
-        color: {% font_color %} !important;
-      }
-      
-      .h1,.name, .mb-5,.position{
-        color:{% color %} !important;
-      }
-      .task ,.skills,.pew{
-        color:{% font_color %} !important;
-        background:{%color%} !important;
-      }
-      .ftco-heading-2{
-        color:white;
-      }
-    </style>
     
     <nav>
       <div class="logo">
