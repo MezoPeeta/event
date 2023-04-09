@@ -17,4 +17,5 @@ urlpatterns = [
     path(
         "verify/<int:pk>/<uuid:token>", views.activate_account, name="VerifySubscribe"
     ),
-]
+    path('speakers/<str:pk>', views.speakers, name="Speakers"),
+ ]

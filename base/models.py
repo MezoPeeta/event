@@ -30,19 +30,31 @@ class Subscribe(models.Model):
 
 
 class Contact(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)#
     name = models.CharField(max_length=12)
     email = models.EmailField()
     subject = models.CharField(max_length=12)
     message = models.TextField()
-    reply = RichTextField(null=True,blank=True)
-    created= models.DateTimeField(default=timezone.now)     
+    reply = RichTextField(null=True,blank=True)#
+    created= models.DateTimeField(default=timezone.now)  #   
     
     def __str__(self):
         return f'{self.name}'
 
 class Speakers(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=20)
     talk_name = models.CharField(max_length=20)
-    image = models.ImageField(default='default.jpg', upload_to='speakers_pics')
-    date_posted= models.DateTimeField(default=timezone.now)    
+    description = models.TextField(blank=True)
+    facebook = models.CharField(max_length=100, blank=True)
+    instagram = models.CharField(max_length=100, blank=True)
+    twitter = models.CharField(max_length=100, blank=True)  
+    youtube = models.CharField(max_length=100, blank=True)
+    website = models.CharField(max_length=100, blank=True)
+    date_posted= models.DateTimeField(default=timezone.now)   
+
+class ImageSpeakers(models.Model):
+    name = models.CharField(max_length=255)
+    speaker = models.ForeignKey(Speakers, on_delete=models.CASCADE)
+    image = models.ImageField(default='default.jpg',upload_to='speaker_pics')
+    default = models.BooleanField(default=False) 

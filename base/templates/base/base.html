@@ -34,6 +34,8 @@
     <link rel="stylesheet" href="{%static 'base/css/register.css'%}">
     <link rel="stylesheet" href="{%static 'base/css/checkout.css'%}">
     <link rel="stylesheet" href="{%static 'base/css/style.css'%}">
+    <link rel="stylesheet" href="{%static 'base/css/products.css'%}">
+    <link rel="stylesheet" href="{%static 'base/css/darkmode.css'%}">
   </head>
   <body>
     
@@ -67,7 +69,19 @@
           <a href="{% url 'Contact' %}"><span>Contact</span></a>
         </li>
         {% endif %}
+        <li>
+         
+          <div class="toggle-switch" >
+            <label class="switch-label">
+              <input type="checkbox" class="checkbox">
+              <span class="slider" id="dark-mode-toggle"></span>
+            </label>
+          </div>  
+          
+        </li>
+        
       </ul>
+      
     </nav>
 
     {% if messages %} {% for message in messages%}
@@ -324,7 +338,6 @@
     <script async src="{%static 'base/js/navbar.js'%}"></script>
     <script async src="{%static 'base/js/checkout.js'%}"></script>
     <script async src="{%static 'base/js/register.js'%}"></script>
-    
-      
+
   </body>
 </html>

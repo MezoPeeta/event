@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect 
-from .models import Products, Order, OrderItem
+from django.shortcuts import render, redirect
+from .models import Products, ImageProducts , Order, OrderItem
 # from django.template.loader import render_to_string
 from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -9,13 +9,17 @@ from django.utils.datastructures import MultiValueDictKeyError
 from .utils import get_customer
 from payment.paymob import paymob_iframe
 
+
+
 class ProductListView(ListView):
     model = Products
+    
     template_name = "products/store.html"
     ordering = ["-created_at"]
     paginate_by = 9
 
     def get_context_data(self, **kwargs):
+        photos = ImageProducts.objects.filter(default = True)
         try:
             search_query = self.request.GET["search_query"]
         except MultiValueDictKeyError:
@@ -36,11 +40,14 @@ class ProductListView(ListView):
 
         # pylint: disable=line-too-long
         order_count = OrderItem.objects.filter(order__customer=get_customer(self.request), order__complete=False).count()
+        
         context = {
             "Products": products_list,
             "title": "Store",
             "search_query": search_query,
             "order_count": order_count,
+            "photos": photos,
+            
         }
         return context
 
@@ -57,7 +64,9 @@ class ProductsCreateView(LoginRequiredMixin, CreateView):
 
 def products(request, pk):
     product = Products.objects.get(id=pk)
-    
+    photos = ImageProducts.objects.filter(default = True)
+    all_photos = ImageProducts.objects.all()
+
     if request.method == "POST":
         product = Products.objects.get(id=pk)
     
@@ -68,7 +77,11 @@ def products(request, pk):
 
         return redirect("Cart")
 
-    context = {"product": product}
+    context = {"product": product,
+               "photos" : photos,
+               "all_photos": all_photos,
+
+               }
     return render(request, "products/products.html", context)
 
 

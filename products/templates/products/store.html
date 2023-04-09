@@ -75,18 +75,27 @@ input.addEventListener('keyup', (e)=> {
     {%endif%}
     <div class="products" style="display:flex;flex-wrap:wrap;justify-content:space-between;" id="products_id">
     
-    
-      {% for product in Products %}
+      
+      
+      {% for photo in photos %}
       <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="{{ product.image.url}}" alt="Card image cap">
+        <img class="card-img-top" src="{{ photo.image.url}}" alt="Card image cap">
+        
         <div class="card-body">
+          <center>{{photo.product.name}}</center>
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
             content.</p>
           <hr>
-          <button class="btn" style="cursor: default;background: #4e4e4e">{{ product.price }} $</button>
-          <a class="btn btn-outline-danger"  href="{% url 'Products' product.id %}">View Product</a>
+          
+          <a class="btn btn-outline-danger"  href="{% url 'Products' photo.product.id %}">View Product</a>
+          <button class="btn" style="cursor: default;background: #4e4e4e">{{photo.product.price}}$</button>
+          <br> <br>
+          
+          
         </div>
+        
       </div>
+      
       
       {% endfor %}
     
