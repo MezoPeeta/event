@@ -1,0 +1,52 @@
+#main-img{
+    width: 600px !important;
+    height: auto;
+    margin-left: 5%;
+}
+.side-img{
+    width: 70px;
+    height: auto;
+    float: left;
+    margin-left: 3%;
+
+}
+.side-img:hover{
+    border-color: yellow;
+}
+#continue-btn{
+    margin-left: 11% !important;   
+    position: relative;
+    top: -28px;
+}
+.container2{
+    position: relative;
+    top: -445px;
+    right: -205px;
+}
+@media screen and (max-width:1000px){
+    #main-img{
+        width:50% !important;
+        height: auto;
+        position: relative;
+        margin-left:-5vw;
+        left: 32%;
+
+    }
+    .side-img{
+        width: 70px;
+        height: auto;
+        display: flex;
+        gap: 10%;
+        align-items: center;
+        margin-left: 15vw;
+        margin-top: 2%;
+        float: none;
+    
+    }
+    .container2{
+        position: relative;
+        left: 1%;
+        margin-top: 70vh;
+    }
+    
+}
