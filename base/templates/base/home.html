@@ -3,7 +3,6 @@
 {% load crispy_forms_tags %}
 {% load static %}
 {% block content%}
-{% load bgcolor %}
 
 <div class="hero-wrap" style="height: 1050px !important;">
   <div class="overlay"></div>
@@ -27,7 +26,7 @@
     <div class="row no-gutters d-flex align-items-center" data-scrollax=" properties: { translateY: '-30%'}">
 
       <div class="col-md-3 mb-3">
-        <a href="#" class="featured-img">
+        <a class="featured-img">
           
           <img src="{% static 'base/img/ted.png' %}" class="img-fluid" alt="" loading="lazy">
           
@@ -40,16 +39,15 @@
             <div class="row no-gutters d-flex align-items-end">
 
               <div class="col-md-8">
-                <a href="#" class="featured-img"> 
+                <a class="featured-img"> 
                               
                   <img src="{% static 'base/img/us.jpg' %}" class="img-fluid" alt="" loading="lazy">       
                 </a>
               </div>
 
               <div class="col-md-4">
-                <a href="#" class="featured-img">  
-                  <img src="{% static 'base/img/logo.jpg' %}" class="img-fluid" alt="" loading="lazy">                
-                </a>
+                <a class="featured-img">  
+                  <img src="{% static 'base/img/logo.jpg' %}" class="img-fluid  " alt="" loading="lazy">                
               </div>
               
             </div>
@@ -58,12 +56,12 @@
           <div class="col-md-12">
             <div class="row no-gutters d-flex align-items-start">
               <div class="col-md-8">
-                <a href="#" class="featured-img">
+                <a class="featured-img">
                   <img src="{% static 'base/img/eunoia.jpg' %}" class="img-fluid" alt="" loading="lazy">                        
                 </a>
               </div>
               <div class="col-md-4">
-                <a href="{% url 'About' %}#Team" class="featured-img">
+                <a class="featured-img">
 
                   <img src="{% static 'base/img/mrs_maryam.jpg' %}" class="img-fluid" alt="" loading="lazy"> 
                 </a>
@@ -74,7 +72,7 @@
       </div>
 
       <div class="col-md-3">
-        <a href="#" class="featured-img">
+        <a class="featured-img">
           <img src="{% static 'base/img/mrs_asmaa.jpeg' %}" class="img-fluid" alt="" loading="lazy">
         </a>
       </div>

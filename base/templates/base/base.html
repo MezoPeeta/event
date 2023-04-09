@@ -1,10 +1,10 @@
-{% load static %} {% load i18n %} {% load bgcolor %} 
-{% comment %} {% load pwa %} {% endcomment %}
+{% load static %} {% load i18n %}
+{% load pwa %}
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    {% comment %} {% progressive_web_app_meta %} {% endcomment %}
+    {% progressive_web_app_meta %}
     <meta charset="UTF-8" />
     {% if title %}
     <title>{{ title }}</title>
@@ -36,25 +36,6 @@
     <link rel="stylesheet" href="{%static 'base/css/style.css'%}">
   </head>
   <body>
-    <style>
-      .wrapper, .hero-wrap, .quote,.parallax-img ,#section-counter ,.interests{
-        background-color: {% color %} !important;
-      }
-      .mb-4, h2,.number,.mb-3,.task-school ,.interests-content{
-        color: {% font_color %} !important;
-      }
-      
-      .h1,.name, .mb-5,.position{
-        color:{% color %} !important;
-      }
-      .task ,.skills,.pew{
-        color:{% font_color %} !important;
-        background:{%color%} !important;
-      }
-      .ftco-heading-2{
-        color:white;
-      }
-    </style>
     
     <nav>
       <div class="logo">
@@ -321,10 +302,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-animateNumber/0.0.14/jquery.animateNumber.min.js" integrity="sha512-WY7Piz2TwYjkLlgxw9DONwf5ixUOBnL3Go+FSdqRxhKlOqx9F+ee/JsablX84YBPLQzUPJsZvV88s8YOJ4S/UA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer" lazy></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script async src="{%static 'base/js/particle.js'%}"></script>
     <script async src="{%static 'base/js/main.js'%}"></script>
     <script async src="{%static 'base/js/navbar.js'%}"></script>
     <script async src="{%static 'base/js/checkout.js'%}"></script>
     <script async src="{%static 'base/js/register.js'%}"></script>
-
+    
+      
   </body>
 </html>

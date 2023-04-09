@@ -56,7 +56,7 @@
         {% if committee.name == "HR"%}
         <a href="{%url 'Inbox' %}"
         class="btn btn-danger" style="position: relative; top: -50px;">Inbox</a> 
-        {% elif committee == None or committee not in "Coaching,Media,Videography" %}
+        {% elif committee == None or committee.name in "Coaching,Media,Videography,Design" %}
           <a href=""></a>
         {%else%}
         <a href="{%url 'Dashboard' %}"
@@ -87,7 +87,7 @@
                     <h2 class="white">Achievements</h2>
                     <div class="task-content">
                         <div class="task-school">
-                            <p style="color:{%font_color%};font-family:'Helvetica';">{{user.profile.achievement|linebreaksbr}}</p>
+                            <p style="font-family:'Helvetica';">{{user.profile.achievement|linebreaksbr}}</p>
                         </div>
                     </div>
 

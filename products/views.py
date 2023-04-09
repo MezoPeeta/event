@@ -1,22 +1,13 @@
-from django.shortcuts import render, redirect
-from .models import Products, Order, OrderItem, Customer, ShippingAddress
-import datetime
+from django.shortcuts import render, redirect 
+from .models import Products, Order, OrderItem
 # from django.template.loader import render_to_string
 from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.utils.datastructures import MultiValueDictKeyError
-
-
-def store(request):
-    products = Products.objects.all()
-    context = {
-        "Products": products,
-        "title": "Store",
-    }
-    return render(request, "products/store.html", context)
-
+from .utils import get_customer
+from payment.paymob import paymob_iframe
 
 class ProductListView(ListView):
     model = Products
@@ -42,10 +33,14 @@ class ProductListView(ListView):
             products_list = paginator.page(1)
         except EmptyPage:
             products_list = paginator.page(paginator.num_pages)
+
+        # pylint: disable=line-too-long
+        order_count = OrderItem.objects.filter(order__customer=get_customer(self.request), order__complete=False).count()
         context = {
             "Products": products_list,
             "title": "Store",
             "search_query": search_query,
+            "order_count": order_count,
         }
         return context
 
@@ -62,15 +57,11 @@ class ProductsCreateView(LoginRequiredMixin, CreateView):
 
 def products(request, pk):
     product = Products.objects.get(id=pk)
-
+    
     if request.method == "POST":
         product = Products.objects.get(id=pk)
-        try:
-            customer = request.user.customer
-        except AttributeError:
-            device = request.COOKIES["device"]
-            customer, _ = Customer.objects.get_or_create(device=device)
-        order, _ = Order.objects.get_or_create(customer=customer, complete=False)
+    
+        order, _ = Order.objects.get_or_create(customer=get_customer(request), complete=False)
         order_item, _ = OrderItem.objects.get_or_create(order=order, product=product)
         order_item.quantity = request.POST["quantity"]
         order_item.save()
@@ -82,13 +73,8 @@ def products(request, pk):
 
 
 def cart(request):
-    try:
-        customer = request.user.customer
-    except AttributeError:
-        device = request.COOKIES["device"]
-        customer, _ = Customer.objects.get_or_create(device=device)
-
-    order, _ = Order.objects.get_or_create(customer=customer, complete=False)
+    
+    order, _ = Order.objects.get_or_create(customer=get_customer(request), complete=False)
 
     context = {"order": order}
 
@@ -96,40 +82,54 @@ def cart(request):
 
 
 def checkout(request):
-    device = request.COOKIES["device"]
 
-    customer, _ = Customer.objects.get_or_create(device=device)
+    order = Order.objects.get(customer=get_customer(request), complete=False)
 
-    order = Order.objects.get(customer=customer, complete=False)
-
-    transaction_id = datetime.datetime.now().timestamp()
+    # transaction_id = datetime.datetime.now().timestamp()
 
     total = order.get_cart_total
 
-    if request.method == "POST":
-        order.complete = True
-        name = request.POST["name"]
-        email = request.POST["email"]
-        address = request.POST["address"]
-        city = request.POST["city"]
-        state = request.POST["state"]
-        zipcode = request.POST["zipcode"]
-        phone_number = request.POST["phone_number"]
+    order_items = order.orderitem_set.all()
+    products = Products.objects.filter(orderitem__in=order_items).iterator()
+    products_data = [product.__dict__ for product in products]
+    total_quantity = sum(order.orderitem_set.all().values_list("quantity", flat=True))
 
-        customer.name = name
-        customer.email = email
-        customer.save()
-        order.transaction_id = transaction_id
-        order.save()
-        ShippingAddress.objects.create(
-            customer=customer,
-            order=order,
-            address=address,
-            phone_number=phone_number,
-            city=city,
-            state=state,
-            zipcode=zipcode,
-        )
+    for product in products_data:
+        product["amount_cents"] = str(product["price"] * 100) 
+        product["quantity"] = str(OrderItem.objects.get(product=product["id"]).quantity)
+        product["description"] = product["name"]
+        del product["price"]
+        del product["_state"]
+        del product["id"]
+        del product["image"]
+        del product["created_at"]
+        del product["user_id"]
+
+
+    # if request.method == "POST":
+    #     order.complete = True
+    #     name = request.POST["name"]
+    #     email = request.POST["email"]
+    #     address = request.POST["address"]
+    #     city = request.POST["city"]
+    #     state = request.POST["state"]
+    #     zipcode = request.POST["zipcode"]
+    #     phone_number = request.POST["phone_number"]
+
+    #     Customer.objects.get(pk=get_customer(request).id).update(email=email,name=name)
+
+    #     order.transaction_id = transaction_id
+    #     order.save()
+    #     ShippingAddress.objects.create(
+    #         customer=get_customer(request),
+    #         order=order,
+    #         address=address,
+    #         phone_number=phone_number,
+    #         city=city,
+    #         state=state,
+    #         zipcode=zipcode,
+    #     )
+
 
         # SEND EMAIIIl
         # order_product = OrderItem.objects.get(order=order).product
@@ -156,18 +156,22 @@ def checkout(request):
         # confirmation_purchase.content_subtype = 'html'
         # confirmation_purchase.send()
 
-        return redirect("Store")
+        # return redirect("Store")
 
-    return render(request, "products/checkout.html", {"total": total})
+    
+    context = {
+        "total": total,
+        "iframe" : paymob_iframe(cents=total*100,
+                                 quantity=total_quantity,
+                                 items=products_data,
+                                 ),
+    }
+    return render(request, "products/checkout.html", context)
 
 
 def delete(request, pk):
-    order = OrderItem.objects.filter(order=pk)
-    if request.method == "POST":
-        order.delete()
+    order = OrderItem.objects.get(pk=pk)
+    order.delete()
+        
+    return redirect("Cart")
 
-        return redirect("Cart")
-
-    context = {"order": order}
-
-    return render(request, "products/delete.html", context)

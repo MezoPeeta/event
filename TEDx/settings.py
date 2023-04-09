@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "dashboard",
     "ckeditor",
     "colorfield",
+    "pwa",
 ]
 
 MIDDLEWARE = [
@@ -184,6 +185,27 @@ MAINTENANCE_MODE_TEMPLATE = os.path.join(BASE_DIR, "base/templates/base/503.html
 
 # mimetypes.add_type("application/javascript", ".js", True)
 
+PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, "static/base/js", "serviceworker.js")
+
+PWA_APP_NAME = "TEDx MFIS"
+PWA_APP_DESCRIPTION = "TEDxMFIS Pwa"
+PWA_APP_THEME_COLOR = "#0A0302"
+PWA_APP_BACKGROUND_COLOR = "#ffffff"
+PWA_APP_DISPLAY = "standalone"
+PWA_APP_SCOPE = "/"
+PWA_APP_ORIENTATION = "any"
+PWA_APP_START_URL = "/"
+PWA_APP_STATUS_BAR_COLOR = "default"
+PWA_APP_ICONS = [{"src": "/static/base/img/icon.png", "sizes": "160x160"}]
+PWA_APP_ICONS_APPLE = [{"src": "/static/base/img/icon.png", "sizes": "160x160"}]
+PWA_APP_SPLASH_SCREEN = [
+    {
+        "src": "/static/base/img/icon.png",
+        "media": "(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)",
+    }
+]
+PWA_APP_DIR = "ltr"
+PWA_APP_LANG = "en-US"
 
 if not DEBUG:
     import sentry_sdk

@@ -1,5 +1,4 @@
 // ParticlesJS Config.
-window.addEventListener('DOMContentLoaded', (event) => {
 particlesJS("particles-js", {
   "particles": {
     "number": {
@@ -105,4 +104,3 @@ particlesJS("particles-js", {
   },
   "retina_detect": true
 })
-});
