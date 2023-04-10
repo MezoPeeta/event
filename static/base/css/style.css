@@ -183,6 +183,7 @@ th {
 label {
   display: inline-block;
   margin-bottom: 0.5rem;
+  color: var(--foreground) !important;
 }
 
 button {
@@ -10348,7 +10349,8 @@ a {
   -webkit-transition: .3s all ease;
   -o-transition: .3s all ease;
   transition: .3s all ease;
-  color: black;
+  color: var(--foreground);
+  fill: var(--foreground);
 }
 
 a:hover {
@@ -10372,7 +10374,7 @@ h5,
 .h4,
 .h5 {
   line-height: 1.5;
-  color: black;
+  color: var(--foreground);
   font-weight: 400; }
 
 .text-primary {
@@ -10773,7 +10775,7 @@ h5,
       border-radius: 50%;
       background: #dadadc; }
       .owl-carousel .owl-dots .owl-dot.active {
-        background: #000000; }
+        background: var(--foreground); }
   .owl-carousel:hover .owl-nav .owl-prev,
   .owl-carousel:hover .owl-nav .owl-next {
     opacity: 1; }
@@ -10801,7 +10803,7 @@ h5,
 }
 
 .bg-light {
-  background: #f8faff !important; }
+  background: var(--background) !important; }
 
 .bg-primary {
   background: #660808; }
@@ -11535,6 +11537,7 @@ textarea.form-control {
   font-size: 16px;
   background: #000000;
   padding: 12em 0 8em 0;
+  font-family:Helvetica
 }
 
 .ftco-footer .ftco-footer-logo {
@@ -11721,7 +11724,7 @@ textarea.form-control {
   text-transform: uppercase;
   font-weight: 400;
   letter-spacing: 2px;
-  color: rgba(0, 0, 0, 0.2); }
+  color: grey; }
 
 .heading-section h2 {
   font-size: 38px;

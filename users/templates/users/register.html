@@ -3,7 +3,7 @@
 {% load static %}
 {% block content%}
   
-  <div class="wrapper" style="background:gray !important">
+  <div class="wrapper">
 
     <div class="inner">
 
@@ -20,7 +20,7 @@
           <span class="border"></span>
         </label>
         <input type="submit" value="submit" class="register_btn" style="position: relative;top: -55px;font-family: inherit;">
-        <h6 style="position: relative;top: -15px;left: -2%">Already have an account? <a href="{% url 'Login' %}" style="font-family: inherit;" class="register_signin">Sign in</a></h6>
+        <h6 style="position: relative;top: -15px;left: -2%; color: var(--foreground)">Already have an account? <a href="{% url 'Login' %}" style="font-family: inherit;" class="register_signin">Sign in</a></h6>
       </form>
       
     </div>

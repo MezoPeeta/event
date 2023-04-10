@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% load static %}
 {% block content%}
-<div class="pew">
+<div class="pew" style="background: var(--redblack)!important">
 <div class="main">
     <div class="ftco-navbar-light"></div>
 
@@ -19,7 +19,9 @@
                   font-family: 'Montserrat';
                   font-size: 24px;
                   text-align: center;
-                  margin-bottom: 40px;">Send Ticket</h2>
+                  margin-bottom: 40px;
+                  font-family: Helvetica;
+                  ">Send Ticket</h2>
                   {% csrf_token %}
                   {{ form|crispy}}
                   <div class="form-group">

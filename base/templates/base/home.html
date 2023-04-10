@@ -14,7 +14,7 @@
           {% trans 'Welcome to Our Website' %}
         </h1>
         <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
-          <a href="/contact" class="btn btn-primary btn-outline-white px-5 py-3" style="font-family: 'Helvetica';">{% trans 'Get in touch' %}</a></p>
+          <a href="/contact" class="btn btn-primary btn-outline-white px-5 py-3" style="font-family: 'Helvetica'; background: transparent !important; border-color: white !important; color: white !important;">{% trans 'Get in touch' %}</a></p>
       </div>
     </div>
   </div>
@@ -174,7 +174,7 @@
                 {% csrf_token %}
                 <div class="form-group">
                     {{ form|crispy}}
-                  <input type="submit" value="{% trans 'Sign me up' %}" class="btn btn-dark" style="font-family: 'Helvetica';">
+                  <input type="submit" value="{% trans 'Sign me up' %}" class="btn btn-dark" style="font-family: 'Helvetica'; background: transparent !important; border-color:white !important; color:white !important;">
                 </div>
               </form>
             </div>

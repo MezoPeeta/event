@@ -10,15 +10,13 @@
   --redbg: var(--clr-primary);
   --redwhite: var(--clr-primary);
   --redblack: var(--clr-primary);
-  --transblack: var(--clr-transparent);
-  --blackred: var(--clr-dark);
-  --whitered: var(--clr-light);
+  --transblack: var(--clr-transparent)
 }
 
 .darkmode {
   --clr-light: #fff;
   --clr-dark: #000;
-  --clr-primary: red;
+  --clr-primary: #202302;
   --clr-secondary: #00100d;
   --clr-accent: #ff7750;
 
@@ -28,8 +26,6 @@
   --redwhite: var(--clr-light);
   --redblack: var(--clr-dark);
   --transblack: var(--clr-dark);
-  --blackred: var(--clr-primary);
-  --whitered: var(--clr-primary);
 }
 
 .dark-mode-toggle {

@@ -170,7 +170,7 @@ p {
   text-transform: uppercase;
   border: none;
   border-radius: 50px;
-  background: black ;
+  background: var(--blackred) ;
   font-family: sans-serif;
   
 }
