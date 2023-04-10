@@ -466,7 +466,7 @@ iframe {
   border-radius: 7px;
 }
 .person-info{
-  color:#000;
+  color:var(--foreground);
 }
 .color_gen_span{
   width: 100px;

@@ -36,7 +36,7 @@ class TestUtils:
         else:
             return "chrome"
 
-    def init_selenium(self, headless=True):
+    def init_selenium(self, headless=False):
         """
         Initialize selenium webdriver based on the default browser on the system
         and return the webdriver object
