@@ -2,11 +2,11 @@ from django.test import TestCase , LiveServerTestCase
 from django.shortcuts import reverse
 from utils.selenium_test import TestUtils
 from time import sleep
-from dashboard.models import Design
 from selenium.webdriver.common.by import By
 from products.models import Products
 from base.models import Videos, Contact 
 from dashboard.views import InboxDetailView, ContactForm
+from users.models import Committee
 
 
 class TestViews(TestCase,TestUtils):
@@ -59,7 +59,8 @@ class TestViews(TestCase,TestUtils):
         self.assertFalse(form.is_valid())
 
     def test_InboxDelete(self):
-        self.user.profile.committee = "HR"
+        committee = Committee.objects.create(name="HR")
+        self.user.profile.committee = committee
         self.user.profile.save()
         Contact.objects.create(id=1,name='Test',email='test@gmail.com',subject='Test_Subject',message='Test_Message',reply='Test_Reply')
         url = reverse("Inbox_Delete", kwargs={"pk": 1})
@@ -68,12 +69,12 @@ class TestViews(TestCase,TestUtils):
         # print("Status Code " , request.status_code)
         self.assertTemplateUsed("dashboard/HR/inbox.html")
         
-    def test_change_background_color(self):
-        self.user.profile.committee = "Design"
-        self.user.profile.save()
-        request = self.client.post
-        font_btn = request.POST.get("font_btn")
-        color = request.POST.get("color")
+    # def test_change_background_color(self):
+    #     self.user.profile.committee = "Design"
+    #     self.user.profile.save()
+    #     request = self.client.post
+    #     font_btn = request.POST.get("font_btn")
+    #     color = request.POST.get("color")
         
 
     # def test_VideoUpdateViewfunc(self):
@@ -90,16 +91,16 @@ class TestDesignDashboard(LiveServerTestCase,TestUtils):
         self.selenium_admin_login()
     
     
-    def test_design(self):
-        self.user.profile.committee = "Design"
-        self.user.profile.save()
-        url = reverse("Dashboard")
-        self.browser.get(self.live_server_url + url)
-        color = Design.objects.filter(id=1).first().color
-        element = self.browser.find_element(By.ID,'values').text
-        values = element.split('\n')
-        hex_color = values[0].split(' ')[1]
-        self.assertEqual(color,hex_color)
+    # def test_design(self):
+    #     self.user.profile.committee = "Design"
+    #     self.user.profile.save()
+    #     url = reverse("Dashboard")
+    #     self.browser.get(self.live_server_url + url)
+    #     color = Design.objects.filter(id=1).first().color
+    #     element = self.browser.find_element(By.ID,'values').text
+    #     values = element.split('\n')
+    #     hex_color = values[0].split(' ')[1]
+    #     self.assertEqual(color,hex_color)
 
     
     def test_products(self):
@@ -145,13 +146,13 @@ class TestDesignDashboard(LiveServerTestCase,TestUtils):
     #     },)
     #     request['x-requested-with'] = "XMLHttpRequest"
 
-    def test_change_background_color(self):
-        self.user.profile.committee = "Design"
-        self.user.profile.save()
-        request = self.client.post
-        font_btn = request.POST.get("font_btn")
-        color = request.POST.get("color")
-        url = reverse('Dashboard')
+    # def test_change_background_color(self):
+    #     self.user.profile.committee = "Design"
+    #     self.user.profile.save()
+    #     request = self.client.post
+    #     font_btn = request.POST.get("font_btn")
+    #     color = request.POST.get("color")
+    #     url = reverse('Dashboard')
     
         
 
@@ -169,7 +170,7 @@ class TestDesignDashboard(LiveServerTestCase,TestUtils):
 
 
 # How to test if element is found with selenium??
-# 1 - self.browser.get(self.live_server_url + reverse(url)) -> Bt2ol le selenium ro7 lel url kza
+# 1 - self.browser.get(self.live_server_url + reverse(url)) ->v Bt2ol le selenium ro7 lel url kza
 # 2 - Get element from self.browser.find_element(By., element) by --> id, xpath, class_names
 # 3 - Check element by self.assertEqual aww self.assertTrue()
 

@@ -3,7 +3,7 @@
 {% block content%}
 {% load i18n %}
 {% load crispy_forms_tags %}
-
+<div style="background:var(--background) !important;">
 <div class="container" style="padding-top: 10%;padding-bottom: 5%;">
     <div class="row">
     <a  class="btn btn-outline-dark" href="{% url 'Dashboard' %}" style="font-family: inherit;">&#x2190; Dashboard</a>
@@ -16,7 +16,7 @@
         </form>
     </div>
     <h1>Products table</h1>
-    {{ df|safe }}
+    <div style="color: var(--foreground) !important">{{ df|safe }}</div>
 </div>
-
+</div>
 {% endblock content%}

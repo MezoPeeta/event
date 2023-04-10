@@ -1,5 +1,4 @@
-{% extends 'base/base.html' %} {% load static %} {% block content%} {% load i18n
-%} {% load bgcolor %}
+{% extends 'base/base.html' %} {% load static %} {% block content%} {% load i18n%} 
 
 <section class="ftco-section bg-light">
   <div class="container">
@@ -39,7 +38,6 @@
               type="submit"
               value="Change Default Color"
               class="btn btn-dark"
-              style="background:{%color%};border-color:{%color%};color:{%font_color%}"
             />
             <br />
             <br />
@@ -47,7 +45,6 @@
               type="submit"
               value="Change Font Color"
               class="btn btn-dark"
-              style="background:{%color%};border-color:{%color%};color:{%font_color%}"
               name="font_btn"
             />
 
@@ -57,7 +54,6 @@
               type="submit"
               value="Reset All Color"
               class="btn btn-dark"
-              style="background:{%color%};border-color:{%color%};color:{%font_color%}"
               name="reset_btn"
             />
           </div>
@@ -84,7 +80,6 @@
         type="submit"
         value="Get Palette Color"
         class="btn btn-dark"
-        style="background:{%color%};border-color:{%color%};color:{%font_color%}"
       />
     </form>
     <br>

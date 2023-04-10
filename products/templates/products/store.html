@@ -22,11 +22,11 @@
         
 <section class="ftco-section bg-light ftco-animate">
   <div class="container">
-    <a href="{% url 'Cart' %}" style="float:right;" class="cart">
+    <a href="{% url 'Cart' %}" style="float:right;" class="cart" >
       {% if order_count != 0 %}
       <h6 style="margin-left:25%">{{order_count}}</h6> 
       {% endif %}
-        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24"><path d="M10 20.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5zm3.5-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm6.304-17l-3.431 14h-2.102l2.541-11h-16.812l4.615 13h13.239l3.474-14h2.178l.494-2h-4.196z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill=""><path d="M10 20.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5zm3.5-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm6.304-17l-3.431 14h-2.102l2.541-11h-16.812l4.615 13h13.239l3.474-14h2.178l.494-2h-4.196z"/></svg>
   
       </a>
     <form action = "/en/store/">
@@ -87,11 +87,11 @@ input.addEventListener('keyup', (e)=> {
             content.</p>
           <hr>
           
-          <a class="btn btn-outline-danger"  href="{% url 'Products' photo.product.id %}">View Product</a>
-          <button class="btn" style="cursor: default;background: #4e4e4e">{{photo.product.price}}$</button>
+          <a class="btn btn-outline-danger" style="border-color: black !important; color: black !important;"  href="{% url 'Products' photo.product.id %}">View Product</a>
+          <button class="btn" style="cursor: default;background: #4e4e4e;border-color: black !important; color: black !important;">{{photo.product.price}}$</button>
           <br> <br>
           
-          
+          {% comment %} style="border-color: black !important; color: black !important;" {% endcomment %}
         </div>
         
       </div>
@@ -100,7 +100,7 @@ input.addEventListener('keyup', (e)=> {
       {% endfor %}
     
 <div class="container paginator">
-    <div class="pagination p1">
+    <div class="pagination p1" >
       <ul>
         {% if search_query %}
         {%if Products.has_previous%}

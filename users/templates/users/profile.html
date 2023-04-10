@@ -2,7 +2,6 @@
 {% load crispy_forms_tags %}
 {% load static %}
 {% block content%}
-{% load bgcolor %}
 
 <div class="bg-light">
  <!-- header section -->
@@ -29,7 +28,7 @@
                     </div>
 
                     {% endif %}
-                 <h1 class="tm-title bold" style="color: {%color%};">{{ user.first_name|title}} {{ user.last_name|title }}</h1>
+                 <h1 class="tm-title bold">{{ user.first_name|title}} {{ user.last_name|title }}</h1>
                  <h1 class="bold"> 
                     {% if user.profile.position not in 'President,Operations' %}
                     {{ user.profile.position }}

@@ -8,7 +8,7 @@
     <a  class="btn btn-outline-dark" href="{% url 'Speakers' %}" style="position: relative;right: -64px;">&#x2190; Back to Speakers</a>
     
     {%for photo in photos%}
-    <h1 style="position: relative;right: -59%;top: 71px;">{{photo.speaker.talk_name}}</h1>
+    <h1 style="position: relative;right: -41%;top: 71px;">{{photo.speaker.talk_name}}</h1>
     <img style="width:30%;height:auto;position: relative;right: -66px;top: -7px;" src="{{photo.image.url}}" alt="">
     <p style="width: 700px;position: relative;right: -41%;top: -370px;">{{photo.speaker.description}}</p>
     {% if photo.speaker.facebook %}

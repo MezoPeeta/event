@@ -2,17 +2,18 @@
 {% load static %}
 {% block content%}
 {% load i18n %}
-
+  {%for photo in photos%}
   <section class="ftco-section bg-light">
     <div class="container">
       <div class="row">
         <div class="col-lg-6">
-          <img style="border:1px solid #888" src="{{product.image.url}}">
+          <img style="border:1px solid #888; width:80%;" src="{{photo.image.url}}">
         </div>
       
+      {% endfor %}
         <div style="padding:50px" class="col-lg-6">
       
-          <h3 style="color: black;">{{product.name}}</h3>
+          <h3>{{product.name}}</h3>
           <hr>
           
           <form method="POST" action="{% url 'Products' product.id %}">
@@ -21,7 +22,7 @@
             <input class="btn btn-dark" type="submit" value="Add to Cart">
           </form>
       
-          <h2 style="color: black !important;">Price: ${{product.price}}</h2>
+          <h2 style="color: var(--foreground) !important">Price: ${{product.price}}</h2>
         </div>
       </div>
     </div>
