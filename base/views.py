@@ -10,7 +10,7 @@ from django.core.mail import (
 )
 from django.contrib import messages
 from django.conf import settings
-from .models import Videos, Subscribe, Contact, Speakers,ImageSpeakers
+from .models import Videos, Subscribe, Contact, Speakers, ImageSpeakers
 from .forms import SubscribeForm, NewsletterForm
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
@@ -136,11 +136,17 @@ def activate_account(request, pk, token):
 
 
 def about(request):
+    committees = Committee.objects.all()
+    for committee in committees:
+        if committee.name == "IT":
+            committees = [committee] + [
+                committee for committee in committees.exclude(id=committee.id)
+            ]
     members = Profile.objects.all()
     context = {
         "title": "About",
         "Members": members,
-        "Committees": Committee.objects.all(),
+        "Committees": committees,
     }
     return render(request, "base/about.html", context)
 
@@ -187,22 +193,18 @@ class SpeakersListView(ListView):
     context_object_name = "speakers"
     ordering = ["-date_posted"]
     paginate_by = 6
-    def get_context_data(self,**kwargs):
-        photos = ImageSpeakers.objects.filter(default=True)
-        context = {"photos": photos
 
-               }
+    def get_context_data(self, **kwargs):
+        photos = ImageSpeakers.objects.filter(default=True)
+        context = {"photos": photos}
         return context
-   
 
 
 def error_404_view(request, exception=None):
     return render(request, "base/404.html", status=404)
 
-def speakers(request,pk):
-   photos = ImageSpeakers.objects.filter(default=True)
-   context = {"photos": photos
 
-               }
-   return render(request, "base/speaker.html", context)
-    
+def speakers(request, pk):
+    photos = ImageSpeakers.objects.filter(default=True)
+    context = {"photos": photos}
+    return render(request, "base/speaker.html", context)
