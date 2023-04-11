@@ -3,11 +3,11 @@
 {% load static %}
 {% block content%}
 <div class="limiter">
-	<div class="container-login100" style="background: #e42929">
-		<div class="wrap-login100 p-t-85 p-b-20"  style="background: #e42929">
+	<div class="container-login100" style="background: var(--redblack)">
+		<div class="wrap-login100 p-t-85 p-b-20"  style="background: var(--redblack)">
 			<form class="login100-form validate-form" method="POST" action="{% url 'Login' %}">
                 {% csrf_token %}
-				<span class="login100-form-avatar">
+				<span style="border: solid 3px var(--redwhite)" class="login100-form-avatar">
 					<img src="{% static 'base/img/logo.jpg' %}" alt="logo">
 				</span>
 
@@ -27,20 +27,20 @@
                 <br>
 				<ul class="login-more p-t-190">
 					<li class="m-b-8">
-						<span class="txt1" style="color: black;font-family: inherit;">
+						<span class="txt1" style="color: black;font-family: inherit; color: var(--foreground)">
 							Forgot
 						</span>
 
-					<a href="/password-reset" class="txt2" style="color:white;font-family: inherit;">
+					<a href="/password-reset" class="txt2" style="color:white;font-family: inherit; color: var(--whitered)">
 							Username / Password?
 						</a>
 					</li>
 					<li>
-						<span class="txt1" style="color: black;font-family: inherit">
+						<span class="txt1" style="color: black;font-family: inherit; color: var(--foreground)">
 							Don’t have an account?
 						</span>
 
-						<a href="/register" class="txt2" style="color: white;font-family: inherit">
+						<a href="/register" class="txt2" style="color: white;font-family: inherit; color: var(--whitered)">
 							Sign up
 						</a>
 					</li>

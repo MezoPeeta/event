@@ -34,6 +34,8 @@
     <link rel="stylesheet" href="{%static 'base/css/register.css'%}">
     <link rel="stylesheet" href="{%static 'base/css/checkout.css'%}">
     <link rel="stylesheet" href="{%static 'base/css/style.css'%}">
+    <link rel="stylesheet" href="{%static 'base/css/products.css'%}">
+    <link rel="stylesheet" href="{%static 'base/css/darkmode.css'%}">
   </head>
   <body>
     
@@ -67,7 +69,19 @@
           <a href="{% url 'Contact' %}"><span>Contact</span></a>
         </li>
         {% endif %}
+        <li>
+         
+          <div class="toggle-switch" >
+            <label class="switch-label">
+              <input type="checkbox" class="checkbox">
+              <span class="slider" id="dark-mode-toggle"></span>
+            </label>
+          </div>  
+          
+        </li>
+        
       </ul>
+      
     </nav>
 
     {% if messages %} {% for message in messages%}
@@ -98,7 +112,7 @@
         />
       </svg>
     </div>
-    <footer class="ftco-footer ftco-bg-dark ftco-section">
+    <footer class="ftco-footer ftco-bg-dark ftco-section" >
       <div class="container">
         <div class="row mb-5">
           <div class="col-md">
@@ -118,7 +132,7 @@
                   type="submit"
                   value="English"
                   class="btn btn-danger"
-                  style="font-family: inherit"
+                  style="font-family: inherit; border-color: white !important; color: white !important;"
                 />
               </form>
               <div class="ml-2"></div>
@@ -130,7 +144,7 @@
                   value="{{ request.get_full_path|slice:'3:' }}"
                 />
                 <input name="language" type="hidden" value="ar" />
-                <input type="submit" value="العربية" class="btn btn-danger" />
+                <input type="submit" value="العربية" class="btn btn-danger" style=" border-color: white !important; color: white !important;" />
               </form>
             </div>
           </div>
@@ -171,6 +185,7 @@
                   >
                 </li>
                 <li>
+                  
                   <a
                     href="{% url 'Store' %}"
                     class="py-2 d-block"
@@ -323,7 +338,8 @@
     <script async src="{%static 'base/js/navbar.js'%}"></script>
     <script async src="{%static 'base/js/checkout.js'%}"></script>
     <script async src="{%static 'base/js/register.js'%}"></script>
-    
-      
+    <script async src="{%static 'base/js/darkmode.js'%}"></script>
+
+
   </body>
 </html>

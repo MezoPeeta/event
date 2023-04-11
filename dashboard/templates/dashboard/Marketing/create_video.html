@@ -5,7 +5,7 @@
 {% load i18n %}
 <section class="ftco-section" style="background: rgb(20, 19, 19);color: white;">
     <div class="container">
-        <a  class="btn btn-outline-dark" href="{% url 'Dashboard' %}" style="font-family: inherit;color: white;">&#x2190; Back</a>
+        <a  class="btn btn-outline-dark" href="{% url 'Dashboard' %}" style="font-family: inherit;color: white !important; border-color: white !important;">&#x2190; Back</a>
         <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
@@ -16,7 +16,7 @@
 
             </fieldset>
             <div class="form-group">
-                <button class="btn bg-dark" type="submit" style="width:25%; padding: 10px; background:none;color: white;">Add</button>
+                <button class="btn bg-dark" type="submit" style="width:25%; padding: 10px; background:none;color: white !important; border-color: white !important">Add</button>
             </div>
         </form>
         </div>

@@ -7,12 +7,10 @@ from django.contrib.auth.models import User
 class Products(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200, default="Product Name")
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    image = models.ImageField(
-        default="product_default.jpg", upload_to="products", blank=True
-    )
-    price = models.DecimalField(max_digits=7, decimal_places=2)
+    description = models.TextField(blank=True)
+    price = models.DecimalField(max_digits=7, decimal_places=2, null=True)
     created_at = models.DateTimeField(default=timezone.now)
+    
 
     def get_absolute_url(self):
         return reverse("Store")
@@ -22,6 +20,12 @@ class Products(models.Model):
     
     class Meta:
         ordering = ["-created_at"]
+class ImageProducts(models.Model):
+    name = models.CharField(max_length=255)
+    product = models.ForeignKey(Products, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='products')
+    default = models.BooleanField(default=False)
+
 
 
 class Customer(models.Model):

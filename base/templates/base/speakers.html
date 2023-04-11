@@ -19,12 +19,15 @@
 
   <section class="ftco-section ftco-animate bg-light">
     <div class="container">
-        <h1 style="color: black;text-align: center;font-size: 2.8rem; margin-bottom: 200px;"> {% trans '— Previous Speakers — '%} </h1>
+        <h1 id="Previous_Speakers" style="text-align: center;font-size: 2.8rem; margin-bottom: 200px;"> {% trans '— Previous Speakers — '%} </h1>
           <div class="speakers">
-            {% for speaker in speakers %}
-              <div class="speaker_list">
-                <img src="{{ speaker.image.url}}" alt="{{speaker.name}}" class="speaker_img" >
-                <h3 style="color: black;">{{speaker.name}}</h3>
+            {% for photo in photos %}
+            
+              <div class="speaker_list" style="width:30%">
+                <a href="{% url 'Speakers' photo.speaker.id %}">
+                <img src="{{photo.image.url}}" alt="{{photo.speaker}}" class="speaker_img" >
+              </a>
+                <h3 style="">{{photo.speaker.name}}</h3>
               </div>
               {% endfor %}
           </div>

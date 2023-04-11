@@ -9,7 +9,7 @@
           <a
             class="btn btn-outline-dark"
             href="{% url 'Store' %}"
-            style="font-family: inherit"
+            style="font-family: inherit; border-color: black !important; color:black !important;"
             >&#x2190; Continue Shopping</a
           >
 
@@ -31,7 +31,7 @@
               </th>
               <th>
                 <a
-                  style="float: right; margin: 5px; font-family: inherit"
+                  style="float: right; margin: 5px; font-family: inherit;border-color: black !important; color:black !important;"
                   class="btn btn-danger"
                   href="{% url 'Products_CheckOut' %}"
                   >Checkout</a
@@ -56,6 +56,7 @@
           <div class="cart-row">
             <div style="flex: 2">
               <img class="row-image" src="{{item.product.image.url}}" />
+              
             </div>
             <div style="flex: 2">
               <p style="font-family: inherit">{{item.product.name}}</p>
@@ -75,14 +76,14 @@
               <a
                 class="btn btn-sm btn-dark"
                 href="{% url 'Products' item.product.id %}"
-                style="font-family: inherit"
+                style="font-family: inherit;border-color: black !important; color:black !important;"
                 >Update</a
               >
             </div>
             <div style="flex: 1">
               <a
                 class="btn btn-sm btn-danger"
-                style="font-family: inherit"
+                style="font-family: inherit;border-color: black !important; color:black !important;"
                 href="{% url 'Products_Delete' item.id %}"
                 >Remove</a
               >
