@@ -99,9 +99,10 @@
     <div class="row justify-content-center mb-5 pb-5">
       <div class="col-md-7 text-center heading-section ftco-animate">
         <span class="subheading">{% trans 'Team' %}</span>
-        <h2 class="mb-5">{% trans 'Our Team' %}</h2>
+        <h2 class="mb-5" >{% trans 'Our Team' %}</h2>
       </div>
     </div>
+    <div class="row justify-content-center mb-5 pb-5"><h1 class="mb-5">Operations</h1></div>
     <div class="row">
       <div class="col-md-4 mb-5 ftco-animate">
         <div class="block-10">
@@ -133,17 +134,53 @@
           <p style="font-family: inherit">Cairo, Egypt</p>
         </div>
       </div>
-      <!-- <div class="col-md-4 mb-5 ftco-animate">
-        <div class="block-10">
-          <div class="person-info mb-2">
-            <span class="name">Head</span>
-            <span class="position">Co-organizer </span>
-          </div>
-          <img src="/static/base/img/mrs_asmaa.jpeg" alt="" class="img-fluid mb-3">
-          <p>Cairo, Egypt</p>
-        </div>
-      </div>  -->
     </div>
   </div>
+  {% for committee in Committees %}
+  <div class="row justify-content-center mb-5 pb-5"><h1 class="mb-5">{{committee}} Committee</h1></div>
+  
+  <div class="container">
+    <div class="row">
+  {% for member in Members %}
+      {% if member.committee == committee %}
+      <div class="col-md-4 mb-5 ftco-animate">
+        <div class="block-10">
+          <div class="person-info mb-2">
+            <span>{{member.user.first_name}} {{member.user.last_name}}</span>
+            <span class="position"
+              >{{member.position}}
+            </span>
+          </div>
+          {% if member.image %}
+          <a href="{%url 'Profile' username=member.user.username %}"><img style="background:white;margin:0 auto;width:350px;height:350px;object-fit: cover;" src="{{member.image.url}}" alt="{{member.user.username}}"></a>
+          {% else %}
+
+          <a href="{%url 'Profile' username=member.user.username %}"><svg width="80" height="80" data-jdenticon-value="{{member.user.username}}" style="
+            border-radius: 50%;
+            object-fit: cover;
+            height: 300px;
+            width: 300px;
+          "></svg></a>
+          {% endif %}
+          <p style="font-family: inherit">Cairo, Egypt</p>
+        
+        </div>
+      </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  </div>
+  {% endfor %}
 </div>
-{% endblock content%}
+  
+
+      
+      
+      
+    
+
+<script src="https://cdn.jsdelivr.net/npm/jdenticon@3.2.0/dist/jdenticon.min.js" async
+        integrity="sha384-yBhgDqxM50qJV5JPdayci8wCfooqvhFYbIKhv0hTtLvfeeyJMJCscRfFNKIxt43M"
+        crossorigin="anonymous">
+</script>
+{% endblock content %}

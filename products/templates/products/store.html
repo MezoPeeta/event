@@ -2,7 +2,7 @@
 {% load static %}
 {% block content%}
 {% load i18n %}
-{% load bgcolor %}
+
 
 
 
@@ -33,6 +33,7 @@
       </div>
     </div>
     </form>
+    
      
 <!--<script>
 {% for product in Products %}
@@ -71,7 +72,7 @@ input.addEventListener('keyup', (e)=> {
     {%endif%}
     <div class="products" style="display:flex;flex-wrap:wrap;justify-content:space-between;" id="products_id">
     
-    
+      
       {% for product in Products %}
       <div class="card" style="width: 18rem;">
         <img class="card-img-top" src="{{ product.image.url}}" alt="Card image cap">
@@ -85,6 +86,7 @@ input.addEventListener('keyup', (e)=> {
       </div>
       
       {% endfor %}
+      
     
 <div class="container paginator">
     <div class="pagination p1">

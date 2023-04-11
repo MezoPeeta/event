@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from PIL import Image
+import pydenticon
+from django.core.files.base import ContentFile
+import random
 
 
 class Committee(models.Model):
@@ -17,12 +20,20 @@ class Profile(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone = models.CharField(max_length=20, blank=True)
-    image = models.ImageField(upload_to="profile_pics", blank=True, null=True)
+    image = models.ImageField(
+        upload_to="profile_pics",
+        blank=True,
+        null=True,
+    )
+    pydenticon = models.ImageField(upload_to="profile_pics", null=True)
+
     show_email = models.BooleanField(default=True)
     show_phone = models.BooleanField(default=True)
     bio = models.TextField(max_length=300, blank=True)
 
-    committee = models.ForeignKey(Committee, on_delete=models.CASCADE, blank=True, null=True)
+    committee = models.ForeignKey(
+        Committee, on_delete=models.CASCADE, blank=True, null=True
+    )
     position_list = (
         ("Member", "Member"),
         ("Head", "Head"),

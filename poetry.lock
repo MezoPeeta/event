@@ -1,4 +1,23 @@
 [[package]]
+name = "accept"
+version = "0.1.0"
+description = "Parse and order a HTTP Accept header."
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
+name = "accept-paymob"
+version = "1.0.0"
+description = "Python client for the Paymob.accept API"
+category = "main"
+optional = false
+python-versions = ">=3"
+
+[package.dependencies]
+requests = "*"
+
+[[package]]
 name = "arabic-reshaper"
 version = "3.0.0"
 description = "Reconstruct Arabic sentences to be used in applications that do not support Arabic"
@@ -275,6 +294,18 @@ python-versions = "*"
 python-fsutil = ">=0.6.0"
 
 [[package]]
+name = "django-pydenticon"
+version = "0.2"
+description = "Django application providing generated identicons to the web."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+django = ">=1.8.0"
+pydenticon = ">=0.3"
+
+[[package]]
 name = "exceptiongroup"
 version = "1.1.1"
 description = "Backport of PEP 654 (exception groups)"
@@ -440,6 +471,17 @@ description = "C parser in Python"
 category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+
+[[package]]
+name = "pydenticon"
+version = "0.3.1"
+description = "Library for generating identicons. Port of Sigil (https://github.com/cupcake/sigil) with enhancements."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+Pillow = "*"
 
 [[package]]
 name = "pyhanko"
@@ -972,9 +1014,16 @@ svglib = ">=1.2.1"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.11"
-content-hash = "c282f4c98b3e75a5dd28142512b759208e2a6911b9ab2abf3a858680c3a8c2a6"
+content-hash = "65e468065aa7005d8baad7fc9949286d7e6b07e1755cb0ed617737075d724eb9"
 
 [metadata.files]
+accept = [
+    {file = "accept-0.1.0.tar.gz", hash = "sha256:760241df3a6be5a5c4f00682a381280a8c3c7e0286fd55612f68d0f9e9dcfed4"},
+]
+accept-paymob = [
+    {file = "accept-paymob-1.0.0.tar.gz", hash = "sha256:65c951b2fc448458e1170588ecf28e2d8716de87ac60bfe0d59d8628b49d479a"},
+    {file = "accept_paymob-1.0.0-py3-none-any.whl", hash = "sha256:d5b48a29f23697aa6baf48bf5d5b428666b174b1b626231e79831551e783efdd"},
+]
 arabic-reshaper = [
     {file = "arabic_reshaper-3.0.0-py3-none-any.whl", hash = "sha256:3f71d5034bb694204a239a6f1ebcf323ac3c5b059de02259235e2016a1a5e2dc"},
     {file = "arabic_reshaper-3.0.0.tar.gz", hash = "sha256:ffcd13ba5ec007db71c072f5b23f420da92ac7f268512065d49e790e62237099"},
@@ -1295,6 +1344,9 @@ django-maintenance-mode = [
     {file = "django-maintenance-mode-0.16.3.tar.gz", hash = "sha256:f9a702e333aa48bf9366af7b412ad15790ecf1e6c3892fd991b7c02b6bcedaa4"},
     {file = "django_maintenance_mode-0.16.3-py3-none-any.whl", hash = "sha256:adacbfdce4b467390ca98bc975fe5957b1f9984317c7da434b9c07c8ff086f99"},
 ]
+django-pydenticon = [
+    {file = "django-pydenticon-0.2.tar.gz", hash = "sha256:52f03d960947bffd132841c0ee9767e50a9776402c1c6f9487ec46a137273bf5"},
+]
 exceptiongroup = [
     {file = "exceptiongroup-1.1.1-py3-none-any.whl", hash = "sha256:232c37c63e4f682982c8b6459f33a8981039e5fb8756b2074364e5055c498c9e"},
     {file = "exceptiongroup-1.1.1.tar.gz", hash = "sha256:d484c3090ba2889ae2928419117447a14daf3c1231d5e30d0aae34f354f01785"},
@@ -1542,6 +1594,9 @@ platformdirs = [
 pycparser = [
     {file = "pycparser-2.21-py2.py3-none-any.whl", hash = "sha256:8ee45429555515e1f6b185e78100aea234072576aa43ab53aefcae078162fca9"},
     {file = "pycparser-2.21.tar.gz", hash = "sha256:e644fdec12f7872f86c58ff790da456218b10f863970249516d60a5eaca77206"},
+]
+pydenticon = [
+    {file = "pydenticon-0.3.1.tar.gz", hash = "sha256:2ef363cdd6f4f0193ce62257486027e36884570f6140bbde51de72df321b77f1"},
 ]
 pyhanko = [
     {file = "pyHanko-0.17.2-py3-none-any.whl", hash = "sha256:1a91049d1a13a0756304761a8331225fd9e929123e213affdfa48308bec6bb22"},

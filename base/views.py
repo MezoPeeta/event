@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.core.validators import validate_email, ValidationError
+from django.contrib.auth.models import User
+from users.models import Committee
 from django.core.mail import (
     send_mail,
     EmailMessage,
@@ -14,6 +16,7 @@ from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
 from django.views.generic import ListView
 from uuid import uuid4
+from users.models import Profile
 
 
 def home(request):
@@ -133,7 +136,13 @@ def activate_account(request, pk, token):
 
 
 def about(request):
-    return render(request, "base/about.html", {"title": "About"})
+    members = Profile.objects.all()
+    context = {
+        "title": "About",
+        "Members": members,
+        "Committees": Committee.objects.all(),
+    }
+    return render(request, "base/about.html", context)
 
 
 class VideoListView(ListView):
