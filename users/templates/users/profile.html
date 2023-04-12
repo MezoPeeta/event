@@ -51,20 +51,19 @@
         </div>
     </header>
     <center>
-    {% if request.user.is_authenticated  and request.user.id == user.id %}
+    {% if request.user.is_authenticated and request.user.id == user.id%}
     <div class="row" style="justify-content: center;margin-right: 10px;">
         <a href="{% url 'Update_Profile' %}" class="btn btn-danger" style="position: relative; top: -50px;margin-right: 1%;">Edit</a>
+    {% if perms.users.can_view_dashboard and committee.name not in "Media,Design"%}
         {% if committee.name == "HR"%}
-        <a href="{%url 'Inbox' %}"
-        class="btn btn-danger" style="position: relative; top: -50px;">Inbox</a> 
-        {% elif committee == None or committee.name in "Coaching,Media,Videography,Design" %}
-          <a href=""></a>
-        {%else%}
-        <a href="{%url 'Dashboard' %}"
-        class="btn btn-danger" style="position: relative; top: -50px;">Dashboard</a>
-        
-        {% endif %}  
-       
+            <a href="{%url 'Inbox' %}"
+            class="btn btn-danger" style="position: relative; top: -50px;">Inbox</a> 
+            {%else%}
+            <a href="{%url 'Dashboard' %}"
+            class="btn btn-danger" style="position: relative; top: -50px;">Dashboard</a>
+            
+            {% endif %}  
+    {% endif %}
     </div>
 
     {%else%}

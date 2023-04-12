@@ -1,0 +1,74 @@
+{% extends 'base/base.html' %} {% load static %} {% block content%} {% load i18n%}
+<section class="ftco-section bg-light">
+    <div class="container">
+        <a  class="btn btn-outline-dark" href="{% url 'Dashboard' %}" style="font-family: inherit;">&#x2190; Dashboard</a>
+        <div>
+            <div class="col-md-6 mb-5">
+                <h2>Assign Members</h2>
+                <form action="{% url 'Give Permission' %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger" name="perm_btn">Give Dashboard Permission</button>
+                    <button type="submit" class="btn btn-danger" name="assign_btn">Assign Committee</button>
+                    <button type="submit" class="btn btn-danger" name="remove_perm_btn">Remove Permission</button>
+
+                    <br> <br> <br>
+                    <div class="member_list">
+                    {% for profile in profiles %}
+                    <div class="form-element">
+                        <input type="checkbox" name="member" value="{{profile.user.pk}}" id="{{profile.user.username}}">
+                        <label for="{{profile.user.username}}">
+                        <div class="profile-avatar">
+                            {% if profile.image %}
+                            <img src="{{profile.image.url}}" width="250" height="250">
+                            {% else %}
+                            <svg width="250" height="250" data-jdenticon-value="{{profile.user.username}}" style="background:white;border-radius:15px"></svg>
+                            {% endif %}
+                        </div>
+                        <div class="card-title">
+                            <h4>{{profile.user.username}}</h4>
+                            <h6>{{profile.committee|default_if_none:""}} {{profile.position}} </h6>
+
+                        </div> 
+                        <div class="card-body">
+                            Current permissions: <br>
+                            {% for perm in profile.user.user_permissions.all %}
+                            <span class="badge badge-pill badge-success">{{perm.name}}</span>
+                            {% endfor %}
+
+                            
+                        </div> 
+                    </div>
+                </label>
+
+                {% endfor %}
+
+            </form>
+
+
+                <script src="https://cdn.jsdelivr.net/npm/jdenticon@3.2.0/dist/jdenticon.min.js" async
+                integrity="sha384-yBhgDqxM50qJV5JPdayci8wCfooqvhFYbIKhv0hTtLvfeeyJMJCscRfFNKIxt43M"
+                crossorigin="anonymous">
+            </script>  
+                          
+</section>
+<center>
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current" style="color: var(--foreground) !important">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+</center>
+
+{% endblock content%}

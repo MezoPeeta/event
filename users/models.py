@@ -77,6 +77,13 @@ class Profile(models.Model):
                 img.save(f"{self.image.path}.jpg")
         else:
             super().save(*args, **kwargs)
+    
+    class Meta:
+        permissions = [
+            ("can_view_dashboard", "Can view dashboard"),
+            ("change_user_committee", "Can change user committee"),
+            
+        ]
 
 
 class RegistrationCode(models.Model):

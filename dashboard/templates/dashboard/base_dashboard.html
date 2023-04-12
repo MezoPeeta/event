@@ -1,0 +1,12 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content%}
+{% load i18n %}
+<section class="ftco-section bg-light">
+    <div class="container">
+        <a  class="btn btn-outline-dark" href="{% url 'Profile' request.user.username %}" style="font-family: inherit;">&#x2190; Profile</a>
+        <a  class="btn btn-outline-dark" href="{% url 'Assign' %}" style="font-family: inherit;">Assign members</a>
+
+        {%block dashboard%} {% endblock dashboard%}
+        </section>
+{% endblock content%}

@@ -4,6 +4,8 @@ from products import views as product_views
 
 urlpatterns = [
     path("dashboard/", views.dashboard, name="Dashboard"),
+    path("dashboard/assign/", views.AssignMembersList.as_view(), name="Assign"),
+    path("give_permission/", views.give_permission, name="Give Permission"),
     path("new/video", views.VideoCreateView.as_view(), name="CreateVideo"),
     path("update/video/<str:pk>", views.VideoUpdateView.as_view(), name="UpdateVideo"),
     path("delete/video/<str:pk>", views.VideoDeleteView.as_view(), name="DeleteVideo"),
