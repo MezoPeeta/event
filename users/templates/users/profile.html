@@ -10,7 +10,6 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     {% if user.profile.image %}
-
                     <img src="{{ user.profile.image.url}}" 
                     style="
                     border-radius: 50%;
@@ -19,16 +18,19 @@
                     width: 300px;
                   
                     "
-    
-                    class="img-fluid" alt="{{user.username}}">
                     {% else %}
-                    <div style="background:white;margin:0 auto;width:300px;height:300px;border-radius:50%">
-
-                        <svg width="250" height="250" data-jdenticon-value="{{user.username}}" style="margin-top:25px"></svg>
-                    </div>
-
+                    <svg width="80" height="80" data-jdenticon-value="{{user.username}}" style="
+                    border-radius: 50%;
+                    object-fit: cover;
+                    height: 300px;
+                    width: 300px;
+                  "></svg>
+                    
+                
                     {% endif %}
-                 <h1 class="tm-title bold">{{ user.first_name|title}} {{ user.last_name|title }}</h1>
+    
+                
+                 <h1 class="tm-title bold" style="">{{ user.first_name|title}} {{ user.last_name|title }}</h1>
                  <h1 class="bold"> 
                     {% if user.profile.position not in 'President,Operations' %}
                     {{ user.profile.position }}

@@ -15,6 +15,8 @@ from django.contrib.auth import login
 from django.views.generic import DetailView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 import random
+import pydenticon
+from django.core.files.base import ContentFile
 
 
 def register(request):
@@ -79,14 +81,14 @@ class UserProfile(DetailView):
         context["title"] = "Profile"
         context["user"] = self.get_object()
         context["committee"] = self.get_object().profile.committee
-        
+       
         return context
-    
+
 
 class UpdateProfile(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Profile
     template_name = "users/update_profile.html"
-    fields = '__all__'
+    fields = "__all__"
 
     def form_valid(self, form):
         form.instance.user = self.request.user
