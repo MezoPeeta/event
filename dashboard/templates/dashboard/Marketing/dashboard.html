@@ -1,12 +1,9 @@
-{% extends 'base/base.html' %}
+{% extends 'dashboard/base_dashboard.html' %}
 {% load static %}
-{% block content%}
+{% block dashboard%}
 {% load i18n %}
 <section class="ftco-section bg-light">
 
-
-    <div class="container">
-      <a  class="btn btn-outline-dark" href="{% url 'Profile' request.user.username %}" style="font-family: inherit;">&#x2190; Profile</a>
 
         <center>
         <h1>Welcome {{request.user.username}}! </h1>
@@ -34,4 +31,4 @@
         </div>
         </section>
         
-{% endblock content%}
+{% endblock dashboard%}

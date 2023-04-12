@@ -42,7 +42,6 @@ class ProfileUpdateForm(forms.ModelForm):
             "bio",
             "image",
             "position",
-            "committee",
             "achievement",
             "awards",
             "experience",

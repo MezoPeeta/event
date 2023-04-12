@@ -122,9 +122,7 @@
   .interests{
     background-color: red;
   }
-  .mb-4, h2,.number,.mb-3,.task-school ,.interests-content{
-    color: white !important;
-  }
+  
   .btn{
     color: var(--foreground) !important;
     border-color: var(--foreground) !important;

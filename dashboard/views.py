@@ -25,25 +25,27 @@ from django.template.loader import render_to_string
 from django.views.generic.edit import FormMixin
 from xhtml2pdf import pisa
 from django.template.loader import get_template
-
+from django.contrib.auth.models import Permission
+from users.models import Profile
 
 @login_required
 def dashboard(request):
-
-    committee = request.user.profile.committee.name 
+    committee = request.user.profile.committee.name
 
     context = {"title": f"{committee} | Dashboard"}
-
-    if committee == "IT":
-        return redirect("/us")
     
-    if committee != "IT":
-        template = f"dashboard/{committee}/dashboard.html"
+    if request.user.profile.position not in ["President", "Operations"]:
+        if committee == "IT":
+            return redirect("/us")
+
+        if committee != "IT":
+            template = f"dashboard/{committee}/dashboard.html"
+
+        if committee in ["Coaching", "Media", "Videography", "Design"]:
+            raise Http404()
+    if request.user.profile.position == "Operations":
+        template = "dashboard/Operations/dashboard.html"
     
-    if committee in ["Coaching","Media","Videography","Design"]:
-        raise Http404()
-
-
     return render(request, template, context)
 
 
@@ -215,3 +217,37 @@ def inbox_delete(request, pk):
     form = Contact.objects.get(pk=pk)
     form.delete()
     return render(request, "dashboard/HR/inbox.html")
+
+
+class AssignMembersList(LoginRequiredMixin, ListView):
+    model = Profile
+    template_name = "dashboard/assign_users.html"
+    paginate_by = 10
+    context_object_name = "profiles"
+
+    def get_queryset(self):
+        return Profile.objects.filter(position="Member").exclude(user__is_staff=True)
+
+
+def give_permission(request):
+    permission = Permission.objects.get(codename="can_view_dashboard")
+    if request.method == "POST":
+        members = request.POST.getlist("member")
+        if "perm_btn" in request.POST:
+            for member in members:
+                user = User.objects.get(id=member)
+                user.user_permissions.add(permission)
+                user.save()
+        if "remove_perm_btn" in request.POST:
+            for member in members:
+                user = User.objects.get(id=member)
+                user.user_permissions.remove(permission)
+                user.save()
+        if "assign_btn" in request.POST:
+            for member in members:
+                user = User.objects.get(id=member)
+                user.profile.committee = request.user.profile.committee
+                user.save()
+
+    return redirect("Assign")
+
