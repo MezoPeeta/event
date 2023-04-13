@@ -44,13 +44,13 @@ class TestUtils:
             options = webdriver.EdgeOptions()
             options.headless = headless
             self.browser = webdriver.Edge(
-                EdgeChromiumDriverManager(path=r"driver").install(), options=options
+                EdgeChromiumDriverManager(path=r"./driver").install(), options=options
             )
         elif Browser.CHROME.value in browser:
             options = webdriver.ChromeOptions()
             options.headless = headless
             self.browser = webdriver.Chrome(
-                ChromeDriverManager(path=r"driver").install(), options=options
+                ChromeDriverManager(path=r"./driver").install(), options=options
             )
         elif Browser.BRAVE.value in browser:
             options = webdriver.ChromeOptions()
@@ -58,7 +58,7 @@ class TestUtils:
             options.headless = headless
             self.browser = webdriver.Chrome(
                 ChromeDriverManager(
-                    chrome_type=ChromeType.BRAVE, path=r"driver"
+                    chrome_type=ChromeType.BRAVE, path=r"./driver"
                 ).install(),
                 options=options,
             )
@@ -67,7 +67,7 @@ class TestUtils:
             options.headless = headless
             options.add_argument("--window-size=1200,1200,--ignore-certificate-errors")
             self.browser = webdriver.Firefox(
-                executable_path=GeckoDriverManager(path=r"driver").install(),
+                executable_path=GeckoDriverManager(path=r"./driver").install(),
                 options=options,
             )
         else:

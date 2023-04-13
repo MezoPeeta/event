@@ -23,6 +23,10 @@ pydenticon = "^0.3.1"
 django-pydenticon = "^0.2"
 accept = "^0.1.0"
 accept-paymob = "^1.0.0"
+faker = "^18.4.0"
+pygsheets = "^2.0.6"
+django-split-settings = "^1.2.0"
+pyyaml = "^6.0"
 
 
 [tool.poetry.group.dev.dependencies]
