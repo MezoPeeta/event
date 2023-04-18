@@ -80,17 +80,46 @@
     </div>
     <div class="row mt-5 d-flex justify-content-center">
       <div class="col-md-8 text-center heading-section ftco-animate">
+        {% if request.user.profile.committee.name == "Coaching" and perms.users.can_view_dashboard %}
+          <a href="{% url 'Dashboard' %}">
+            <svg width="20" height="20" clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m19 20.25c0-.402-.356-.75-.75-.75-2.561 0-11.939 0-14.5 0-.394 0-.75.348-.75.75s.356.75.75.75h14.5c.394 0 .75-.348.75-.75zm-12.023-7.083c-1.334 3.916-1.48 4.232-1.48 4.587 0 .527.46.749.749.749.352 0 .668-.137 4.574-1.493zm1.06-1.061 3.846 3.846 8.824-8.814c.195-.195.293-.451.293-.707 0-.255-.098-.511-.293-.706-.692-.691-1.742-1.741-2.435-2.432-.195-.195-.451-.293-.707-.293-.254 0-.51.098-.706.293z" fill-rule="nonzero"/></svg>
+          </a>
+        {% endif %}
+
+        {% if home_title %}
+        <h2 class="h1">{{home_title}}</h2>
+        {% else %}
         <h2 class="h1">{% trans 'What is TEDxManaratAlFaroukSchool?' %} </h2>
+        {% endif %}
+        {% if home_content %}
+        <p style="font-size: 20px;font-family: 'Helvetica';">
+          {{home_content}}
+        </p>
+
+        {% else %}
         <p style="font-size: 20px;font-family: 'Helvetica';">
           {% trans 'TEDxManaratAlFaroukSchool is a TEDx event , x = independently organized TED event,' %} <br>
-          {% trans 'TEDxManaratAlFaroukSchool brings the spirit and passion surrounding TED and TEDx to link the school’s generations.' %}</p>
+          {% trans 'TEDxManaratAlFaroukSchool brings the spirit and passion surrounding TED and TEDx to link the school’s generations.' %}
+        </p>
+        {% endif %}
+
       </div>
     </div>
     
   </div>
   <div class="mt-5 d-flex justify-content-center">
     <div class="col-md-8 text-center heading-section ftco-animate">
-      <h2 class="h1">{% trans 'What is TEDx?' %}
+      {% if home_title_2 %}
+      <h2 class="h1">{{home_title_2}}</h2>
+      {% else %}
+      <h2 class="h1">{% trans 'What is TEDx?' %} </h2>
+      {% endif %}
+      
+      {% if home_content_2 %}
+      <p style="font-size: 20px;font-family: 'Helvetica';">
+        {{home_content_2}}
+      </p>
+      {% else %}
       <p style="font-size: 20px;font-family: 'Helvetica';">
         {% trans 'In the spirit of ideas worth spreading,' %} 
         {% trans 'TED has created a program called TEDx. TEDx is a program of local,' %} 
@@ -99,7 +128,9 @@
         {% trans 'At our TEDx ManaratAlFarouk School event, TED Talks video and live speakers will combine to spark deep' %}
         {% trans 'discussion and connection in a small group. The TED Conference provides general guidance' %}
         {% trans 'for the TEDx program,' %} 
-        {% trans 'but individual TEDx events, including ours, are self-organized' %}
+        {% trans 'but individual TEDx events, including ours, are self-organized' %} 
+      </p>
+      {% endif %}
       </div>
   </div>
 </div>

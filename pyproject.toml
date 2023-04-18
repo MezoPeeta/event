@@ -15,18 +15,12 @@ django-ckeditor = "^6.5.1"
 six = "^1.16.0"
 qrcode = "^7.3.1"
 xhtml2pdf = "^0.2.8"
-django-colorfield = "^0.8.0"
 whitenoise = "^6.3.0"
 sentry-sdk = "^1.17.0"
-django-debug-toolbar = "^3.8.1"
-pydenticon = "^0.3.1"
-django-pydenticon = "^0.2"
-accept = "^0.1.0"
 accept-paymob = "^1.0.0"
 faker = "^18.4.0"
 pygsheets = "^2.0.6"
-django-split-settings = "^1.2.0"
-pyyaml = "^6.0"
+django-modeltranslation = "^0.18.9"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -35,7 +29,7 @@ coverage = "^7.2.1"
 selenium = "^4.8.2"
 pylint-django = "^2.5.3"
 webdriver-manager = "^3.8.5"
-django-debug-toolbar = "^3.8.1"
+django-debug-toolbar = "^4.0.0"
 
 [build-system]
 requires = ["poetry-core"]

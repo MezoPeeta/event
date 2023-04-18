@@ -114,7 +114,7 @@ def checkout(request):
 
     for product in products_data:
         product["amount_cents"] = str(product["price"] * 100)
-        product["quantity"] = str(OrderItem.objects.get(product=product["id"]).quantity)
+        product["quantity"] = str(10)
         product["description"] = product["name"]
         del product["price"]
         del product["_state"]

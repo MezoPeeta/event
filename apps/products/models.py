@@ -14,7 +14,6 @@ class Products(models.Model):
     price = models.DecimalField(max_digits=7, decimal_places=2, null=True)
     created_at = models.DateTimeField(default=timezone.now)
     
-
     def get_absolute_url(self):
         return reverse("Store")
 
@@ -108,3 +107,4 @@ class Coupon(models.Model):
 
     def __str__(self):
         return self.code
+
