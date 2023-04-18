@@ -14,9 +14,13 @@ makemigrations:
 run-server:
 	poetry run python -m core.manage runserver
 
-.PHONY: createsuperuser
+.PHONY: superuser
 superuser:
 	poetry run python -m core.manage createsuperuser
+
+.PHONY: collectstatic
+collectstatic:
+	poetry run python -m core.manage collectstatic --noinput
 
 .PHONY: update
 update: install migrate ;	

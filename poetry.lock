@@ -1,12 +1,4 @@
 [[package]]
-name = "accept"
-version = "0.1.0"
-description = "Parse and order a HTTP Accept header."
-category = "main"
-optional = false
-python-versions = "*"
-
-[[package]]
 name = "accept-paymob"
 version = "1.0.0"
 description = "Python client for the Paymob.accept API"
@@ -246,17 +238,6 @@ Django = ">=3.2"
 django-js-asset = ">=2.0"
 
 [[package]]
-name = "django-colorfield"
-version = "0.8.0"
-description = "simple color field for your models with a nice color-picker in the admin-interface."
-category = "main"
-optional = false
-python-versions = "*"
-
-[package.dependencies]
-Pillow = ">=9.0.0"
-
-[[package]]
 name = "django-crispy-forms"
 version = "1.14.0"
 description = "Best way to have Django DRY forms"
@@ -266,11 +247,11 @@ python-versions = ">=3.7"
 
 [[package]]
 name = "django-debug-toolbar"
-version = "3.8.1"
+version = "4.0.0"
 description = "A configurable set of panels that display various debug information about the current request/response."
-category = "main"
+category = "dev"
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=3.8"
 
 [package.dependencies]
 django = ">=3.2.4"
@@ -302,24 +283,16 @@ python-versions = "*"
 python-fsutil = ">=0.6.0"
 
 [[package]]
-name = "django-pydenticon"
-version = "0.2"
-description = "Django application providing generated identicons to the web."
+name = "django-modeltranslation"
+version = "0.18.9"
+description = "Translates Django models using a registration approach."
 category = "main"
 optional = false
 python-versions = "*"
 
 [package.dependencies]
-django = ">=1.8.0"
-pydenticon = ">=0.3"
-
-[[package]]
-name = "django-split-settings"
-version = "1.2.0"
-description = "Organize Django settings into multiple files and directories. Easily override and modify settings. Use wildcards and optional settings files."
-category = "main"
-optional = false
-python-versions = ">=3.7,<4.0"
+Django = ">=3.2"
+typing-extensions = "*"
 
 [[package]]
 name = "exceptiongroup"
@@ -646,17 +619,6 @@ description = "C parser in Python"
 category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
-
-[[package]]
-name = "pydenticon"
-version = "0.3.1"
-description = "Library for generating identicons. Port of Sigil (https://github.com/cupcake/sigil) with enhancements."
-category = "main"
-optional = false
-python-versions = "*"
-
-[package.dependencies]
-Pillow = "*"
 
 [[package]]
 name = "pygsheets"
@@ -1260,12 +1222,9 @@ svglib = ">=1.2.1"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.11"
-content-hash = "8090aadfdef5e5fb6043a8efaaad006fb3a5cf34fe1a00cf7fda18b8d487c629"
+content-hash = "3382d907a3fe599d025a99ac7ffdcd9d14fbaf80720f4cd8d433ae4af3a27af6"
 
 [metadata.files]
-accept = [
-    {file = "accept-0.1.0.tar.gz", hash = "sha256:760241df3a6be5a5c4f00682a381280a8c3c7e0286fd55612f68d0f9e9dcfed4"},
-]
 accept-paymob = [
     {file = "accept-paymob-1.0.0.tar.gz", hash = "sha256:65c951b2fc448458e1170588ecf28e2d8716de87ac60bfe0d59d8628b49d479a"},
     {file = "accept_paymob-1.0.0-py3-none-any.whl", hash = "sha256:d5b48a29f23697aa6baf48bf5d5b428666b174b1b626231e79831551e783efdd"},
@@ -1570,17 +1529,13 @@ django-ckeditor = [
     {file = "django-ckeditor-6.5.1.tar.gz", hash = "sha256:57cd8fb7cd150adca354cd4e5c35a743fadaab7073f957d2b7167f0d9fe1fcaf"},
     {file = "django_ckeditor-6.5.1-py3-none-any.whl", hash = "sha256:1321f24df392f30698513930ce5c9f6d899f9bd0ef734c3b64fe936d809e11b3"},
 ]
-django-colorfield = [
-    {file = "django-colorfield-0.8.0.tar.gz", hash = "sha256:e50423af639858d01c39980eed9970f7ae475610bf0709b81f6b21a3dc9c3f92"},
-    {file = "django_colorfield-0.8.0-py3-none-any.whl", hash = "sha256:b7a25e2c430f4e80726ab171805d0d76d1f82cc7ff3799d60c2682f50d2ca03c"},
-]
 django-crispy-forms = [
     {file = "django-crispy-forms-1.14.0.tar.gz", hash = "sha256:35887b8851a931374dd697207a8f56c57a9c5cb9dbf0b9fa54314da5666cea5b"},
     {file = "django_crispy_forms-1.14.0-py3-none-any.whl", hash = "sha256:bc4d2037f6de602d39c0bc452ac3029d1f5d65e88458872cc4dbc01c3a400604"},
 ]
 django-debug-toolbar = [
-    {file = "django_debug_toolbar-3.8.1-py3-none-any.whl", hash = "sha256:879f8a4672d41621c06a4d322dcffa630fc4df056cada6e417ed01db0e5e0478"},
-    {file = "django_debug_toolbar-3.8.1.tar.gz", hash = "sha256:24ef1a7d44d25e60d7951e378454c6509bf536dce7e7d9d36e7c387db499bc27"},
+    {file = "django_debug_toolbar-4.0.0-py3-none-any.whl", hash = "sha256:bad339d68520652ddc1580c76f136fcbc3e020fd5ed96510a89a02ec81bb3fb1"},
+    {file = "django_debug_toolbar-4.0.0.tar.gz", hash = "sha256:89619f6e0ea1057dca47bfc429ed99b237ef70074dabc065a7faa5f00e1459cf"},
 ]
 django-js-asset = [
     {file = "django_js_asset-2.0.0-py3-none-any.whl", hash = "sha256:86f9f300d682537ddaf0487dc2ab356581b8f50c069bdba91d334a46e449f923"},
@@ -1590,12 +1545,9 @@ django-maintenance-mode = [
     {file = "django-maintenance-mode-0.16.3.tar.gz", hash = "sha256:f9a702e333aa48bf9366af7b412ad15790ecf1e6c3892fd991b7c02b6bcedaa4"},
     {file = "django_maintenance_mode-0.16.3-py3-none-any.whl", hash = "sha256:adacbfdce4b467390ca98bc975fe5957b1f9984317c7da434b9c07c8ff086f99"},
 ]
-django-pydenticon = [
-    {file = "django-pydenticon-0.2.tar.gz", hash = "sha256:52f03d960947bffd132841c0ee9767e50a9776402c1c6f9487ec46a137273bf5"},
-]
-django-split-settings = [
-    {file = "django-split-settings-1.2.0.tar.gz", hash = "sha256:31415a618256b54c5cee8662cbaa72a890683b8b7465d64ba88fdd3affdd6c60"},
-    {file = "django_split_settings-1.2.0-py3-none-any.whl", hash = "sha256:4b3be146776d49c61bd9dcf89fad40edb1544f13ab27a87a0b1aecf5a0d636f4"},
+django-modeltranslation = [
+    {file = "django-modeltranslation-0.18.9.tar.gz", hash = "sha256:d92bcd004e48946ae3824289ee76d36faa670f6e3da4a0412cdaeb4fc2526627"},
+    {file = "django_modeltranslation-0.18.9-py3-none-any.whl", hash = "sha256:f79ec5548053ffa2153b7b5ca646f59da1bf9e4c2c62085e21ead662a9c2faf8"},
 ]
 exceptiongroup = [
     {file = "exceptiongroup-1.1.1-py3-none-any.whl", hash = "sha256:232c37c63e4f682982c8b6459f33a8981039e5fb8756b2074364e5055c498c9e"},
@@ -1892,9 +1844,6 @@ pyasn1-modules = [
 pycparser = [
     {file = "pycparser-2.21-py2.py3-none-any.whl", hash = "sha256:8ee45429555515e1f6b185e78100aea234072576aa43ab53aefcae078162fca9"},
     {file = "pycparser-2.21.tar.gz", hash = "sha256:e644fdec12f7872f86c58ff790da456218b10f863970249516d60a5eaca77206"},
-]
-pydenticon = [
-    {file = "pydenticon-0.3.1.tar.gz", hash = "sha256:2ef363cdd6f4f0193ce62257486027e36884570f6140bbde51de72df321b77f1"},
 ]
 pygsheets = [
     {file = "pygsheets-2.0.6-py3-none-any.whl", hash = "sha256:3338c2eb8990fdee9f463b42a370ec0870c118d607d775471a6dfb8b08f6cd87"},

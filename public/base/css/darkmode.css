@@ -10,13 +10,15 @@
   --redbg: var(--clr-primary);
   --redwhite: var(--clr-primary);
   --redblack: var(--clr-primary);
-  --transblack: var(--clr-transparent)
+  --transblack: var(--clr-transparent);
+  --blackred: var(--clr-dark);
+  --whitered: var(--clr-light);
 }
 
 .darkmode {
   --clr-light: #fff;
   --clr-dark: #000;
-  --clr-primary: #202302;
+  --clr-primary: red;
   --clr-secondary: #00100d;
   --clr-accent: #ff7750;
 
@@ -26,6 +28,8 @@
   --redwhite: var(--clr-light);
   --redblack: var(--clr-dark);
   --transblack: var(--clr-dark);
+  --blackred: var(--clr-primary);
+  --whitered: var(--clr-primary);
 }
 
 .dark-mode-toggle {
@@ -118,9 +122,7 @@
   .interests{
     background-color: red;
   }
-  .mb-4, h2,.number,.mb-3,.task-school ,.interests-content{
-    color: white !important;
-  }
+  
   .btn{
     color: var(--foreground) !important;
     border-color: var(--foreground) !important;

@@ -1,0 +1,32 @@
+{% extends 'dashboard/base_dashboard.html' %} {% load static %} {% block dashboard%} {% load crispy_forms_tags %} {% load i18n %}
+<div class="container">
+ 
+</div>
+<h2>Edit Home Content</h2>
+<form action="{% url 'UpdateHomeContent' %}" method="POST">
+    {% csrf_token %}
+  {{home_form|crispy}}
+    <button type="submit" class="btn btn-primary">Edit</button>
+</form>
+
+<h2>Edit Secondary Home Content</h2>
+<form action="{% url 'UpdateSecondaryHomeContent' %}" method="POST">
+    {% csrf_token %}
+  {{sec_home_form|crispy}}
+    <button type="submit" class="btn btn-primary">Edit</button>
+</form>
+
+<h2>Edit About Content</h2>
+<form action="{% url 'UpdateAboutContent' %}" method="POST">
+    {% csrf_token %}
+  {{about_form|crispy}}
+    <button type="submit" class="btn btn-primary">Edit</button>
+</form>
+
+<h2>Edit Seconadry About Content</h2>
+<form action="{% url 'UpdateSecondaryAboutContent' %}" method="POST">
+    {% csrf_token %}
+  {{sec_about_form|crispy}}
+    <button type="submit" class="btn btn-primary">Edit</button>
+</form>
+{% endblock dashboard%}

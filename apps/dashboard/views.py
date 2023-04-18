@@ -14,11 +14,10 @@ from django.views.generic import (
 from apps.base.models import Contact, Subscribe, Videos
 from django.contrib.auth.mixins import LoginRequiredMixin
 from apps.products.models import Products
-
 import pandas as pd
-from .forms import ContactForm, ReportForm
+from .forms import ContactForm, ReportForm , HomePageForm , AboutPageForm , HomeSecondPageForm , AboutSecondPageForm
 from django.http import Http404, JsonResponse
-from .utils import get_report_image, is_ajax , sync_excel
+from .utils import get_report_image, is_ajax , get_worksheet , update_content ,update_2nd_content
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.template.loader import render_to_string
@@ -27,6 +26,11 @@ from xhtml2pdf import pisa
 from django.template.loader import get_template
 from django.contrib.auth.models import Permission
 from apps.users.models import Profile
+from django.contrib import messages
+from googleapiclient.errors import HttpError
+from .models import HomePage , AboutPage
+
+
 
 @login_required
 def dashboard(request):
@@ -41,11 +45,15 @@ def dashboard(request):
         if committee != "IT":
             template = f"dashboard/{committee}/dashboard.html"
 
-        if committee in ["Coaching", "Media", "Videography", "Design"]:
+        if committee in ["Media", "Videography", "Design"]:
             raise Http404()
-    if request.user.profile.position == "Operations":
-        template = "dashboard/Operations/dashboard.html"
-    
+
+        if committee == "Coaching":
+            context["home_form"] = HomePageForm()
+            context["sec_home_form"] = HomeSecondPageForm()
+            context["about_form"] = AboutPageForm()
+            context["sec_about_form"] = AboutSecondPageForm()
+
     return render(request, template, context)
 
 
@@ -68,10 +76,26 @@ def data_frame(request):
     return render(request, "dashboard/ER/dataframes.html", context)
 
 @login_required
-def sync_to_sheets(request):
-    
+def sync_to_sheets(request):        
+    if request.method == "POST":
+        sheet_url = request.POST['sheet_url']
+        
+        request.session['sheet_url'] = sheet_url
+        try:
+            worksheet = get_worksheet(sheet_url)
 
-    return redirect(reverse("dataframes"))
+        except HttpError:
+            messages.error(request, "Give access permission to the sheet")
+            return redirect("dataframes")
+        
+        
+    qs = Products.objects.all().values()
+    data = pd.DataFrame(qs)
+
+    worksheet.set_dataframe(data, (1, 1))
+
+
+    return redirect("dataframes")
 
 
 
@@ -258,3 +282,36 @@ def give_permission(request):
 
     return redirect("Assign")
 
+
+def update_home_content(request):
+    update_content(
+        request=request,
+        form=HomePageForm,
+        queryset=HomePage
+    )
+    return redirect("Home")
+            
+def update_sec_home_content(request):
+    update_2nd_content(
+        request=request,
+        form=HomeSecondPageForm,
+        queryset=HomePage
+    )
+    return redirect("Home")
+
+def update_about_content(request):
+    update_content(
+        request=request,
+        form=AboutPageForm,
+        queryset=AboutPage
+    )
+    return redirect("About")
+       
+def update_sec_about_content(request):
+    update_2nd_content(
+        request=request,
+        form=AboutSecondPageForm,
+        queryset=AboutPage
+    )
+    return redirect("About")
+       

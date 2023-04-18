@@ -3,14 +3,29 @@
 {% block content%}
 {% load i18n %}
 {% load crispy_forms_tags %}
+
+
+
 <div style="background:var(--background) !important;">
 <div class="container" style="padding-top: 10%;padding-bottom: 5%;">
     <div class="row">
     <a  class="btn btn-outline-dark" href="{% url 'Dashboard' %}" style="font-family: inherit;">&#x2190; Dashboard</a>
     <a  class="btn btn-outline-dark" href="{% url 'datacharts' %}" style="font-family: inherit;">Charts</a>
-    <a href="{% url 'Sync' %}" class="btn btn-danger">Sync</a>
+        
 
 </div>
+<br><br>
+<div>
+    <form method="POST" action="{% url "Sync" %}">
+        {% csrf_token %}
+        <label for="sheet_url" class="form-label">Google Sheets URL:</label>
+        <input type="text" name="sheet_url" id="sheet_url" class="form-control" value="{{request.session.sheet_url}}">
+        <br><br>
+        <button type="submit" class="btn btn-danger">Sync Data</button>
+      </form>  
+    
+</div>
+<br><br><br>
     <div style="display: flex;float: right;">
         <form action="{% url 'dataCSV' %}" method="POST">
             {% csrf_token %}
@@ -20,5 +35,6 @@
     <h1>Products table</h1>
     <div style="color: var(--foreground) !important">{{ df|safe }}</div>
 </div>
+
 </div>
 {% endblock content%}

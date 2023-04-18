@@ -17,7 +17,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.views.generic import ListView
 from uuid import uuid4
 from apps.users.models import Profile
-
+from apps.dashboard.models import HomePage , AboutPage
 
 def home(request):
     if request.method == "POST":
@@ -49,9 +49,20 @@ def home(request):
 
     else:
         form = SubscribeForm()
+    try:
+        home_title = HomePage.objects.get(id=1).title
+        home_content = HomePage.objects.get(id=1).content
+        home_title_2 = HomePage.objects.get(id=1).title_2
+        home_content_2 = HomePage.objects.get(id=1).content_2
+    except HomePage.DoesNotExist:
+        home_title = home_content = home_title_2 = home_content_2 = None
 
     context = {
         "form": form,
+        "home_title": home_title,
+        "home_content": home_content,
+        "home_title_2": home_title_2,
+        "home_content_2": home_content_2,
     }
     return render(request, "base/home.html", context)
 
@@ -143,10 +154,21 @@ def about(request):
                 committee for committee in committees.exclude(id=committee.id)
             ]
     members = Profile.objects.all()
+    try:
+        about_title = AboutPage.objects.get(id=1).title
+        about_content = AboutPage.objects.get(id=1).content
+        about_title_2 = AboutPage.objects.get(id=1).title_2
+        about_content_2 = AboutPage.objects.get(id=1).content_2
+    except AboutPage.DoesNotExist:
+        about_title = about_content = about_title_2 = about_content_2 = None
     context = {
         "title": "About",
         "Members": members,
         "Committees": committees,
+        "about_title": about_title,
+        "about_content": about_content,
+        "about_title_2": about_title_2,
+        "about_content_2": about_content_2,
     }
     return render(request, "base/about.html", context)
 
