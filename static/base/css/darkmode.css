@@ -116,7 +116,7 @@
     box-shadow: none;
   }
   /*..............................................................................................*/
-  .wrapper, .hero-wrap, .quote,.parallax-img ,#section-counter {
+  .hero-wrap, .quote,.parallax-img ,#section-counter {
     background-color: var(--redbg) !important;
   }
   .interests{

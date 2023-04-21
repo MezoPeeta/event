@@ -64,6 +64,11 @@ def home(request):
         "home_title_2": home_title_2,
         "home_content_2": home_content_2,
     }
+    if request.user.is_authenticated:
+        user = request.user
+        ip_address = request.META.get('REMOTE_ADDR')
+        user.profile.ip_address = ip_address
+        user.profile.save()
     return render(request, "base/home.html", context)
 
 
@@ -230,3 +235,4 @@ def speakers(request, pk):
     photos = ImageSpeakers.objects.filter(default=True)
     context = {"photos": photos}
     return render(request, "base/speaker.html", context)
+

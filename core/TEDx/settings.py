@@ -54,6 +54,7 @@ MIDDLEWARE = [
     "maintenance_mode.middleware.MaintenanceModeMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
+    "apps.base.middleware.ban_ip.IPBanMiddleware",
 ]
 
 ROOT_URLCONF = "core.TEDx.urls"
