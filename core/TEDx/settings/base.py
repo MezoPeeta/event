@@ -32,7 +32,6 @@ INSTALLED_APPS = [
     "maintenance_mode",
     "crispy_forms",
     "ckeditor",
-    "pwa",
     "apps.base",
     "apps.users",
     "apps.payment",

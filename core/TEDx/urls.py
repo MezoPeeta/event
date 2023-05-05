@@ -24,7 +24,6 @@ urlpatterns = [
     path("maintenance-mode/", include("maintenance_mode.urls")),
     path("i18n/", include("django.conf.urls.i18n")),
     path("us/", admin.site.urls, name="Admin_Dashboard"),
-    path("", include("pwa.urls")),
 ]
 urlpatterns += i18n_patterns(
     path("", include("apps.base.urls")),
