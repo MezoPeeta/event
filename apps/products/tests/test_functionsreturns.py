@@ -1,5 +1,5 @@
 from django.test import TestCase 
-from products.models import Products, Customer
+from apps.products.models import Products, Customer
 
 class TestingRetruns(TestCase):
     def test_products(self):

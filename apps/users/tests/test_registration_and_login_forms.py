@@ -1,12 +1,12 @@
 from django.test import TestCase
 from django.urls import reverse
-from users.models import RegistrationCode
+from apps.users.models import RegistrationCode
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
-from users.forms import UserRegisterForm
+from apps.users.forms import UserRegisterForm
 
 
-class test_registration(TestCase):
+class TestRegistration(TestCase):
     def setUp(self):
         self.register_url = reverse("Register")
         self.registration_code = str(RegistrationCode.objects.all().last())
@@ -21,7 +21,6 @@ class test_registration(TestCase):
             "password2": "xysQ1234",
         }
         self.form = UserRegisterForm(data=self.user)
-
 
     def test_registration_form(self):
         self.assertTrue(self.form.is_valid())

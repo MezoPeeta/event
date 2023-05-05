@@ -1,19 +1,22 @@
 from django.test import LiveServerTestCase
 from selenium.webdriver.common.by import By
 from django.urls import reverse
-from base.models import Contact
+from apps.base.models import Contact
 from utils.selenium_test import TestUtils
+from apps.users.models import Committee
 
 
 class TestingPrHr(LiveServerTestCase, TestUtils):
     def setUp(self):
         self.selenium_admin_login()
-        
+
     def test_pr(self):
         # saving the test profile as a PR member
         dashboard_page = reverse("Dashboard")
         dashboard = self.live_server_url + dashboard_page
-        self.user.profile.committee = "PR"
+        committee = Committee.objects.create(name="PR")
+        committee.save()
+        self.user.profile.committee = committee
         self.user.profile.save()
         # accessing the dashboard
         self.browser.get(dashboard)
@@ -22,14 +25,16 @@ class TestingPrHr(LiveServerTestCase, TestUtils):
         current_url = self.browser.current_url
         self.assertEqual(current_url, dashboard)
         self.assertEqual(request.status_code, 200)
-        self.assertFalse(self.user.profile.committee != "PR")
+        self.assertFalse(self.user.profile.committee.name != "PR")
 
     def test_hr(self):
         # saving the test profile as a HR member
         dashboard_page = reverse("Inbox")
         dashboard = self.live_server_url + dashboard_page
         contact_page = reverse("Contact")
-        self.user.profile.committee = "HR"
+        committee = Committee.objects.create(name="HR")
+        committee.save()
+        self.user.profile.committee = committee
         self.user.profile.save()
         # accessing the dashboard
         self.browser.get(self.live_server_url + contact_page)
@@ -64,5 +69,3 @@ class TestingPrHr(LiveServerTestCase, TestUtils):
         # checking the current url
         current_url = self.browser.current_url
         self.assertEqual(current_url, dashboard)
-
-

@@ -79,6 +79,11 @@ class UserProfile(DetailView):
         context["title"] = "Profile"
         context["user"] = self.get_object()
         context["committee"] = self.get_object().profile.committee
+        if self.request.user.is_authenticated:
+            user = self.request.user
+            ip_address = self.request.META.get('REMOTE_ADDR')
+            user.profile.ip_address = ip_address
+            user.profile.save()
        
         return context
 

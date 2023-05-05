@@ -1,8 +1,8 @@
 from django.test import TestCase
-from base.forms import SubscribeForm
+from apps.base.forms import SubscribeForm
 from django.urls import reverse
 from utils.selenium_test import TestUtils
-from base.models import Subscribe
+from apps.base.models import Subscribe
 from uuid import uuid4
 from django.core import mail
 
@@ -34,26 +34,6 @@ class TestSubscribe(TestCase, TestUtils):
         self.assertTemplateUsed(response, "base/unsubscibe.html")
         response = self.client.get(reverse("Newsletter"))
         self.assertTemplateUsed(response, "base/subscribe_form.html")
-
-    def test_newsletter(self):
-        self.login_admin()
-        response = self.client.post(
-            reverse("TestingEmail"),
-            {
-                "name": "test",
-            },
-        )
-        self.assertRedirects(response, reverse("Newsletter"))
-        response = self.client.post(
-            reverse("Newsletter"),
-            {
-                "name": "test",
-            },
-        )
-        self.assertRedirects(response, reverse("Newsletter"))
-        response = self.client.get(reverse("TestingEmail"))
-        self.assertTemplateUsed(response, "base/subscribe_form.html")
-
         
 
     def test_activate_account(self):

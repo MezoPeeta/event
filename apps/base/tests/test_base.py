@@ -1,16 +1,17 @@
 from django.test import LiveServerTestCase, TestCase
 from selenium.webdriver.common.by import By
-from base.models import Videos, Subscribe, Contact
+from apps.base.models import Videos, Subscribe, Contact
 from utils.selenium_test import TestUtils
-from django.core.exceptions import ValidationError
-
+from apps.users.models import Committee
 
 class TestVideos(LiveServerTestCase, TestUtils):
     def setUp(self):
         self.browser = self.selenium_admin_login()
 
     def test_videos(self):
-        self.user.profile.committee = "Marketing"
+        committee = Committee.objects.create(name="Marketing")
+        committee.save()
+        self.user.profile.committee = committee
         self.user.profile.save()
         self.browser.get(self.live_server_url + "/en/new/video")
         video_url = self.browser.find_element(By.XPATH, '//*[@id="id_urlID"]')

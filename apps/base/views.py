@@ -64,6 +64,11 @@ def home(request):
         "home_title_2": home_title_2,
         "home_content_2": home_content_2,
     }
+    if request.user.is_authenticated:
+        user = request.user
+        ip_address = request.META.get('REMOTE_ADDR')
+        user.profile.ip_address = ip_address
+        user.profile.save()
     return render(request, "base/home.html", context)
 
 
@@ -105,7 +110,7 @@ def test_email(request):
 
 
 # Real subscirbition Email
-def complete_subscribe(request):
+def send_newsletter(request):
     if request.method == "POST":
         form = NewsletterForm(request.POST)
         if form.is_valid():
@@ -216,11 +221,6 @@ class SpeakersListView(ListView):
     ordering = ["-date_posted"]
     paginate_by = 6
 
-    def get_context_data(self, **kwargs):
-        photos = ImageSpeakers.objects.filter(default=True)
-        context = {"photos": photos}
-        return context
-
 
 def error_404_view(request, exception=None):
     return render(request, "base/404.html", status=404)
@@ -230,3 +230,4 @@ def speakers(request, pk):
     photos = ImageSpeakers.objects.filter(default=True)
     context = {"photos": photos}
     return render(request, "base/speaker.html", context)
+

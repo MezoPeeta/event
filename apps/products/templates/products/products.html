@@ -2,15 +2,13 @@
 {% load static %}
 {% block content%}
 {% load i18n %}
-  {%for photo in photos%}
   <section class="ftco-section bg-light">
     <div class="container">
       <div class="row">
         <div class="col-lg-6">
-          <img style="border:1px solid #888; width:80%;" src="{{photo.image.url}}">
+          <img style="border:1px solid #888; width:80%;" src="{{product.image.url}}">
         </div>
       
-      {% endfor %}
         <div style="padding:50px" class="col-lg-6">
       
           <h3>{{product.name}}</h3>
