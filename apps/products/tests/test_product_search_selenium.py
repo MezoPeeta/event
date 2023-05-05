@@ -4,7 +4,6 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from apps.products.models import Products
 from utils.selenium_test import TestUtils
-from time import sleep
 
 
 class TestSearching(LiveServerTestCase, TestUtils):
@@ -25,8 +24,7 @@ class TestSearching(LiveServerTestCase, TestUtils):
         # self.search_bar = self.browser.find_element(By.XPATH, '//*[@id="search_box"]')
         self.search_bar.send_keys(self.product_name)
 
-    # def test_search_bar(self):
-    #     self.assertEqual(self.search_bar.get_attribute("value"), self.product_name)
+        
 
     def test_searching(self):
         self.search_button = self.browser.find_element(
