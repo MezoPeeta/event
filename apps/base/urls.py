@@ -13,9 +13,8 @@ urlpatterns = [
     path("subscribe_email/", views.subscribe_email, name="Subscirbe_Email"),
     path("email_test/", views.test_email, name="TestingEmail"),
     path("unsubscribe/", views.unsubscribe, name="Unsubscribed"),
-    path("complete-subscribe/", views.complete_subscribe, name="Subscribed"),
+    path("send-newsletter/", views.send_newsletter, name="Newsletter"),
     path(
         "verify/<int:pk>/<uuid:token>", views.activate_account, name="VerifySubscribe"
     ),
-    path("speakers/<str:pk>", views.speakers, name="Speakers"),
 ]

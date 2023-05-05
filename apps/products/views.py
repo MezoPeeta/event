@@ -67,8 +67,6 @@ class ProductsCreateView(LoginRequiredMixin, CreateView):
 
 def products(request, pk):
     product = Products.objects.get(id=pk)
-    photos = ImageProducts.objects.filter(default=True)
-    all_photos = ImageProducts.objects.all()
 
     if request.method == "POST":
         product = Products.objects.get(id=pk)
@@ -84,8 +82,6 @@ def products(request, pk):
 
     context = {
         "product": product,
-        "photos": photos,
-        "all_photos": all_photos,
     }
     return render(request, "products/products.html", context)
 

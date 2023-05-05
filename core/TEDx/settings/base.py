@@ -9,18 +9,17 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 from pathlib import Path
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
+from dotenv import load_dotenv
+BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
+load_dotenv()
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "z#j+0d9jx0yme*if+&7htan5@u-2o=ln+x^x%0uv=ypg@jb8jz"
-
+SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     "modeltranslation",
@@ -39,7 +38,6 @@ INSTALLED_APPS = [
     "apps.payment",
     "apps.products",
     "apps.dashboard",
-
 ]
 
 MIDDLEWARE = [
@@ -52,7 +50,6 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "maintenance_mode.middleware.MaintenanceModeMiddleware",
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "apps.base.middleware.ban_ip.IPBanMiddleware",
 ]
@@ -179,56 +176,3 @@ MAINTENANCE_MODE_STATE_FILE_PATH = os.path.join(
 
 MAINTENANCE_MODE_TEMPLATE = os.path.join(BASE_DIR, "base/templates/base/503.html")
 
-# INTERNAL_IPS = ["127.0.0.1"]
-
-# mimetypes.add_type("application/javascript", ".js", True)
-
-PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, "static/base/js", "serviceworker.js")
-
-PWA_APP_NAME = "TEDx MFIS"
-PWA_APP_DESCRIPTION = "TEDxMFIS Pwa"
-PWA_APP_THEME_COLOR = "#0A0302"
-PWA_APP_BACKGROUND_COLOR = "#ffffff"
-PWA_APP_DISPLAY = "standalone"
-PWA_APP_SCOPE = "/"
-PWA_APP_ORIENTATION = "any"
-PWA_APP_START_URL = "/"
-PWA_APP_STATUS_BAR_COLOR = "default"
-PWA_APP_ICONS = [{"src": "/static/base/img/icon.png", "sizes": "160x160"}]
-PWA_APP_ICONS_APPLE = [{"src": "/static/base/img/icon.png", "sizes": "160x160"}]
-PWA_APP_SPLASH_SCREEN = [
-    {
-        "src": "/static/base/img/icon.png",
-        "media": "(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)",
-    }
-]
-PWA_APP_DIR = "ltr"
-PWA_APP_LANG = "en-US"
-
-
-
-if not DEBUG:
-    import sentry_sdk
-    from sentry_sdk.integrations.django import DjangoIntegration
-
-    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-    SECURE_SSL_REDIRECT = True
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
-
-    sentry_sdk.init(
-        dsn="https://6051be0de76b4e83ba2a2f2b9669c81d@o4504849526030336.ingest.sentry.io/4504850003722240",
-        integrations=[
-            DjangoIntegration(),
-        ],
-        # Set traces_sample_rate to 1.0 to capture 100%
-        # of transactions for performance monitoring.
-        # We recommend adjusting this value in production.
-        traces_sample_rate=1.0,
-        # If you wish to associate users to errors (assuming you are using
-        # django.contrib.auth) you may enable sending PII data.
-        send_default_pii=True,
-        _experiments={
-            "profiles_sample_rate": 1.0,
-        },
-    )

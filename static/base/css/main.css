@@ -15,11 +15,11 @@ body, html {
 }
 
 body:after{
-  content: "beta";
+  content: "alpha";
   position: fixed;
   width: 80px;
   height: 25px;
-  background: #cbc03e;
+  background: #473ecb;
   top: 7px;
   left: -20px;
   text-align: center;
@@ -27,7 +27,7 @@ body:after{
   font-family: sans-serif;
   text-transform: uppercase;
   font-weight: bold;
-  color: #0f0f0f;
+  color: #ffffff;
   line-height: 27px;
   transform:rotate(-45deg);
   z-index: 2;

@@ -15,9 +15,22 @@ from apps.base.models import Contact, Subscribe, Videos
 from django.contrib.auth.mixins import LoginRequiredMixin
 from apps.products.models import Products
 import pandas as pd
-from .forms import ContactForm, ReportForm , HomePageForm , AboutPageForm , HomeSecondPageForm , AboutSecondPageForm
+from .forms import (
+    ContactForm,
+    ReportForm,
+    HomePageForm,
+    AboutPageForm,
+    HomeSecondPageForm,
+    AboutSecondPageForm,
+)
 from django.http import Http404, JsonResponse
-from .utils import get_report_image, is_ajax , get_worksheet , update_content ,update_2nd_content
+from .utils import (
+    get_report_image,
+    is_ajax,
+    get_worksheet,
+    update_content,
+    update_2nd_content,
+)
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.template.loader import render_to_string
@@ -28,8 +41,7 @@ from django.contrib.auth.models import Permission
 from apps.users.models import Profile
 from django.contrib import messages
 from googleapiclient.errors import HttpError
-from .models import HomePage , AboutPage
-
+from .models import HomePage, AboutPage
 
 
 @login_required
@@ -37,7 +49,7 @@ def dashboard(request):
     committee = request.user.profile.committee.name
 
     context = {"title": f"{committee} | Dashboard"}
-    
+
     if request.user.profile.position not in ["President", "Operations"]:
         if committee == "IT":
             return redirect("/us")
@@ -75,28 +87,26 @@ def data_frame(request):
 
     return render(request, "dashboard/ER/dataframes.html", context)
 
+
 @login_required
-def sync_to_sheets(request):        
+def sync_to_sheets(request):
     if request.method == "POST":
-        sheet_url = request.POST['sheet_url']
-        
-        request.session['sheet_url'] = sheet_url
+        sheet_url = request.POST["sheet_url"]
+
+        request.session["sheet_url"] = sheet_url
         try:
             worksheet = get_worksheet(sheet_url)
 
         except HttpError:
             messages.error(request, "Give access permission to the sheet")
             return redirect("dataframes")
-        
-        
+
     qs = Products.objects.all().values()
     data = pd.DataFrame(qs)
 
     worksheet.set_dataframe(data, (1, 1))
 
-
     return redirect("dataframes")
-
 
 
 @login_required
@@ -257,7 +267,10 @@ class AssignMembersList(LoginRequiredMixin, ListView):
     context_object_name = "profiles"
 
     def get_queryset(self):
-        return Profile.objects.filter(position="Member").exclude(user__is_staff=True)
+        committee = self.request.user.profile.committee
+        return Profile.objects.filter(position="Member", committee=committee).exclude(
+            user__is_staff=True
+        )
 
 
 def give_permission(request):
@@ -284,34 +297,20 @@ def give_permission(request):
 
 
 def update_home_content(request):
-    update_content(
-        request=request,
-        form=HomePageForm,
-        queryset=HomePage
-    )
-    return redirect("Home")
-            
-def update_sec_home_content(request):
-    update_2nd_content(
-        request=request,
-        form=HomeSecondPageForm,
-        queryset=HomePage
-    )
+    update_content(request=request, form=HomePageForm, queryset=HomePage)
     return redirect("Home")
 
+
+def update_sec_home_content(request):
+    update_2nd_content(request=request, form=HomeSecondPageForm, queryset=HomePage)
+    return redirect("Home")
+
+
 def update_about_content(request):
-    update_content(
-        request=request,
-        form=AboutPageForm,
-        queryset=AboutPage
-    )
+    update_content(request=request, form=AboutPageForm, queryset=AboutPage)
     return redirect("About")
-       
+
+
 def update_sec_about_content(request):
-    update_2nd_content(
-        request=request,
-        form=AboutSecondPageForm,
-        queryset=AboutPage
-    )
+    update_2nd_content(request=request, form=AboutSecondPageForm, queryset=AboutPage)
     return redirect("About")
-       

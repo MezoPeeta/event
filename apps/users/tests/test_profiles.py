@@ -1,7 +1,8 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
 from django.shortcuts import reverse
-from users.forms import UserUpdateForm,ProfileUpdateForm
+from apps.users.forms import UserUpdateForm,ProfileUpdateForm
+from apps.users.models import Committee
 
 class ProfileTest(TestCase):
     def setUp(self):
@@ -29,12 +30,13 @@ class ProfileTest(TestCase):
             'email':"test@gmail.com"
         }
         form_u = UserUpdateForm(data=user_data)
-
+        committee = Committee.objects.create(name="PR")
+        committee.save()
         profile_data = {
             "bio": "asd",
             'image':"",
             "position":"Member",
-            'committee':"IT",
+            'committee': committee,
             "achievement":"Mew",
             "awards" : "Mwah",
             "experience" : "Mwah mwah"
@@ -52,6 +54,5 @@ class ProfileTest(TestCase):
         self.assertTrue(form_p.cleaned_data)
 
         
-        # If Form is Valid , Cleaned Data should return None else cleaned_Data
 
 

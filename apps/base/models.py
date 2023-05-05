@@ -44,6 +44,7 @@ class Contact(models.Model):
 class Speakers(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=20)
+    image = models.ImageField(default='default.jpg',upload_to='speaker_pics')
     talk_name = models.CharField(max_length=20)
     description = models.TextField(blank=True)
     facebook = models.CharField(max_length=100, blank=True)

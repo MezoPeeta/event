@@ -5,7 +5,6 @@ from apps.products.models import Products
 from django.contrib.auth.models import User
 from faker import Faker
 import pygsheets
-from django.shortcuts import redirect
 
 
 def get_report_image(data):
@@ -38,16 +37,14 @@ def google_sheet_auth():
     return pygsheets.authorize(client_secret="static/base/credentials.json")
 
 def get_worksheet(sheet_url):
-    gc = google_sheet_auth()
+    google_sheet = google_sheet_auth()
     try:
-        sh = gc.open_by_url(sheet_url)
+        first_sheet = google_sheet.open_by_url(sheet_url)[0]
     except pygsheets.SpreadsheetNotFound:
         return "Give access permission to the sheet"
         
     
-    wks = sh[0]
-
-    return wks
+    return first_sheet
 
 def update_content(request,form,queryset: object):
     page,_ = queryset.objects.get_or_create(id=1)
