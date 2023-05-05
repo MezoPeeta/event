@@ -30,10 +30,10 @@ jobs:
           pip install -r requirements.txt
       - name: Merging Migrations
         run: |
-          python manage.py makemigrations --merge --no-input
+          python -m core.manage makemigrations --merge --no-input
       - uses: browser-actions/setup-chrome@latest
       - run: chrome --version
 
       - name: Run Tests
         run: |
-          python manage.py test
+          make test

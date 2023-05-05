@@ -36,4 +36,4 @@ lint:
 
 .PHONY: requirements
 requirements:
-	poetry export -f requirements.txt --output requirements.txt --without-hashes
+	poetry export -f requirements.txt --output requirements.txt --without-hashes --with dev
