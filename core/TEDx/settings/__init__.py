@@ -1,8 +1,8 @@
 import os
 from .base import *
-from dotenv import load_dotenv
+from dotenv import main
 
-load_dotenv()
+main.load_dotenv()
 
 if os.getenv("ENV_NAME") == "production":
     from .production import *
